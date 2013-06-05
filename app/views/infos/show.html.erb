@@ -1,0 +1,5 @@
+<p id="notice"><%= notice %></p>
+<%= @info.user.name %>
+<%= image_tag(@info.avatar_url) if @info.avatar? %>
+<%= link_to 'Edit', edit_info_path(@info) %> |
+<%= link_to 'Back', infos_path %>
