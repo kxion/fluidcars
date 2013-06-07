@@ -1,17 +1,25 @@
 Zuche::Application.routes.draw do
+  get "search_infos/result"
+
   get "home_pages/home"
 
   resources :users
-
-
   resources :infos
+  
+  controller :infos do
+    get 'mycar' => :mycar
+  end
+
+  controller :search_infos do
+    post 'result' => :result
+  end
 
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
     delete 'logout' => :destroy
   end
-
+  match '/result', to: "search_infos#result"
   root :to => 'home_pages#home'
   # The priority is based upon order of creation:
   # first created -> highest priority.

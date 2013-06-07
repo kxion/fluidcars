@@ -7,6 +7,10 @@ gem 'rails', '3.2.13'
 
 gem 'sqlite3'
 gem 'carrierwave'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
+gem 'faker'
+gem 'rmagick'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -35,3 +39,6 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use debugger
 # gem 'debugger'
+group :production do
+  gem 'pg'
+end

@@ -3,8 +3,7 @@ class InfosController < ApplicationController
   # GET /infos
   # GET /infos.json
   def index
-    @infos = Info.all
-
+    @infos = Info.paginate page: params[:page], per_page: 5
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @infos }
@@ -87,4 +86,9 @@ class InfosController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def mycar
+    @infos=current_user.infos
+  end
+
 end

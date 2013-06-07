@@ -1,0 +1,5 @@
+<%= form_tag '/login', :class => "form-inline" do %>
+  <%= email_field_tag :email, params[:email], {:class => "input-small",    :placeholder => "Email"} %>
+  <%= password_field_tag :password, params[:password], {:class => "input-small", :placeholder => "Password"} %>
+  <%= submit_tag 'Login', :class => "btn btn-primary" %>
+<% end %>
