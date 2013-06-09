@@ -1,5 +1,5 @@
 class SearchInfosController < ApplicationController
   def result
-  	@infos = Info.find_all_by_location(params[:location])
+  	@infos = Info.where("location like ? ","%#{params[:location]}%")
   end
 end

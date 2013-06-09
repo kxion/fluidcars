@@ -11,5 +11,6 @@
  *= require_tree .
  *= require ../bootstrap/css/bootstrap.min.css
  *= require ../bootstrap/css/bootstrap-responsive.min.css
+ *= require ../bootstrap/css/datepicker.css
  *= require_self
  */

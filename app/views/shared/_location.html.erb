@@ -1,0 +1,25 @@
+<%= content_for(:mapapi) do %>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=D6ced4fa35c14b09189fba6b898c905f"></script>
+<% end %>
+<div id="map_container" style="width:100%;height:400px"></div>
+<script type="text/javascript">
+  var map = new BMap.Map("map_container");  
+  map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);  
+  // 创建地址解析器实例 
+  var myGeo = new BMap.Geocoder();  
+  // 将地址解析结果显示在地图上，并调整地图视野
+  myGeo.getPoint("<%= location.location %>", function(point){  
+   if (point) {  
+     map.centerAndZoom(point, 16);  
+     map.addOverlay(new BMap.Marker(point));  
+   }  
+  }, "<%= location.city %>");  
+  map.enableScrollWheelZoom(true);
+  function myFun(result){
+    var cityName = result.name;
+    return cityName;
+  }
+  var myCity = new BMap.LocalCity();
+  myCity.get(myFun);
+</script>

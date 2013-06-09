@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130605021704) do
+ActiveRecord::Schema.define(:version => 20130608133636) do
 
   create_table "infos", :force => true do |t|
     t.date     "rent_start"
@@ -23,7 +23,10 @@ ActiveRecord::Schema.define(:version => 20130605021704) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "user_id"
+    t.string   "city"
   end
+
+  add_index "infos", ["location"], :name => "index_infos_on_location"
 
   create_table "users", :force => true do |t|
     t.string   "name"
