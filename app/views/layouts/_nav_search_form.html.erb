@@ -1,0 +1,6 @@
+<%= form_tag result_path, :class => 'form-search navbar-form', style: "padding-top:5px", method: 'get' do %>
+  <div class="input-append">
+    <%= text_field_tag :location, params[:location], class: "span2 search-query", :placeholder => "地点" %>
+    <button type="submit" name="nil" class="btn"><i class="icon-search"></i></button>
+  </div>
+<% end %>

@@ -1,6 +1,6 @@
-<h1>Listing infos</h1>
+<h1>出租信息</h1>
 
 <table>
-  <%= render @infos %>
+  <%= render partial: 'info', collection: @displays %>
 </table>
-<%= will_paginate %>
+<%= will_paginate @displays %>

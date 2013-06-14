@@ -11,22 +11,45 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130608133636) do
+ActiveRecord::Schema.define(:version => 20130614143119) do
 
-  create_table "infos", :force => true do |t|
-    t.date     "rent_start"
-    t.date     "rent_end"
+  create_table "cars", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "band"
     t.text     "description"
     t.string   "location"
     t.integer  "price"
     t.string   "avatar"
+    t.string   "city"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.integer  "user_id"
-    t.string   "city"
   end
 
-  add_index "infos", ["location"], :name => "index_infos_on_location"
+  create_table "comments", :force => true do |t|
+    t.integer  "car_id"
+    t.text     "content"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "infos", :force => true do |t|
+    t.date     "rent_start"
+    t.date     "rent_end"
+    t.integer  "car_id"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.string   "status",     :default => "active"
+    t.integer  "price"
+    t.integer  "user_id"
+  end
+
+  create_table "orders", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "info_id"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "done",       :default => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -34,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20130608133636) do
     t.string   "password_digest"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.decimal  "mobile"
   end
 
 end

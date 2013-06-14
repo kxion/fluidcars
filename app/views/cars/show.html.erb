@@ -1,0 +1,5 @@
+<p id="notice"><%= notice %></p>
+
+<%= render partial: 'car_detail', object: @car, as: :car %>
+
+<%= link_to 'rent_now', new_info_path(car_id: @car.id) %>

@@ -22,6 +22,7 @@ module SessionsHelper
 
   def signed_in_user
     unless signed_in?
+      reset_session
       store_location
       redirect_to login_url, notice: "Please sign in."
     end
@@ -32,9 +33,13 @@ module SessionsHelper
     session[:user_id] = nil
   end
 
-  def redirect_back_or(default)
-    redirect_to(session[:return_to] || default)
-    session.delete(:return_to)
+  def redirect_back
+    if session[:return_to]
+      redirect_to session[:return_to]
+      session.delete(:return_to)
+    else
+      redirect_to root_url
+    end
   end
 
   def store_location

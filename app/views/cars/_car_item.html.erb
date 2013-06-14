@@ -1,0 +1,14 @@
+<tr><td>
+  <ul class="thumbnails">
+    <li class="span4">
+      <a href="<%= car_path(car) %>" class="thumbnail"> 
+        <%= image_tag(car.avatar_url) %>
+      </a>
+    </li>
+    <li class="span4">
+      <table>
+        <%= render partial: 'cars/car_profile', object: car, as: :car %>
+      </table>
+    <li>
+  </ul>
+</tr></td>

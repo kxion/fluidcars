@@ -1,11 +1,9 @@
-<%= render 'style' %>
 <!-- Carousel
 ================================================== -->
 <div id="myCarousel" class="carousel slide">
   <div class="carousel-inner">
     <div class="item active">
       <img src="images/lam1.jpg" alt=""/>
-      <%= render 'search_infos/search_form' %>
     </div>
     <div class="item">
       <img src="images/lam2.jpg" alt=""/>
@@ -17,4 +15,11 @@
   <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
   <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
 </div><!-- /.carousel -->
-<%= render 'search_infos/search_form' %>
+<div class="row" style="height:600px;width:100%;z-index:10">
+  <div style="position:absolute;top:290px" class="span10 offset2">
+    <%= render 'home_pages/home_search' %>
+  </div>
+</div>
+<script type="text/javascript">
+  $('.carousel').carousel({ interval:5000 });
+</script>

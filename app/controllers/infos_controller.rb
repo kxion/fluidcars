@@ -1,13 +1,11 @@
 class InfosController < ApplicationController
   before_filter :signed_in_user, only: [:new, :edit, :update, :destroy, :create]
+  before_filter :have_car, only: [:new, :myinfo]
   # GET /infos
   # GET /infos.json
   def index
-    @infos = Info.paginate page: params[:page], per_page: 5
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @infos }
-    end
+    @infos = Info.where( "rent_end > ? and status = 'active'", Time.now.to_date).order("rent_start DESC")
+    @displays = @infos.paginate page: params[:page], per_page: 5
   end
 
   # GET /infos/1
@@ -24,17 +22,13 @@ class InfosController < ApplicationController
   # GET /infos/new.json
   def new
     @info = Info.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @info }
-    end
+    @info.car_id = params[:car_id]
   end
 
   # GET /infos/1/edit
   def edit
     begin
-      @info = current_user.infos.find(params[:id])
+      @info = Info.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       redirect_to infos_url
     end
@@ -44,15 +38,19 @@ class InfosController < ApplicationController
   # POST /infos.json
   def create
     @info = Info.new(params[:info])
-    @info.user = current_user
-    respond_to do |format|
-      if @info.save
-        format.html { redirect_to @info, notice: 'Info was successfully created.' }
-        format.json { render json: @info, status: :created, location: @info }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @info.errors, status: :unprocessable_entity }
+    if (@info.car.user == current_user)
+      @info.user_id = current_user.id
+      respond_to do |format|
+        if @info.save
+          format.html { redirect_to @info, notice: 'Info was successfully created.' }
+          format.json { render json: @info, status: :created, location: @info }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @info.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to rent_url, notice: 'You have no access to rent this car'
     end
   end
 
@@ -87,8 +85,8 @@ class InfosController < ApplicationController
     end
   end
 
-  def mycar
-    @infos=current_user.infos
+  def myinfo
+    @infos = Info.find_all_by_user_id(current_user.id)
   end
 
 end

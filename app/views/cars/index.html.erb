@@ -1,0 +1,5 @@
+<h1>Listing cars</h1>
+<table class="table">
+  <%= render partial: 'car_item', collection: @cars, as: :car %>
+</table>
+<%= link_to 'New Car', new_car_path %>

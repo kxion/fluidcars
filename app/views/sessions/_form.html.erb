@@ -1,17 +1,35 @@
-<%= form_tag login_path do %>
-  <div class="control-group">
-    <%= label_tag :email, 'email', :class => "control-label" %>
-    <div class="controls">
-      <%= email_field_tag :email, params[:email], :placeholder => "email" %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= label_tag :password, 'password',:class => "control-label" %>
-    <div class="controls">
-      <%= password_field_tag :password, params[:password], :placeholder => "password" %>
-    </div>
-  </div>
-  <div class="actions">
-    <%= submit_tag "Login", :class => "btn btn-large btn-primary" %>
-  </div>
+<%= content_for(:css) do %>
+  <style type="text/css">
+  .form-signin {
+    max-width: 300px;
+    padding: 19px 29px 29px;
+    margin: 0 auto 200px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+       -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  }
+  .form-signin .form-signin-heading,
+  .form-signin .checkbox {
+    margin-bottom: 10px;
+  }
+  .form-signin input[type="email"],
+  .form-signin input[type="password"] {
+    font-size: 16px;
+    height: auto;
+    margin-bottom: 15px;
+    padding: 7px 9px;
+  }
+
+  </style>
+<% end %>
+<%= form_tag login_path, class: 'form-signin' do %>
+  <h2 class="form-signin-heading">Please sign in</h2>
+  <%= email_field_tag :email, params[:email], :placeholder => "email", class: 'input-block-level' %>
+  <%= password_field_tag :password, params[:password], :placeholder => "password", class: 'input-block-level' %>
+  <%= submit_tag "登录", :class => "btn btn-large btn-primary" %>
 <% end %>

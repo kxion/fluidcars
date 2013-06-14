@@ -1,17 +1,28 @@
 Zuche::Application.routes.draw do
+
+
+  resources :cars
+
+
   get "search_infos/result"
 
   get "home_pages/home"
 
   resources :users
-  resources :infos
+  resources :infos do
+    resources :comments
+  end
   
   controller :infos do
-    get 'mycar' => :mycar
+    get 'myinfo' => :myinfo
+  end
+  
+  controller :cars do
+    get 'rent' => :rent
   end
 
   controller :search_infos do
-    post 'result' => :result
+    get 'result' => :result
   end
 
   controller :sessions do
@@ -19,6 +30,13 @@ Zuche::Application.routes.draw do
     post 'login' => :create
     delete 'logout' => :destroy
   end
+
+  controller :orders do
+    get 'neworder' => :create
+    get 'order' => :show
+    post 'check_out' => :check_out
+  end
+  
   match '/result', to: "search_infos#result"
   root :to => 'home_pages#home'
   # The priority is based upon order of creation:

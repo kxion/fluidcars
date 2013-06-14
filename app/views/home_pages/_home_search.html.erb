@@ -1,0 +1,6 @@
+<%= form_tag result_path, :class => 'form-search', method: 'get' do %>
+  <div class="row">
+    <%= text_field_tag :location, params[:location], class: "span4 search-query",style: "padding:10px", :placeholder => "地点" %>
+    <button type="submit" class="btn btn-success span2" style="padding:10px;float:none;margin-left:0">找 车</button>
+  </div>
+<% end %>

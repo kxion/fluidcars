@@ -1,2 +1,6 @@
 <p id="notice"><%= notice %></p>
-<%= render 'infos/detail' %>
+<%= render partial: 'infos/info_detail', object: @info, as: :info %>
+<table class="table">
+  <%= render partial: 'comments/comment', collection: @info.car.comments %>
+</table>
+<%= link_to 'Request', neworder_path(info_id: @info.id), class: 'btn btn-primary' %>

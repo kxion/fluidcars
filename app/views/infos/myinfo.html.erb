@@ -1,0 +1,5 @@
+<% unless @infos.nil? %>
+  <%= render @infos %>
+<% else %>
+  <% link_to 'rent now', rent_path %>
+<% end %>

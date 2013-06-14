@@ -1,0 +1,2 @@
+<%= render partial: 'infos/info_detail', object: @order.info, as: :info %>
+<%= button_to "check_out", check_out_path(order_id: @order.id), class: 'btn btn-primary' %>
