@@ -24,7 +24,7 @@ module SessionsHelper
     unless signed_in?
       reset_session
       store_location
-      redirect_to login_url, notice: "Please sign in."
+      redirect_to signup_or_signin_url
     end
   end
 

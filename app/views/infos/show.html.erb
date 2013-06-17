@@ -1,6 +1,32 @@
-<p id="notice"><%= notice %></p>
-<%= render partial: 'infos/info_detail', object: @info, as: :info %>
-<table class="table">
-  <%= render partial: 'comments/comment', collection: @info.car.comments %>
-</table>
-<%= link_to 'Request', neworder_path(info_id: @info.id), class: 'btn btn-primary' %>
+<% if notice %>
+<div class="alert alert-success" style="width:70%;margin: 20px auto 20px 40px">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <%= notice %>
+</div>
+<% end %>
+<div class="row-fluid info-detail">
+  <div class="span8">
+    <div class="withborder"> 
+      <%= render partial: 'cars/pic_desc', object: @info.car, as: :car %>
+      开始日期:<%= @info.rent_start %><br>
+      结束日期:<%= @info.rent_end %><br>
+    </div>
+    <div class="withborder"> 
+      <%= render partial: 'comments/comment_list', object: @info.car.comments, as: :comments %>
+    </div>
+  </div>
+  <div class="span4">
+    <div class="withborder">
+      <div class="rent-price">
+        &#65509;<%= @info.price %>/Day
+      </div>
+      <% if @info.status == "active" %>
+        <div>
+          <button class='btn btn-primary' id='request'>预订</button>
+        </div>
+      <% end %>
+    </div>
+    <%= render partial: 'cars/loc_user', object: @info.car, as: :car %>
+  </div>
+</div>
+<%= render partial: 'shared/check_login', locals: { id: 'request', destination: neworder_path(info_id: @info.id) } %>

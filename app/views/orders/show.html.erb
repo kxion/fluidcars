@@ -1,2 +1,26 @@
-<%= render partial: 'infos/info_detail', object: @order.info, as: :info %>
-<%= button_to "check_out", check_out_path(order_id: @order.id), class: 'btn btn-primary' %>
+<% if notice %>
+<div class="alert alert-success" style="width:70%;margin: 20px auto 20px 40px">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <%= notice %>
+</div>
+<% end %>
+<div class="row-fluid order-detail">
+  <div class="span8">
+    <div class="withborder"> 
+      <%= render partial: 'cars/pic_desc', object: @order.info.car, as: :car %>
+      开始日期:<%= @order.info.rent_start %><br>
+      结束日期:<%= @order.info.rent_end %><br>
+    </div>
+  </div>
+  <div class="span4">
+    <div class="withborder">
+      &#65509;<%= @order.info.price %>/Day
+    </div>
+  <% unless @order.done %>
+    <div class="withorder">
+      <%= button_to "去支付", check_out_path(order_id: @order.id), class: 'btn btn-primary btn-large' %>
+    </div>
+  <% end %>
+    <%= render partial: 'cars/loc_user', object: @order.info.car, as: :car %>
+  </div>
+</div>

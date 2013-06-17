@@ -1,17 +1,16 @@
 Zuche::Application.routes.draw do
 
 
-  resources :cars
-
+  resources :cars do
+    resources :comments
+  end
 
   get "search_infos/result"
 
   get "home_pages/home"
 
   resources :users
-  resources :infos do
-    resources :comments
-  end
+  resources :infos
   
   controller :infos do
     get 'myinfo' => :myinfo
@@ -29,12 +28,14 @@ Zuche::Application.routes.draw do
     get 'login' => :new
     post 'login' => :create
     delete 'logout' => :destroy
+    get 'signup_or_signin' => :signup_or_signin
   end
 
   controller :orders do
     get 'neworder' => :create
     get 'order' => :show
     post 'check_out' => :check_out
+    get 'my_order' => :my_order
   end
   
   match '/result', to: "search_infos#result"

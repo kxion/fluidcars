@@ -1,7 +1,9 @@
 class Info < ActiveRecord::Base
-  attr_accessible :rent_start, :rent_end, :car_id
+  attr_accessible :rent_start, :rent_end, :car_id, :price
   validates :rent_start, :rent_end, presence: true
+  validates :status, :inclusion => ['active','done','reserved']
   belongs_to :car
+  belongs_to :user
   has_one :order
   before_save :rent_end_must_great_than_rent_start, :rent_start_cannot_lower_than_now
   private

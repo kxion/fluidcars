@@ -1,0 +1,8 @@
+<ul class="thumbnails">
+  <li class="span12">
+    <%= image_tag(car.avatar_url) %>
+  </li>
+</ul>
+<table>
+  <%= render partial: 'cars/car_profile', object: car, as: :car %>
+</table>

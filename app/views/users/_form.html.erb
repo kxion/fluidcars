@@ -1,34 +1,5 @@
-<%= content_for(:css) do %>
-  <style>
-  .form-signup {
-    max-width: 300px;
-    padding: 19px 29px 29px;
-    margin: 0 auto 200px;
-    background-color: #fff;
-    border: 1px solid #e5e5e5;
-    -webkit-border-radius: 5px;
-       -moz-border-radius: 5px;
-            border-radius: 5px;
-    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-       -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-            box-shadow: 0 1px 2px rgba(0,0,0,.05);
-  }
-  </style>
-<% end %>
 <%= form_for @user, html:{:class => "form-signup"} do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation" class="control-group">
-      <div class="controls">
-        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-        <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-  <% end %>
-  <h2>New user</h2>
+  <h2>用户信息</h2>
   <div class="control-group">
     <div class="controls">
       <div class="input-prepend">
@@ -73,3 +44,5 @@
     <%= f.submit "Sign Up", :class => "btn btn-large btn-primary" %>
   </div>
 <% end %>
+<%= get_error_message(@user,:mobile) %>
+<%= get_error_message(@user,:email) %>

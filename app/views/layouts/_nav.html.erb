@@ -1,4 +1,10 @@
-<div class="navbar navbar-inverse navbar-fixed-top">
+<style>
+ .navbar .nav > li > a:hover {
+    color: rgb(48, 48, 48);
+    background-color: rgb(229, 227, 222);
+}
+</style>
+<div class="navbar navbar-fixed-top">
   <div class="navbar-inner">  
     <div class="container">      
       <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
@@ -9,30 +15,48 @@
       </button>
       <a class="brand" href="<%= root_url %>">租车</a>
       <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
-      <div class="nav-collapse collapse">
+      <div class="nav-collapse collapse navbar-responsive-collapse">
         <ul class="nav">
-          <li class="active"><a href="http://localhost:3000">主页</a></li>
+          <li><a href="http://localhost:3000">主页</a></li>
           <li><%= link_to '随便看看', infos_path %></li>
-        <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
-        <% if signed_in? %>
-          <li class="dropdown" style="float:right;right:0">
+        </ul>
+        <%= render 'layouts/nav_search_form' %>
+      <% if signed_in? %>
+        <ul class="nav pull-right">
+          <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_user.name %><b class="caret"></b></a>
-            <ul class="dropdown-menu pull-right">
+            <ul class="dropdown-menu pull-left">
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="#">我是车主</a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to '发布出租信息', rent_path %></li>
+                  <li><%= link_to '我的爱车', cars_path %></li>
+                  <li><%= link_to '我的出租', myinfo_path %></li>
+                </ul>
+              </li>
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="#">我要租车</a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to '我的订单', my_order_path %></li>
+                </ul>
+              </li>
               <li><%= link_to '登出', logout_path, method: :delete%></li>
-              <li><%= link_to '发布出租信息', rent_path %></li>
-              <li><%= link_to '我的爱车', cars_path %></li>
-              <li><%= link_to '我的出租', myinfo_path %></li>
             </ul>
           </li>
         </ul>
-        <% else %>
-          <li><%= link_to "注册", new_user_path %></li>
+      <% else %>
+        <ul class="nav pull-right">
+          <li><%= link_to "注册", new_user_path %></li>  
         </ul>
-        <%= render 'layouts/nav_login_form' %>   
-        <% end %>
+        <%= render 'layouts/nav_login_form' %>
+      <% end %>        
+        <ul class="nav pull-right" style="padding-top:8px;margin-right:5px">
+          <li><button class="btn btn-small btn-success" id='rent'>出租</button>
+          </li>
+        </ul> 
       </div><!--/.nav-collapse -->
-      <%= render 'layouts/nav_search_form' %>
     </div>
   </div><!-- /.navbar-inner -->
 </div><!-- /.navbar -->
+<%= render partial: 'shared/check_login', locals: { id: 'rent', destination: rent_path } %>
 

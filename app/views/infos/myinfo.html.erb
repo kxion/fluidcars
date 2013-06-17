@@ -1,5 +1,13 @@
-<% unless @infos.nil? %>
-  <%= render @infos %>
-<% else %>
-  <% link_to 'rent now', rent_path %>
-<% end %>
+<div class="row info-list">
+  <div class="span7">
+  <% unless @infos.nil? %>
+    <table class="table table-hover">
+      <%= render partial: 'info_item', collection: @infos, as: :info %>
+    </table>
+  <% else %>
+    还没有出租,<% link_to '立刻发布出租信息', rent_path %>
+  <% end %>
+  </div>
+  <div class="span4">
+  </div>
+</div>

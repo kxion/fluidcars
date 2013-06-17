@@ -1,5 +1,24 @@
-<p id="notice"><%= notice %></p>
-
-<%= render partial: 'car_detail', object: @car, as: :car %>
-
-<%= link_to 'rent_now', new_info_path(car_id: @car.id) %>
+<% if notice %>
+<div class="alert alert-success">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <%= notice %>
+</div>
+<% end %>
+<div class="row-fluid car-detail">
+  <div class="span8">
+    <div class="withborder"> 
+      <%= render partial: 'cars/pic_desc', object: @car, as: :car %>
+    </div>
+  </div>
+  <div class="span4">
+    <div class="withborder">
+      <div class="rent-price">
+        &#65509;<%= @car.price %>/Day
+      </div>
+      <div>
+        <%= link_to '出租', new_info_path(car_id: @car.id), class: 'btn btn-success btn-large' %>
+      </div>
+    </div>
+    <%= render partial: 'cars/loc_user', object: @car, as: :car %>
+  </div>
+</div>

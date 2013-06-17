@@ -1,11 +1,16 @@
 class CommentsController < ApplicationController
   
-  def create
+  def new
     @car = Car.find(params[:car_id])
-    @comment = @car.comments.new(params[:comment])
+    @comment = @car.comments.build
+  end
+
+  def create
+    @comment = Comment.new(params[:comment])
+    @comment.user = current_user
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to info_path(@info), notice: 'Comment was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created, location: @comment }
       else
         format.html { render action: "new" }

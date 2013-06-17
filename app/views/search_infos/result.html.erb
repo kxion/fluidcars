@@ -1,6 +1,6 @@
 <%= @infos.size %> 结果.
 <table>
-  <%= render partial: 'infos/info', collection: @results %>
+  <%= render partial: 'infos/info_item', collection: @results, as: :info %>
 </table>
 <%= will_paginate @results %>
 

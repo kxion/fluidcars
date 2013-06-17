@@ -4,8 +4,7 @@ class InfosController < ApplicationController
   # GET /infos
   # GET /infos.json
   def index
-    @infos = Info.where( "rent_end > ? and status = 'active'", Time.now.to_date).order("rent_start DESC")
-    @displays = @infos.paginate page: params[:page], per_page: 5
+    @infos = Info.where( "rent_end > ? and status = 'active'", Time.now.to_date).order("created_at DESC").paginate(page: params[:page], per_page: 5)
   end
 
   # GET /infos/1
@@ -39,15 +38,11 @@ class InfosController < ApplicationController
   def create
     @info = Info.new(params[:info])
     if (@info.car.user == current_user)
-      @info.user_id = current_user.id
-      respond_to do |format|
-        if @info.save
-          format.html { redirect_to @info, notice: 'Info was successfully created.' }
-          format.json { render json: @info, status: :created, location: @info }
-        else
-          format.html { render action: "new" }
-          format.json { render json: @info.errors, status: :unprocessable_entity }
-        end
+      @info.user = current_user
+      if @info.save
+        redirect_to @info, notice: '出租信息发布成功！'
+      else
+        render action: "new" 
       end
     else
       redirect_to rent_url, notice: 'You have no access to rent this car'
@@ -86,7 +81,7 @@ class InfosController < ApplicationController
   end
 
   def myinfo
-    @infos = Info.find_all_by_user_id(current_user.id)
+    @infos = current_user.infos.order("created_at DESC")
   end
 
 end

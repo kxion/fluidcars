@@ -63,4 +63,6 @@ def make_comments
       car.comments.create!(content: "pretty good")
     end
   end
+  comments = Comment.all
+  comments.each { |comment| comment.user_id = 3 }
 end

@@ -1,0 +1,28 @@
+<tr>
+  <td>
+    <ul class="thumbnails">
+      <li class="span2">
+        <a href="<%= order_path(order_id: order.id) %>">
+          <%= image_tag(order.info.car.avatar_url, class: 'thumbnail') %>
+        </a>
+      </li>
+    </ul>
+  </td>
+  <td>
+    <ul class="span3">
+      <li><%= order.info.car.band %></li>
+      <li><%= order.info.car.city %><%= order.info.car.location %></li>
+      <li>Start:<%= order.info.rent_start %></li>
+      <li>End:<%= order.info.rent_end %></li>
+    </ul>
+  </td>
+  <td>
+    <div class="span2 rent-price">
+      <div>&#65509;<%= order.info.price %>/Day</div>
+      <div><%= order.done ? '已支付' : (button_to '去支付', check_out_path(order_id: order.id), class: 'btn btn-success') %></div>
+      <% if order.done? %>
+        <%= link_to '评价', new_car_comment_path(car_id: order.info.car_id) %>
+      <% end %>
+    </div>
+  </td>
+</tr>

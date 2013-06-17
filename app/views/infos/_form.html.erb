@@ -1,35 +1,23 @@
-<div class='row'>
-  <div class='span4 offset4'>
-    <%= form_for @info, html:{} do |f| %>
-      <% if @info.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@info.errors.count, "error") %> prohibited this info from being saved:</h2>
-          <ul>
-          <% @info.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-          </ul>
-        </div>
-      <% end %>
-      <%= f.hidden_field :car_id, value: @info.car_id %>
-      <div class="control-group">
-        <div class="controls input-append date" id="rent_start">
-          <%= f.text_field :rent_start %>
-          <span class="add-on"><i class="icon-calendar"></i></span>
-        </div>
-      </div>
-      <div class="control-group">
-        <div class="controls input-append date" id="rent_end">
-          <%= f.text_field :rent_end %>
-          <span class="add-on"><i class="icon-calendar"></i></span>
-        </div>
-      </div>
-      <div class="actions">
-        <%= f.submit "Rent my car",:class => "btn btn-primary"%>
-      </div>
-    <% end %>
+<%= form_for @info, html: { class: 'form-newinfo' } do |f| %>
+  <h2>出租信息</h2>
+  <%= f.hidden_field :car_id, value: @info.car_id %>
+  <%= f.hidden_field :price, value: @info.car.price %>
+  <div class="control-group">
+    <div class="controls input-append date" id="rent_start">
+      <%= f.text_field :rent_start %>
+      <span class="add-on"><i class="icon-calendar"></i></span>
+    </div>
   </div>
-</div>
+  <div class="control-group">
+    <div class="controls input-append date" id="rent_end">
+      <%= f.text_field :rent_end %>
+      <span class="add-on"><i class="icon-calendar"></i></span>
+    </div>
+  </div>
+  <div class="actions">
+    <%= f.submit "Rent my car",:class => "btn btn-primary"%>
+  </div>
+<% end %>
 <!-- datetime picker -->
 <script type="text/javascript">
   function UTCDate(){

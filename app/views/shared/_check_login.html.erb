@@ -1,0 +1,15 @@
+<% unless signed_in? %>
+  <%= render 'shared/signup_or_signin' %>
+  <% store_location %>
+  <script type="text/javascript">
+    $('#<%= id %>').click(function(){
+      $('#myModal').modal();
+    });
+  </script>
+<% else %>
+  <script type="text/javascript">
+    $('#<%= id %>').click(function(){
+      window.location.href="<%= destination %>";
+    });
+  </script>
+<% end %>

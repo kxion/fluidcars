@@ -42,7 +42,7 @@ class CarsController < ApplicationController
     @car.user = current_user
     respond_to do |format|
       if @car.save
-        format.html { redirect_to @car, notice: 'Car was successfully created.' }
+        format.html { redirect_to @car, notice: '车辆信息创建成功!' }
         format.json { render json: @car, status: :created, location: @car }
       else
         format.html { render action: "new" }
@@ -58,7 +58,7 @@ class CarsController < ApplicationController
 
     respond_to do |format|
       if @car.update_attributes(params[:car])
-        format.html { redirect_to @car, notice: 'Car was successfully updated.' }
+        format.html { redirect_to @car, notice: '车辆信息修改成功！' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
