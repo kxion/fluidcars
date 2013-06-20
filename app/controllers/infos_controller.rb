@@ -1,16 +1,16 @@
 class InfosController < ApplicationController
   before_filter :signed_in_user, only: [:new, :edit, :update, :destroy, :create]
-  before_filter :have_car, only: [:new, :myinfo]
+  before_filter :have_car, only: :new
   # GET /infos
   # GET /infos.json
   def index
-    @infos = Info.where( "rent_end > ? and status = 'active'", Time.now.to_date).order("created_at DESC").paginate(page: params[:page], per_page: 5)
+    @infos = Info.includes(:car).where( "rent_end > ? and status = 'active'", Time.now.to_date).order("created_at DESC").paginate(page: params[:page], per_page: 5)
   end
 
   # GET /infos/1
   # GET /infos/1.json
   def show
-    @info = Info.find(params[:id])
+    @info = Info.includes(:car => {:comments => :user} ).find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @info }
@@ -81,7 +81,7 @@ class InfosController < ApplicationController
   end
 
   def myinfo
-    @infos = current_user.infos.order("created_at DESC")
+    @infos = current_user.infos.includes(:car).order("created_at DESC")
   end
 
 end

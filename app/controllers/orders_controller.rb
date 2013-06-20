@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
   end
 
   def my_order
-    @orders = current_user.orders
+    @orders = current_user.orders.includes(:info => :car)
   end
 
 end

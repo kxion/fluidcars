@@ -1,6 +1,13 @@
-<%= @infos.size %> 结果.
-<table>
-  <%= render partial: 'infos/info_item', collection: @results, as: :info %>
-</table>
-<%= will_paginate @results %>
+
+<div class="row info-list">
+  <div class="span7">
+    <%= @infos.size %> 结果.
+    <table class="table table-hover">
+      <%= render partial: 'infos/info_item', collection: @results, as: :info %>
+    </table>
+    <%= will_paginate @results %>
+  </div>
+  <div class="span4">
+  </div>
+</div>
 

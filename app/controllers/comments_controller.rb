@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  
+  before_filter :signed_in_user
   def new
     @car = Car.find(params[:car_id])
     @comment = @car.comments.build
@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to root_url, notice: 'Comment was successfully created.' }
+        format.html { redirect_to my_order_url, notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created, location: @comment }
       else
         format.html { render action: "new" }

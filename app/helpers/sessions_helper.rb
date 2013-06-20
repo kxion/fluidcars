@@ -24,7 +24,7 @@ module SessionsHelper
     unless signed_in?
       reset_session
       store_location
-      redirect_to signup_or_signin_url
+      redirect_to login_url
     end
   end
 
@@ -42,7 +42,7 @@ module SessionsHelper
     end
   end
 
-  def store_location
+  def store_location 
     session[:return_to] = request.url
   end
 

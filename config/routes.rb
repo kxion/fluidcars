@@ -28,11 +28,10 @@ Zuche::Application.routes.draw do
     get 'login' => :new
     post 'login' => :create
     delete 'logout' => :destroy
-    get 'signup_or_signin' => :signup_or_signin
   end
 
   controller :orders do
-    get 'neworder' => :create
+    post 'neworder' => :create
     get 'order' => :show
     post 'check_out' => :check_out
     get 'my_order' => :my_order

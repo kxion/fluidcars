@@ -1,5 +1,4 @@
-class SessionsController < ApplicationController
-  
+class SessionsController < ApplicationController  
   def new
   end
 
@@ -9,16 +8,13 @@ class SessionsController < ApplicationController
   		sign_in user
   		redirect_back
     else
-      redirect_to login_url
+      render action: 'new'
   	end	
   end
 
   def destroy
   	sign_out
   	redirect_to root_url
-  end
-
-  def signup_or_signin
   end
 
 end

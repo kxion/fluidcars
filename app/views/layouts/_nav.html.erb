@@ -51,12 +51,10 @@
         <%= render 'layouts/nav_login_form' %>
       <% end %>        
         <ul class="nav pull-right" style="padding-top:8px;margin-right:5px">
-          <li><button class="btn btn-small btn-success" id='rent'>出租</button>
+          <li><%= button_to '出租', rent_path, class: "btn btn-small btn-success", id: 'rent', method: 'get' %>
           </li>
         </ul> 
       </div><!--/.nav-collapse -->
     </div>
   </div><!-- /.navbar-inner -->
 </div><!-- /.navbar -->
-<%= render partial: 'shared/check_login', locals: { id: 'rent', destination: rent_path } %>
-

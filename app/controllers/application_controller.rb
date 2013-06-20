@@ -10,10 +10,4 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def login_before_request
-    unless signed_in?
-      store_location
-      redirect_to login_url, notice: "Please sign in."
-    end
-  end
 end

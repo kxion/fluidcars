@@ -4,7 +4,9 @@
     <table class="table table-hover">
       <%= render partial: 'car_item', collection: @cars, as: :car %>
     </table>
+    <%= link_to '创建新车辆信息', new_car_path %>
   </div>
   <div class="span4">
   </div>
+
 </div>

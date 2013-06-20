@@ -4,4 +4,6 @@ module ApplicationHelper
       obj.errors[attr].join(',')
     end
   end
+
+
 end

@@ -22,7 +22,8 @@
       </div>
       <% if @info.status == "active" %>
         <div>
-          <button class='btn btn-primary' id='request'>预订</button>
+          <%= button_to 'request', neworder_path(info_id: @info.id), id: 'request', class: 'btn btn-success btn-large' %>
+          <!-- <button class='btn btn-primary' id='request'>预订</button> -->
         </div>
       <% end %>
     </div>
