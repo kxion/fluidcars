@@ -40,9 +40,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use debugger
 # gem 'debugger'
-group :production do
-  gem 'pg'
-end
+
 group :development do
   gem 'bullet'
 end
