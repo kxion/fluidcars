@@ -13,6 +13,7 @@ gem 'faker'
 gem 'rmagick'
 gem 'dynamic_form'
 gem 'capistrano'
+gem 'rvm-capistrano'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -44,4 +45,8 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 group :development do
   gem 'bullet'
+end
+
+group :production do
+  gem 'mysql2'
 end
