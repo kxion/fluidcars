@@ -31,12 +31,12 @@ set :application, "zuche"
 set :domain, 'fluidcars.com'
 set :user, "root" # 一個伺服器上的帳戶用來放你的應用程式，不需要有sudo權限，但是需要有權限可以讀取Git repository拿到原始碼
 set :branch, "master"
-set :repository, "root@loveltyoic:~/git/zuche.git"
+set :repository, "root@loveltyoic:~/git/fluidcars.git"
 set :scm, "git"
 set :port, "22"
 
 set :deploy_to, "/home/#{domain}"
-# set :deploy_via, :remote_cache
+set :deploy_via, :remote_cache
 set :use_sudo, false
 
 role :web, domain
