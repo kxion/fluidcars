@@ -7,8 +7,8 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
-  # include Sprockets::Helpers::RailsHelper
-  # include Sprockets::Helpers::IsolatedHelper
+  include Sprockets::Helpers::RailsHelper
+  include Sprockets::Helpers::IsolatedHelper
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -21,7 +21,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   def cache_dir
-    '/tmp/zuche-cache'
+    'tmp/zuche-cache'
   end
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url

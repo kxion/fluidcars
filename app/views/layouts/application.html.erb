@@ -5,10 +5,8 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <%= render 'layouts/style' %>
   <%= render 'layouts/shim' %>
   <%= yield :mapapi %>
-  <%= render 'layouts/css' %>
 </head>
 <body style="padding-top:50px">
   <%= render 'layouts/nav' %>
@@ -19,6 +17,7 @@
 </body>
 
 </html>
-
-<%= debug(params) if Rails.env.development? %>
-<%= debug(request.session) %>
+<% if Rails.env.development? %> 
+  <%= debug(params) %>
+  <%= debug(request.session) %>
+<% end %>
