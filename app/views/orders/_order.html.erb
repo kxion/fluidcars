@@ -21,7 +21,7 @@
       <div>&#65509;<%= order.info.price %>/Day</div>
       <div><%= order.done ? '已支付' : (button_to '去支付', check_out_path(order_id: order.id), class: 'btn btn-success') %></div>
       <% if order.done? %>
-        <%= link_to '评价', new_car_comment_path(car_id: order.info.car_id) %>
+        <%= link_to '评价', new_car_comment_path(order.info.car) %>
       <% end %>
     </div>
   </td>

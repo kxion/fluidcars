@@ -30,10 +30,10 @@ def make_cars
   5.times do
     users.each { |user| user.cars.create!(
                           description: "pretty good",
-                          band: "randrover",
+                          band: "路虎",
                           price: 231,
-                          city: "hefei",
-                          location: "longjushanzhuang")}
+                          city: "合肥",
+                          location: "龙居山庄")}
   end
 end
 
@@ -46,8 +46,8 @@ end
 def make_infos
   cars = Car.all
   cars.each { |car| car.infos.create!(
-                        rent_start: "2013-6-8",
-                        rent_end: "2013-6-10")}
+                        rent_start: "2014-6-8",
+                        rent_end: "2014-6-10")}
 end
 
 namespace :lzh do

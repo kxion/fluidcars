@@ -6,5 +6,58 @@
     <%= will_paginate @infos %>
   </div>
   <div class="span4">
+    <%= form_tag search_date_path, method: 'get' do %>
+      <div class="control-group">
+        <div class="controls input-append date" id="rent_start">
+          <%= text_field_tag :rent_start, params[:rent_start] %>
+          <span class="add-on"><i class="icon-calendar"></i></span>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="controls input-append date" id="rent_end">
+          <%= text_field_tag :rent_end, params[:rent_end] %>
+          <span class="add-on"><i class="icon-calendar"></i></span>
+        </div>
+      </div>
+      <div class="actions">
+        <%= submit_tag "按时间搜",:class => "btn btn-primary"%>
+      </div>
+    <% end %>
   </div>
 </div>
+
+<!-- datetime picker -->
+<script type="text/javascript">
+  function UTCDate(){
+    return new Date(Date.UTC.apply(Date, arguments));
+  }
+  function UTCToday(){
+    var today = new Date();
+    return UTCDate(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
+  }
+  var start = new Date(2013,1,1);
+  var end = new Date(2013,1,2);
+  $("#rent_start").datepicker({
+          format: "yyyy-MM-dd",
+          startDate: UTCToday(),
+          autoclose: true,
+          todayBtn: true,
+          todayHighlight: true,
+          language: "chs"
+          }).on('changeDate', function(ev){
+            start = new Date(ev.date);
+            $("#rent_end").datepicker('setStartDate', start);
+            if (start.valueOf() > end.valueOf()){
+              $("#rent_end").datepicker('setDate', start);}
+            });
+
+  $("#rent_end").datepicker({
+          format: "yyyy-MM-dd",
+          autoclose: true,
+          todayBtn: true,
+          todayHighlight: true,
+          language: "chs"
+          }).on('changeDate', function(ev){
+            end = new Date(ev.date);
+            });
+</script>

@@ -22,6 +22,7 @@ Zuche::Application.routes.draw do
 
   controller :search_infos do
     get 'result' => :result
+    get 'search_date' => :search_date
   end
 
   controller :sessions do

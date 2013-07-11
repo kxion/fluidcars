@@ -65,11 +65,11 @@ body {
   margin-top: 30px;
   margin-left: 40px;
 }
-.order-detail, .info-detail, .car-detail, .alert {
+.order-detail, .info-detail, .car-detail, .alert-box {
   margin-top: 30px;
   margin-left: 40px;
 }
-.row-fluid, .alert {
+.row-fluid {
   width: 80%;
 }
 .withborder{

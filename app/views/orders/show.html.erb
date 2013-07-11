@@ -1,9 +1,11 @@
-<% if notice %>
-<div class="alert alert-success" style="width:70%;margin: 20px auto 20px 40px">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <%= notice %>
+<div class="row-fluid alert-box">
+  <% if notice %>
+    <div class="alert alert-success span12" >
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <%= notice %>
+    </div>
+  <% end %>
 </div>
-<% end %>
 <div class="row-fluid order-detail">
   <div class="span8">
     <div class="withborder"> 
