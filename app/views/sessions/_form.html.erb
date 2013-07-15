@@ -1,5 +1,4 @@
 <%= form_tag login_path, class: 'form-signin' do %>
-  <h2 class="form-signin-heading">Please sign in</h2>
   <div class="control-group" style="position:relative">
     <%= email_field_tag :email, params[:email], :placeholder => "email", class: 'login-field' %>
     <label class="login-field-icon" for="email"></label>

@@ -2,19 +2,20 @@
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">请先登录</h3>
+    <h3 id="myModalLabel">登录</h3>
   </div>
-  <div class="modal-body">
+  <%= render 'sessions/form' %>
+  <!-- <div class="modal-body">
     <%= form_tag login_path, class: 'form-signin' do %>
       <h2 class="form-signin-heading">Please sign in</h2>
       <%= email_field_tag :email, params[:email], :placeholder => "email", class: 'input-block-level' %>
-      <%= password_field_tag :password, params[:password], :placeholder => "password", class: 'input-block-level' %>
+      <%= password_field_tag :password, params[:password], :placeholder  => "password", class: 'input-block-level' %>
       <%= submit_tag "登录", :class => "btn btn-large btn-primary" %>
     <% end %>
     <div>
       没有帐号？<a href="<%= new_user_path %>">现在就注册</a>
     </div>
-  </div>
+  </div> -->
   <div class="modal-footer">
   </div>
 </div>

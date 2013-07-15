@@ -3,6 +3,7 @@
   <div class="control-group">
     <div class="controls">
       <%= f.email_field :email, :placeholder => "email" %>
+    </div>
   </div>
   <div class="control-group">
     <div class="controls">
@@ -18,7 +19,7 @@
   <div class="control-group">
     <div class="controls">
       <%= f.password_field :password, :placeholder => "password" %>
-      <span>Tips：用熟悉的一句话的首字母连起来作密码，好记又安全！</span>
+      <span><a id="tips" href="#" data-placement='right' data-toggle="tooltip" title="用熟悉的一句话的首字母来作密码，好记又安全!">Tips</a></span>
     </div>
   </div>
   <div class="control-group">
@@ -32,3 +33,7 @@
 <% end %>
 
 <%= get_error_message(@user,:email) %>
+
+<script>
+  $('#tips').tooltip();
+</script>
