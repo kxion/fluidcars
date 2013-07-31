@@ -39,6 +39,10 @@ Zuche::Application.routes.draw do
   end
   
   match '/result', to: "search_infos#result"
+  controller :test_pages do
+    get 'test_page' => :test_page
+    get 'test_format' => :test_format
+  end
   root :to => 'home_pages#home'
   # The priority is based upon order of creation:
   # first created -> highest priority.

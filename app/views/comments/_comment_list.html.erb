@@ -1,3 +1,7 @@
 <ul class="media-list">
-  <%= render partial: 'comments/comment', collection: comments %>
+  <% if comments.empty? %>
+    no comments!
+  <% else %>
+  	<%= render partial: 'comments/comment', collection: comments %>
+  <% end %>
 </ul>

@@ -14,11 +14,43 @@
  *= require ../bootstrap/css/datepicker.css
  *= require_self
  */
+
+html {
+  background: url("bg.png") repeat scroll left bottom #EEEEEE;
+  height: 100%;
+  width: 100%;
+}
+
 body {
   padding-bottom: 40px;
   color: #5a5a5a;
+  background: none repeat scroll 0 0 transparent;
 }
-
+.brand-year {
+  margin-bottom: 0;
+  margin-left: -10px;
+  margin-top: -50px;
+  position: relative;
+}
+.brand-year-content {
+  background: none repeat scroll 0 0 #28BCDC;
+  color: white;
+  display: inline-block;
+  font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1em;
+  padding: 10px 20px;
+  position: absolute;
+  top: -30px;
+  left: 0;
+}
+.container-radius {
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
 .form-signup {
   max-width: 300px;
   padding: 19px 29px 29px;
@@ -70,7 +102,7 @@ body {
   margin-left: 40px;
 }
 .row-fluid {
-  width: 80%;
+  width: 90%;
 }
 .withborder{
   padding: 19px 29px 29px;

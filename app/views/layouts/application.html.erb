@@ -9,14 +9,15 @@
   <meta charset='UTF-8'>
   <meta name="description" content="这是一个私家车出租平台">
   <meta name="keywords" content="私家车，出租，日租">
-  <%= yield :mapapi %>
+
 </head>
 <body style="padding-top:50px">
   <%= render 'layouts/nav' %>
-  <div class="container" style="min-height:600px">	
+  <div class="container container-radius" style="margin-top:20px;background-color:#FFF">	
     <%= yield %>
   </div>
   <%= render 'layouts/footer' %>
+  <%= yield :mapapi %>
 </body>
 
 </html>

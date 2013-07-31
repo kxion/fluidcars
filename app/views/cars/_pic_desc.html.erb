@@ -1,8 +1,15 @@
-<ul class="thumbnails">
-  <li class="span12">
-    <%= image_tag(car.avatar_url) %>
-  </li>
-</ul>
-<table>
-  <%= render partial: 'cars/car_profile', object: car, as: :car %>
-</table>
+<div>
+  <ul class="thumbnails">
+    <li class="span12">
+      <%= image_tag(car.avatar_url) %>
+    </li>
+  </ul>
+</div>
+<div class="brand-year">
+  <h1 class="brand-year-content"><%= car.band %></h1>
+</div>
+<div>
+	<table>
+    <%= render partial: 'cars/car_profile', object: car, as: :car %>
+	</table>
+</div>

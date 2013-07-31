@@ -1,0 +1,38 @@
+<script>
+  $(document).ready(function (){
+    $('#calendar').fullCalendar({
+      // put your options and callbacks here
+      header: {
+        center : 'prev title next',
+        right : 'basicDay,basicWeek,month,agendaWeek,agendaDay',
+        left : 'today'
+      },
+      buttonText: {
+        month: '月',
+        day: '日',
+        week: '周',
+        today: '今天'
+      },
+      monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+      dayNames: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
+      dayNamesShort: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
+      monthNamesShort: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+      titleFormat: {
+        month: 'yyyy MMMM',                             // September 2009
+        week: "yyyy MMM d[ yyyy]{ '&#8212;'[ MMM] d }", // Sep 7 - 13 2009
+        day: 'yyyy , MMM d, dddd'                  // Tuesday, Sep 8, 2009
+      },
+      eventClick: function(calEvent, jsEvent, view) {
+
+        alert('Event: ' + calEvent.title);
+        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+        alert('View: ' + view.name);
+
+        // change the border color just for fun
+        $(this).css('border-color', 'red');
+
+      }
+    });
+  });
+</script>
+<div id="calendar"></div>
