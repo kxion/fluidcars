@@ -1,3 +1,4 @@
+
 <!-- Carousel
 ================================================== -->
 <div id="myCarousel" class="carousel slide" style="position:relative;top:0">
@@ -28,4 +29,9 @@
 <script type="text/javascript">
   $('.carousel').carousel({ interval:5000 });
 </script>
+<% if notice %>
+<div class="alert alert-success">
+  <%= notice %>
+</div>
+<% end %>
 <%= render "shared/calendar" %>

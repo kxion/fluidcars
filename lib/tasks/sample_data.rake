@@ -8,7 +8,8 @@ def make_users
   admin = User.create!(name:     "lzh",
                        email:    "admin@admin.com",
                        password: "123456",
-                       password_confirmation: "123456")
+                       password_confirmation: "123456",
+                       mobile: 18011111111)
   20.times do |n|
     name  = Faker::Name.name
     email = "#{n}@#{n}.com"
@@ -16,7 +17,8 @@ def make_users
     User.create!(name:     name,
                  email:    email,
                  password: password,
-                 password_confirmation: password)
+                 password_confirmation: password,
+                 mobile: 18011111+"#{n}")
   end
 end
 namespace :lzh do
