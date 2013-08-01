@@ -47,3 +47,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 group :development do
   gem 'bullet'
 end
+
+group :production do
+  gem 'mysql2'
+end
