@@ -1,5 +1,5 @@
-namespace :db do
-  desc "Fill database with sample data"
+namespace :lzh do
+  desc "make users"
   task users: :environment do
     make_users
   end
@@ -9,7 +9,7 @@ def make_users
                        email:    "admin@admin.com",
                        password: "123456",
                        password_confirmation: "123456",
-                       mobile: 18011111111)
+                       mobile: 18019951766)
   20.times do |n|
     name  = Faker::Name.name
     email = "#{n}@#{n}.com"
@@ -18,7 +18,7 @@ def make_users
                  email:    email,
                  password: password,
                  password_confirmation: password,
-                 mobile: 18011111+"#{n}")
+                 mobile: 18088888000+n)
   end
 end
 namespace :lzh do
@@ -28,8 +28,8 @@ namespace :lzh do
   end
 end
 def make_cars
-  users = User.all(limit:6)
-  5.times do
+  users = User.all
+  2.times do
     users.each { |user| user.cars.create!(
                           description: "pretty good",
                           band: "路虎",
@@ -48,8 +48,8 @@ end
 def make_infos
   cars = Car.all
   cars.each { |car| car.infos.create!(
-                        rent_start: "2014-6-8",
-                        rent_end: "2014-6-10")}
+                        rent_start: "2013-8-3",
+                        rent_end: "2013-8-4") }
 end
 
 namespace :lzh do
@@ -66,5 +66,5 @@ def make_comments
     end
   end
   comments = Comment.all
-  comments.each { |comment| comment.user_id = 3 }
+  comments.each { |comment| comment.user_id = 8 }
 end

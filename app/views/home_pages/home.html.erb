@@ -1,37 +1,13 @@
-
-<!-- Carousel
-================================================== -->
-<div id="myCarousel" class="carousel slide" style="position:relative;top:0">
-  <div class="carousel-inner">
-    <div class="item active">
-      <img src="images/lam1.jpg" alt=""/>
-    </div>
-    <div class="item">
-      <img src="images/lam2.jpg" alt=""/>
-    </div>
-    <div class="item">
-      <img src="images/lam3.jpg" alt=""/>
-    </div>
-  </div>
-  <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-  <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-  </ol>
-</div><!-- /.carousel -->
-<div class="row" style="position:absolute;top:295px; height:300px;width:100%;z-index:10">
-  <div  class="span10 offset2">
+<div>
+  <%= image_tag "lam1.jpg"%>
+</div>
+<div class="row" style="position:absolute;top:350px;margin-left:105px;height:300px;z-index:10">
+  <div  class="span10">
     <%= render 'home_pages/home_search' %>
   </div>
 </div>
-<script type="text/javascript">
-  $('.carousel').carousel({ interval:5000 });
-</script>
-<% if notice %>
-<div class="alert alert-success">
-  <%= notice %>
+<div class="row">
+  <div class="span6 offset3">
+    <%# render partial: 'home_pages/recommend_show', object: @infos %> 
+  </div>
 </div>
-<% end %>
-<%= render "shared/calendar" %>

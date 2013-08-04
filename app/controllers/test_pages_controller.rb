@@ -1,5 +1,6 @@
 class TestPagesController < ApplicationController
   def test_page
+    @info = Info.first
   end
 
   def test_format

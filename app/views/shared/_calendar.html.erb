@@ -4,7 +4,7 @@
       // put your options and callbacks here
       header: {
         center : 'prev title next',
-        right : 'basicDay,basicWeek,month,agendaWeek,agendaDay',
+        right : 'basicDay,basicWeek,month',
         left : 'today'
       },
       buttonText: {
@@ -23,16 +23,20 @@
         day: 'yyyy , MMM d, dddd'                  // Tuesday, Sep 8, 2009
       },
       eventClick: function(calEvent, jsEvent, view) {
-
-        alert('Event: ' + calEvent.title);
-        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-        alert('View: ' + view.name);
-
-        // change the border color just for fun
         $(this).css('border-color', 'red');
-
+      },
+      dayClick: function(date,allDay,jsEvent,view) {
+        event = { start: date, title: '出租'};
+        console.log(event);
+        $("#calendar").fullCalendar('renderEvent',event,true);
+      },
+      events: function(start,end,callback){
+        var events = <%= raw(convert_to_event_json(infos)) %>;
+        console.log(events);
+        callback(events);
       }
-    });
+        // more events here
+    });    
   });
 </script>
 <div id="calendar"></div>

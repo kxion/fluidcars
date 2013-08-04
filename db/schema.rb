@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(:version => 20130616143646) do
     t.string   "password_digest"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-    t.decimal  "mobile"
+    t.integer  "mobile"
     t.string   "face"
   end
 
