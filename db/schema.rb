@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130616143646) do
+ActiveRecord::Schema.define(:version => 20130808020154) do
 
   create_table "cars", :force => true do |t|
     t.integer  "user_id"
@@ -50,6 +50,22 @@ ActiveRecord::Schema.define(:version => 20130616143646) do
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.boolean  "done",       :default => false
+  end
+
+  create_table "profiles", :force => true do |t|
+    t.string   "face"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "rates", :force => true do |t|
+    t.integer  "day"
+    t.integer  "week"
+    t.integer  "month"
+    t.integer  "info_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

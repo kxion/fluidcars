@@ -1,7 +1,7 @@
 <ul class="media-list">
   <% if comments.empty? %>
-    no comments!
+    暂无评论
   <% else %>
-  	<%= render partial: 'comments/comment', collection: comments %>
+  	<%= render partial: 'comments/comment_list_item', collection: comments, as: :comment %>
   <% end %>
 </ul>

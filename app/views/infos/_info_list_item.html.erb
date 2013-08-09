@@ -1,0 +1,24 @@
+<tr>
+  <td>
+    <ul class="thumbnails">
+      <li class="span2">
+        <a href="<%= info_path(info) %>">
+          <%= image_tag(info.car.avatar.thumb.url, class: 'thumbnail') %>
+        </a>
+      </li>
+    </ul>
+  </td>
+  <td>
+    <ul class="span2 abstract_info">
+      <li><%= info.car.band %></li>
+      <li><%= info.car.city %><%= info.car.location %></li>
+      <li>开始时间：<%= info.rent_start %></li>
+      <li>结束时间：<%= info.rent_end %></li>
+    </ul>
+  </td>
+  <td>
+    <div class="span2">
+      <%= render partial: 'infos/rent_rates', object: info, as: :info %>
+    </div>
+  </td>
+</tr>

@@ -3,9 +3,9 @@ class CarsController < ApplicationController
   # GET /cars
   # GET /cars.json
   def index
-    @cars = current_user.cars
+    @cars = current_user.cars.paginate(page: params[:page], per_page: 5)
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render 'mycar'}
       format.json { render json: @cars }
     end
   end
@@ -13,7 +13,7 @@ class CarsController < ApplicationController
   # GET /cars/1
   # GET /cars/1.json
   def show
-    @car = Car.find(params[:id])
+    @car = Car.includes(comments: :user).find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @car }
@@ -42,7 +42,8 @@ class CarsController < ApplicationController
     @car.user = current_user
     respond_to do |format|
       if @car.save
-        format.html { redirect_to @car, notice: '车辆信息创建成功!' }
+        flash[:notice] = '车辆信息创建成功!'
+        format.html { redirect_to @car }
         format.json { render json: @car, status: :created, location: @car }
       else
         format.html { render action: "new" }
@@ -77,10 +78,6 @@ class CarsController < ApplicationController
       format.html { redirect_to cars_url }
       format.json { head :no_content }
     end
-  end
-
-  def rent
-    @cars = current_user.cars
   end
   
 end

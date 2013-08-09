@@ -28,7 +28,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
     # For Rails 3.1+ asset pipeline compatibility:
     # asset_path("fallback/" + [version_name, "default.jpg"].compact.join('_'))
   
-    "/images/default.jpg"
+    asset_path("default.jpg")
   end
 
   process :resize_to_fit => [800,600]

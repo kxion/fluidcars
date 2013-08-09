@@ -1,11 +1,16 @@
-<div id="map_container" class="withborder" style="height:200px">
+<div class="map-box">
+  <div class="map-header">
+    <i class="icon-map-marker icon-white"></i><%= car.location %>
+  </div>
+  <div id="map_container" class="withborder" style="height:200px">/
+  </div>
 </div>
 <div class="withborder">
   <%= car.user.name %>
   <ul class= "thumbnails">
     <li class="span3">
-      <%= link_to image_tag(car.user.face.thumb.url), car.user %>
+      <%= link_to image_tag(car.user.profile.face.thumb.url), car.user %>
     </li>
   </ul>
 </div>
-<%= render :partial => 'shared/location',locals: { city: car.city, location: car.location} %>
+<%# render :partial => 'shared/location',locals: { city: car.city, location: car.location} %>

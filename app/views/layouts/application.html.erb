@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>车流网</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-  <%= render 'layouts/shim' %>
-  <meta charset='UTF-8'>
-  <meta name="description" content="这是一个私家车出租平台">
-  <meta name="keywords" content="私家车，出租，日租">
+  <head>
+    <title>车流网</title>
+    <script>
+      document.write('<div id="loadbox" style="text-align:center; padding-top:300px; z-index:999;"><span>加载中，请耐心等待</span></div>');
+      window.onload = function () {
+            document.getElementById('loadbox').style.display = "none";
+            document.getElementById('main').style.display = "block";
 
-</head>
-<body style="padding-top:50px">
-  <%= render 'layouts/nav' %>
-  <div class="container container-radius" style="background-color:#FFF">	
-    <%= yield %>
-  </div>
-  <%= render 'layouts/footer' %>
-  <%= yield :mapapi %>
-</body>
-
+      };
+    </script>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <%= render 'layouts/shim' %>
+    <meta charset='UTF-8'>
+    <meta name="description" content="这是一个私家车出租平台">
+    <meta name="keywords" content="私家车，出租，日租">
+  </head>
+  <body id="main">
+    <%= render 'layouts/nav' %>
+    <div class="container container-radius" style="background-color:#FFF">
+      <%= yield %>
+    </div>
+    <%= render 'layouts/footer' %>
+    <%= yield :mapapi %>
+  </body>
 </html>
+
 <% if Rails.env.development? %> 
   <%= debug(params) %>
   <%= debug(request.session) %>

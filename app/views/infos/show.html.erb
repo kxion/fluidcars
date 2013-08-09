@@ -1,13 +1,6 @@
-<div class="row-fluid alert-box">
-  <% if notice %>
-    <div class="alert alert-success span12" >
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <%= notice %>
-    </div>
-  <% end %>
-</div>
+<%= render 'shared/notice' %>
 <div class="row-fluid info-detail">
-  <div class="span8">
+  <div class="span7">
     <div class="withborder"> 
       <%= render partial: 'cars/pic_desc', object: @info.car, as: :car %>
       开始日期:<%= @info.rent_start %><br>
@@ -18,17 +11,16 @@
     </div>
   </div>
   <div class="span4">
-    <div class="withborder">
-      <div class="rent-price">
-        &#65509;<%= @info.price %>/Day
+
+    <div id="request-box">
+      <%= render partial: 'infos/rent_rates', object: @info, as: :info %>
+      <div class="request-tool">
+        <% if @info.status == "active" %>
+        <%= button_to '预订', neworder_path(info_id: @info.id), id: 'request', class: 'btn submit' %>
+        <% end %>
       </div>
-      <% if @info.status == "active" %>
-        <div>
-          <%= button_to '预订', neworder_path(info_id: @info.id), id: 'request', class: 'btn btn-success btn-large' %>
-          <!-- <button class='btn btn-primary' id='request'>预订</button> -->
-        </div>
-      <% end %>
     </div>
+
     <%= render partial: 'cars/loc_user', object: @info.car, as: :car %>
   </div>
 </div>

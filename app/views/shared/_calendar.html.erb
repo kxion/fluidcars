@@ -4,7 +4,8 @@
       // put your options and callbacks here
       header: {
         center : 'prev title next',
-        right : 'basicDay,basicWeek,month',
+        right : '',
+        // right : 'month',
         left : 'today'
       },
       buttonText: {
@@ -16,14 +17,28 @@
       monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
       dayNames: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
       dayNamesShort: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
-      monthNamesShort: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+      monthNamesShort: ['01','02','03','04','05','06','07','08','09','10','11','12'],
       titleFormat: {
-        month: 'yyyy MMMM',                             // September 2009
+        month: 'yyyy - MMM',                             // September 2009
         week: "yyyy MMM d[ yyyy]{ '&#8212;'[ MMM] d }", // Sep 7 - 13 2009
         day: 'yyyy , MMM d, dddd'                  // Tuesday, Sep 8, 2009
       },
+      aspectRatio: 0.6,
       eventClick: function(calEvent, jsEvent, view) {
         $(this).css('border-color', 'red');
+      },
+      eventMouseover: function(calEvent, jsEvent, view) {
+        $(this).popover({
+          title: calEvent.title,
+          placement: 'top',
+          trigger: 'hover',
+          html: true,
+          content: '<div class="span2"><ul><li>开始时间：'+dateFormat(calEvent.start)+'</li><li>结束时间：'+dateFormat(calEvent.end)+'</li></ul></div>'
+          });
+        $(this).popover('show');
+      },
+      eventMouseout: function() {
+        $(this).popover('hide');
       },
       dayClick: function(date,allDay,jsEvent,view) {
         event = { start: date, title: '出租'};
@@ -38,5 +53,8 @@
         // more events here
     });    
   });
+  function dateFormat(date){
+    return date.getMonth()+1+'月'+date.getDate()+'日';
+  }
 </script>
 <div id="calendar"></div>

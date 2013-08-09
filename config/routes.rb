@@ -9,20 +9,34 @@ Zuche::Application.routes.draw do
 
   get "home_pages/home"
 
-  resources :users
+  resources :users 
+  controller :profiles do
+    post 'profile_update' => :update
+    get 'profile' => :show
+  end
+
   resources :infos
   
   controller :infos do
     get 'myinfo' => :myinfo
-  end
-  
-  controller :cars do
-    get 'rent' => :rent
+
+    get 'select_car' => :select_car
+    post 'confirm_select_car' => :confirm_select_car
+
+    get 'select_time' => :select_time
+    post 'confirm_select_time' => :confirm_select_time
+    
+    get 'set_rates' => :set_rates
+    post 'confirm_set_rates' => :confirm_set_rates
+    
+    get 'complete' => :complete
   end
 
   controller :search_infos do
     get 'result' => :result
     get 'search_date' => :search_date
+    get 'search_info_by_city' => :search_info_by_city
+
   end
 
   controller :sessions do

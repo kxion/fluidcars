@@ -1,0 +1,23 @@
+<div class="row margin-box">
+  <div class="span7">
+    <div class="rent_process">
+      <div style='margin:0 30px;width:560px;'>
+          <%= image_tag 'info_step_3.png' %>
+      </div>
+      <ul class="rent_steps">
+        <li>选择车辆</li>
+        <li>选择日期</li>
+        <li  class="step_active">出租费用</li>
+        <li>出租完成</li>
+      </ul>
+    </div>
+
+    <div class="container-radius">
+      <%= render 'set_rates_form' %>
+    </div>
+  </div>
+
+  <div class="span4">
+  </div>
+
+</div>

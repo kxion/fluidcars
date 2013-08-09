@@ -10,18 +10,11 @@ class InfosController < ApplicationController
   # GET /infos/1
   # GET /infos/1.json
   def show
-    @info = Info.includes(:car => {:comments => :user} ).find(params[:id])
+    @info = Info.includes(:rate, car: {comments: :user}).find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @info }
     end
-  end
-
-  # GET /infos/new
-  # GET /infos/new.json
-  def new
-    @info = Info.new
-    @info.car_id = params[:car_id]
   end
 
   # GET /infos/1/edit
@@ -30,22 +23,6 @@ class InfosController < ApplicationController
       @info = Info.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       redirect_to infos_url
-    end
-  end
-
-  # POST /infos
-  # POST /infos.json
-  def create
-    @info = Info.new(params[:info])
-    if (@info.car.user == current_user)
-      @info.user = current_user
-      if @info.save
-        redirect_to @info, notice: '出租信息发布成功！'
-      else
-        render action: "new" 
-      end
-    else
-      redirect_to rent_url, notice: 'You have no access to rent this car'
     end
   end
 
@@ -81,7 +58,55 @@ class InfosController < ApplicationController
   end
 
   def myinfo
-    @infos = current_user.infos.includes(:car).order("created_at DESC")
+    @infos = current_user.infos.includes(:car, :rate).order("created_at DESC").paginate(page: params[:page], per_page: 5)
+  end
+
+  
+  def select_car
+    @cars = current_user.cars.paginate(page: params[:page], per_page: 5)
+    render 'select_car'
+  end
+
+  def confirm_select_car
+    if Car.find(params[:car_id]).user == current_user
+      session[:current_car_id] = params[:car_id] 
+      redirect_to select_time_url
+    else
+      flash[:notice] = '只能出租属于自己的车辆'
+      redirect_to select_car_url
+    end
+  end
+
+  def select_time
+    @info = Info.new
+  end
+
+  def confirm_select_time
+    @info = current_user.infos.build(params[:info])
+    @info.car_id = session[:current_car_id]
+    if @info.save
+      session[:current_info_id] = @info.id
+      redirect_to set_rates_url
+    else
+      render 'select_time'
+    end
+  end
+
+  def set_rates
+    @rate = Rate.new
+  end
+
+  def confirm_set_rates
+    @rate = Rate.new(params[:rate])
+    @rate.info_id = session[:current_info_id]
+    @rate.save
+    redirect_to complete_url
+  end
+
+  def complete
+    @info = Info.find(session[:current_info_id])   
+    session[:current_info_id] = nil
+    session[:current_car_id] = nil 
   end
 
 end

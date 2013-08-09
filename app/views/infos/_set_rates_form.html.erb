@@ -1,0 +1,29 @@
+<%= form_for @rate, url: confirm_set_rates_path, method: 'post' do |f| %>
+  <div class="form-header"><h2>指定费用</h2></div>
+  <div class="form-container">
+    <div class="control-group">
+      <%= f.label :day, '日租金', :class=>"control-label" %>
+      <div class="controls input-append"> 
+        <%= f.number_field :day, :placeholder=>"日租金" %>
+        <span class="add-on">元</span>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :week, '周租金', :class=>"control-label" %>
+      <div class="controls input-append"> 
+        <%= f.number_field :week, :placeholder=>"周租金" %>
+        <span class="add-on">元</span>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :month,'月租金', :class=>"control-label" %>
+      <div class="controls input-append"> 
+        <%= f.number_field :month, :placeholder=>"月租金" %>
+        <span class="add-on">元</span>
+      </div>
+    </div>
+    <div class="actions">
+      <%= f.submit "确定",:class => "btn btn-primary"%> 
+    </div>
+  </div>
+<% end %>

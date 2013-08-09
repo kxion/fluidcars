@@ -66,5 +66,8 @@ def make_comments
     end
   end
   comments = Comment.all
-  comments.each { |comment| comment.user_id = 8 }
+  comments.each do |comment| 
+    comment.user_id = 3 
+    comment.save
+  end
 end

@@ -7,7 +7,7 @@
   <% end %>
 </div>
 <div class="row-fluid order-detail">
-  <div class="span8">
+  <div class="span7">
     <div class="withborder"> 
       <%= render partial: 'cars/pic_desc', object: @order.info.car, as: :car %>
       开始日期:<%= @order.info.rent_start %><br>
@@ -15,14 +15,16 @@
     </div>
   </div>
   <div class="span4">
-    <div class="withborder">
-      &#65509;<%= @order.info.price %>/Day
+    <div id="request-box">
+      <%= render partial: 'infos/rent_rates', object: @order.info, as: :info %>
+      <div class="request-tool">
+        <% unless @order.done %>
+        <div class="withorder">
+          <%= button_to "去支付", check_out_path(order_id: @order.id), class: 'btn btn-primary btn-large' %>
+        </div>
+        <% end %>
+      </div>
     </div>
-  <% unless @order.done %>
-    <div class="withorder">
-      <%= button_to "去支付", check_out_path(order_id: @order.id), class: 'btn btn-primary btn-large' %>
-    </div>
-  <% end %>
     <%= render partial: 'cars/loc_user', object: @order.info.car, as: :car %>
   </div>
 </div>
