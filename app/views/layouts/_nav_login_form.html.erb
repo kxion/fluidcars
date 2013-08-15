@@ -1,5 +1,5 @@
-<%= form_tag '/login', :class => "navbar-form pull-right", style: "padding-top:5px" do %>
-  <%= email_field_tag :email, params[:email], {:class => "input-small",    :placeholder => "Email"} %>
-  <%= password_field_tag :password, params[:password], {:class => "input-small", :placeholder => "Password"} %>
+<%= form_tag '/auth/identity/callback', :class => "navbar-form pull-right", style: "padding-top:5px" do %>
+  <%= email_field_tag :auth_key, params[:auth_key], {:class => "input-small",    :placeholder => "邮箱"} %>
+  <%= password_field_tag :password, params[:password], {:class => "input-small", :placeholder => "密码"} %>
   <%= submit_tag '登录', :class => "btn btn-primary" %>
 <% end %>

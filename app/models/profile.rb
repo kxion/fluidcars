@@ -1,6 +1,11 @@
-class Profile < ActiveRecord::Base
-  require 'carrierwave/orm/activerecord'
-  mount_uploader :face, FaceUploader
-  belongs_to :user
-  attr_accessible :face, :face_cache
+class Profile
+  include Mongoid::Document
+
+  attr_accessible :avatar, :avatar_cache, :nickname
+
+  mount_uploader :avatar, AvatarUploader
+
+  field :nickname, type: String
+  field :avatar, type: String
+  embedded_in :user
 end

@@ -1,24 +1,23 @@
-class User < ActiveRecord::Base
-  # attr_accessible :title, :body
-  
-  has_secure_password
-  attr_accessible :name, :email, :password, :password_confirmation, :mobile
-  has_many :cars, dependent: :destroy
-  has_many :orders, dependent: :destroy
-  has_many :comments
-  has_many :infos, dependent: :destroy
-  has_one :profile
-  before_save :email_to_downcase, :create_name
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, message: '邮箱格式不正确' },
-                    uniqueness: { case_sensitive: false, message: '此邮箱已经注册' }
-  validates :password, length: { minimum: 6, message: '密码不能少于6个字符' }, confirmation: { message: '密码不一致，请重新确认'}
-  validates :password_confirmation, presence: true
-  validates :mobile, presence: true, uniqueness: { message: '手机号码已注册'}, format: { with: /^1[0-9]{10}$/, message: '请输入格式正确的手机号码'}
-  def email_to_downcase
-    self.email.downcase!
+class User
+
+  include Mongoid::Document
+
+  field :name, type: String
+  field :email, type: String  
+  has_many :authorizations
+  embeds_one :profile
+
+  def self.from_omniauth(auth)
+    Authorization.find_by(provider: auth["provider"], uid: auth["uid"]).try(:user) ||
+      create_with_omniauth(auth)
   end
-  def create_name
-    self.name = self.email.split('@')[0]
+
+  # auth={info:{name: 'lzh', email: 'love@163.com'}, provider: 'weibo', uid: '123434343134'}
+
+  def self.create_with_omniauth(auth)
+    user = User.create(name: auth[:info][:name], email: auth[:info][:email])
+    user.create_profile(nickname: auth[:info][:name])
+    user.authorizations.push(Authorization.new(provider: auth[:provider], uid: auth[:uid]))
+    user
   end
 end

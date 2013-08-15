@@ -1,0 +1,97 @@
+<!-- <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=D6ced4fa35c14b09189fba6b898c905f"></script> -->
+
+<script type="text/javascript">
+// var map = new BMap.Map("allmap");
+// var myGeo = new BMap.Geocoder();
+// var point1 = new BMap.Point(116.307951, 40.059718); //起点
+// var point2 = new BMap.Point(116.457673, 39.922558); //终点
+// myGeo.getPoint("北京市海淀区上地10街", function(point){
+//   if (point) {
+//     point1 = point;
+//   console.log("精度:"+point.lng);
+//   console.log("纬度:"+point.lat);
+//   }
+// }, "北京市");
+// myGeo.getPoint("世贸天阶", function(point){
+//   if (point) {
+//     point2 = point;
+//   console.log("精度:"+point.lng);
+//   console.log("纬度:"+point.lat);
+//   }
+// }, "北京市");
+var EARTH_RADIUS = 6378.137;//地球半径 
+
+function rad(d) 
+{ 
+  return d * Math.PI / 180.0; 
+} 
+//根据经纬度计算两点间的距离，单位：千米
+function getFlatternDistance(lng1,lat1,lng2,lat2){
+    var f = rad((lat1 + lat2)/2);
+    var g = rad((lat1 - lat2)/2);
+    var l = rad((lng1 - lng2)/2);
+    
+    var sg = Math.sin(g);
+    var sl = Math.sin(l);
+    var sf = Math.sin(f);
+    
+    var s,c,w,r,d,h1,h2;
+    var a = EARTH_RADIUS;
+    var fl = 1/298.257;
+    
+    sg = sg*sg;
+    sl = sl*sl;
+    sf = sf*sf;
+    
+    s = sg*(1-sl) + (1-sf)*sl;
+    c = (1-sg)*(1-sl) + sf*sl;
+    
+    w = Math.atan(Math.sqrt(s/c));
+    r = Math.sqrt(s*c)/w;
+    d = 2*w*a;
+    h1 = (3*r -1)/2/c;
+    h2 = (3*r +1)/2/s;
+    
+    return d*(1 + fl*(h1*sf*(1-sg) - h2*(1-sf)*sg));
+}
+//根据当前位置的经纬度，框定半径为X的范围的经纬度数据(经纬度范围的上下限)
+// function getAround(lng,lat,raidus){     
+//   $RAD = $PI / 180.0;
+
+//   var latitude = lat;
+//   var longitude = lng;
+//   var degree = (24901*1609)/360.0;
+//   var raidusMile = $raidus;
+//   $dpmLat = 1/$degree;
+//   $data=array();
+//   $radiusLat = $dpmLat*$raidusMile;
+//   $minLat = $latitude - $radiusLat;
+//   $maxLat = $latitude + $radiusLat;
+//   $data["maxLat"]=$maxLat;
+//   $data["minLat"]=$minLat;
+//   $mpdLng = $degree*cos($latitude * (Math.PI/180));
+//    $dpmLng = 1 / $mpdLng;
+//   $radiusLng = $dpmLng*$raidusMile;
+//   $minLng = $longitude - $radiusLng;
+//   $maxLng = $longitude + $radiusLng;
+//   $data["maxLng"]=$maxLng;
+//   $data["minLng"]=$minLng;
+//     return $data;
+//   }
+function GetDistance(lng1,lat1,lng2,lat2)
+{ 
+  var radLat1 = rad(lat1); 
+  var radLat2 = rad(lat2); 
+  var a = radLat1 - radLat2; 
+  var b = rad(lng1) - rad(lng2); 
+  var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+  s = s * EARTH_RADIUS; 
+  s = Math.round(s * 10000) / 10000; 
+  return s; 
+} 
+
+var strjuli=GetDistance(116.307951, 40.059718,116.457673, 39.922558);
+console.log("距离："+strjuli);
+var flatdis=getFlatternDistance(116.307951, 40.059718,116.457673, 39.922558);
+console.log("flatdis:"+flatdis);
+</script>

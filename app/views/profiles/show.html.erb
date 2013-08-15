@@ -7,10 +7,10 @@
       <div class="form-container">
 
         <div class="control-group">
-          <%= f.label :face, '上传头像', :class=>"control-label" %>
+          <%= f.label :avatar, '上传头像', :class=>"control-label" %>
           <div class="controls">
-            <%= f.file_field :face %>
-            <%= f.hidden_field :face_cache %>
+            <%= f.file_field :avatar %>
+            <%= f.hidden_field :avatar_cache %>
           </div>
         </div>
         
@@ -23,7 +23,7 @@
 
   <div class="span4">
     <div class="face-box">
-      <%= image_tag @profile.face_url %>
+      <%= image_tag @profile.avatar.url %>
     </div>
   </div>
 </div>

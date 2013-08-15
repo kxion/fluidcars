@@ -5,8 +5,8 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-gem 'carrierwave'
+
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 gem 'faker'
@@ -14,6 +14,10 @@ gem 'rmagick'
 gem 'dynamic_form'
 gem 'capistrano'
 gem 'rvm-capistrano'
+gem 'omniauth-identity'
+# gem 'mongo', :git => 'git://github.com/mongodb/mongo-ruby-driver.git'
+# gem 'bson_ext'
+gem "mongoid"
 #
 # Gems used only for assets and not required
 # in production environments by default.
@@ -48,6 +52,3 @@ group :development do
   gem 'bullet'
 end
 
-group :production do
-  gem 'mysql2'
-end

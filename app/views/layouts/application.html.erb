@@ -10,13 +10,14 @@
 
       };
     </script>
-    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>
     <meta charset='UTF-8'>
     <meta name="description" content="这是一个私家车出租平台">
     <meta name="keywords" content="私家车，出租，日租">
+    <meta property="wb:webmaster" content="06a88c0b148dcdc2" />
   </head>
   <body id="main">
     <%= render 'layouts/nav' %>
@@ -29,6 +30,8 @@
 </html>
 
 <% if Rails.env.development? %> 
+  <%= flash[:notice] %>
   <%= debug(params) %>
   <%= debug(request.session) %>
+  <%= debug(request.env['omniauth.auth']) %>
 <% end %>

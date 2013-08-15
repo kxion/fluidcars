@@ -1,15 +1,28 @@
 Zuche::Application.routes.draw do
 
-
+  controller :sessions do
+    get 'login' => :new
+    post '/auth/failure' => :failure
+    get '/auth/failure' => :failure
+    delete 'logout' => :destroy
+    post '/auth/:provider/callback' => :create
+    get '/auth/:provider/callback' => :create
+  end
+  
   resources :cars do
     resources :comments
   end
+
+  # carrierwave-mongoid的路由
+  get "/upload/grid/*path" => "gridfs#avatar"
 
   get "search_infos/result"
 
   get "home_pages/home"
 
-  resources :users 
+  resources :accounts
+  resources :identities 
+  
   controller :profiles do
     post 'profile_update' => :update
     get 'profile' => :show
@@ -39,11 +52,7 @@ Zuche::Application.routes.draw do
 
   end
 
-  controller :sessions do
-    get 'login' => :new
-    post 'login' => :create
-    delete 'logout' => :destroy
-  end
+
 
   controller :orders do
     post 'neworder' => :create
