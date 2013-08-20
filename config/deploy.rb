@@ -55,9 +55,9 @@ namespace :deploy do
     run "cd #{release_path} && bundle install"
   end
 
-  task :update_symlink do
-    # run "ln -s #{shared_path}/upload #{current_path}/public/upload"
-  end
+  # task :update_symlink do
+  #   # run "ln -s #{shared_path}/upload #{current_path}/public/upload"
+  # end
 
   task :start do ; end
   task :stop do ; end

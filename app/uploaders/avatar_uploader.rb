@@ -7,8 +7,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
-  include Sprockets::Helpers::RailsHelper
-  include Sprockets::Helpers::IsolatedHelper
+
   # Choose what kind of storage to use for this uploader:
   # storage :grid_fs
   # storage :fog
@@ -25,7 +24,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
     # For Rails 3.1+ asset pipeline compatibility:
     # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
   
-    asset_path ("default_face.png")
+    "/images/default_face.png"
   end
 
   process :resize_to_fit => [200,200]

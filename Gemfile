@@ -18,6 +18,7 @@ gem 'rvm-capistrano'
 gem 'omniauth-identity'
 gem 'simple_form'
 # gem 'mongo', :git => 'git://github.com/mongodb/mongo-ruby-driver.git'
+gem 'bson_ext'
 gem "mongoid"
 #
 # Gems used only for assets and not required
