@@ -27,7 +27,7 @@ require 'rvm/capistrano'
 set :rvm_ruby_string, '2.0.0'
 # require 'hoptoad_notifier/capistrano'
 
-set :application, "zuche"
+set :application, "fluidcars"
 set :domain, 'fluidcars.com'
 set :user, "root" # 一個伺服器上的帳戶用來放你的應用程式，不需要有sudo權限，但是需要有權限可以讀取Git repository拿到原始碼
 set :branch, "master"
