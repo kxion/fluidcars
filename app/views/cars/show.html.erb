@@ -10,7 +10,7 @@
       <%= link_to '编辑', edit_car_path(@car), class: 'btn btn-large btn-info' %>
     </div>
     <div class="margin_button">
-      <%= link_to '出租', new_info_path(car_id: @car.id), class: 'btn btn-large btn-success' %>
+      <%= link_to '出租', new_rent_path(car_id: @car.id), class: 'btn btn-large btn-success' %>
     </div>
     <div class="withborder"> 
       <%= render partial: 'comments/comment_list', object: @car.comments, as: :comments %>

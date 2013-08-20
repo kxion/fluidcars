@@ -1,9 +1,13 @@
 class ProfilesController < ApplicationController
+  
   def show
+    @profile = User.profile.find(params[:id])
+  end
+
+  def edit
     if signed_in?
       @profile = current_user.profile
-      render 'show'
-    else
+    else 
       redirect_to login_url
     end
   end

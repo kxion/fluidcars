@@ -25,6 +25,7 @@ module SessionsHelper
     unless signed_in?
       reset_session
       store_location
+      flash[:notice] = '需要登录!'
       redirect_to login_url
     end
   end

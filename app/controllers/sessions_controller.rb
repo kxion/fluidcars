@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
-    redirect_to root_url, notice: "Signed out!"
+    redirect_to root_url, notice: "已注销！"
   end
 
   def failure

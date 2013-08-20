@@ -2,14 +2,6 @@
 <html>
   <head>
     <title>车流网</title>
-    <script>
-      document.write('<div id="loadbox" style="text-align:center; padding-top:300px; z-index:999;"><span>加载中，请耐心等待</span></div>');
-      window.onload = function () {
-            document.getElementById('loadbox').style.display = "none";
-            document.getElementById('main').style.display = "block";
-
-      };
-    </script>
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
@@ -33,5 +25,8 @@
   <%= flash[:notice] %>
   <%= debug(params) %>
   <%= debug(request.session) %>
+  <%= debug(request.remote_ip) %>
+  <%= debug(request.env) %>
+  <%= debug(request.headers) %>
   <%= debug(request.env['omniauth.auth']) %>
 <% end %>

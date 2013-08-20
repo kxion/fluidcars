@@ -9,8 +9,34 @@ Zuche::Application.routes.draw do
     get '/auth/:provider/callback' => :create
   end
   
+  controller :identities do
+    get 'signup' => :new
+  end
+
+  controller :rents do
+
+    get 'show_rent' => :show
+    get 'rents/:id' => :show
+    get 'myrents' => :myrents
+
+    get 'new_rent' => :select_car
+    post 'confirm_select_car' => :confirm_select_car
+
+    get 'select_time' => :select_time
+    post 'confirm_select_time' => :confirm_select_time
+    
+    get 'set_rate' => :set_rate
+    post 'confirm_set_rate' => :confirm_set_rate
+    
+    get 'complete' => :complete
+    get 'destroy' => :destroy
+  end
+
+  controller :cars do
+    get 'mycars' => :mycars
+  end
+
   resources :cars do
-    resources :comments
   end
 
   # carrierwave-mongoid的路由
@@ -20,35 +46,20 @@ Zuche::Application.routes.draw do
 
   get "home_pages/home"
 
-  resources :accounts
-  resources :identities 
   
   controller :profiles do
     post 'profile_update' => :update
-    get 'profile' => :show
+    get 'edit_profile' => :edit
+    get 'show_profile/:id' => :show
   end
 
-  resources :infos
   
-  controller :infos do
-    get 'myinfo' => :myinfo
 
-    get 'select_car' => :select_car
-    post 'confirm_select_car' => :confirm_select_car
 
-    get 'select_time' => :select_time
-    post 'confirm_select_time' => :confirm_select_time
-    
-    get 'set_rates' => :set_rates
-    post 'confirm_set_rates' => :confirm_set_rates
-    
-    get 'complete' => :complete
-  end
-
-  controller :search_infos do
-    get 'result' => :result
-    get 'search_date' => :search_date
-    get 'search_info_by_city' => :search_info_by_city
+  controller :search_rents do
+    get 'search_rents_by_location' => :search_rents_by_location
+    get 'search_rents_by_date' => :search_rents_by_date
+    get 'search_rents_by_city' => :search_rents_by_city
 
   end
 
@@ -61,7 +72,6 @@ Zuche::Application.routes.draw do
     get 'my_order' => :my_order
   end
   
-  match '/result', to: "search_infos#result"
   controller :test_pages do
     get 'test_page' => :test_page
     get 'test_format' => :test_format

@@ -1,45 +1,43 @@
 class CarsController < ApplicationController
   before_filter :signed_in_user
-  # GET /cars
-  # GET /cars.json
-  def index
+  # 搜索指定用户的所有车辆
+  def search_cars_by_onwer
+    @cars = Car.find_by(user_id: params[:onwer_id])
+  end
+  # 列出当前用户所拥有的车辆
+  def mycars
     @cars = current_user.cars.paginate(page: params[:page], per_page: 5)
     respond_to do |format|
-      format.html { render 'mycar'}
+      format.html { render 'mycars'}
       format.json { render json: @cars }
     end
   end
 
-  # GET /cars/1
-  # GET /cars/1.json
+  # 显示车辆详细信息
   def show
-    @car = Car.includes(comments: :user).find(params[:id])
+    @car = Car.includes(:comments).find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @car }
     end
   end
 
-  # GET /cars/new
-  # GET /cars/new.json
+  # 新建车辆
   def new
     @car = Car.new
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @car }
-    end
+    @car.build_location
   end
 
-  # GET /cars/1/edit
+  # 编辑车辆
   def edit
     @car = current_user.cars.find(params[:id])
   end
 
-  # POST /cars
-  # POST /cars.json
+  # 提交车辆信息
   def create
     @car = Car.new(params[:car])
-    @car.user = current_user
+    @car.user_id = current_user.id
+    @car.build_location(params[:car][:location_attributes])
     respond_to do |format|
       if @car.save
         flash[:notice] = '车辆信息创建成功!'
@@ -52,8 +50,7 @@ class CarsController < ApplicationController
     end
   end
 
-  # PUT /cars/1
-  # PUT /cars/1.json
+  # 提交修改
   def update
     @car = Car.find(params[:id])
 
@@ -68,8 +65,7 @@ class CarsController < ApplicationController
     end
   end
 
-  # DELETE /cars/1
-  # DELETE /cars/1.json
+  # 删除车辆
   def destroy
     @car = Car.find(params[:id])
     @car.destroy

@@ -8,18 +8,18 @@ module ApplicationHelper
     obj.errors[attr].any?
   end
 
-  def convert_to_event_json(infos)
+  def convert_to_event_json(rents)
     @events_json = []
-    unless infos.nil?
-      # @events_json = infos.to_json
-      infos.each do |info|
+    unless rents.nil?
+      # @events_json = rents.to_json
+      rents.each do |rent|
         @events_json.push({
-          start: info.rent_start,
-          title: info.status,
+          start: rent.start,
+          title: rent.status,
           allDay: true,
-          id: info.id,
-          url: "/infos/#{info.id}",
-          end: info.rent_end
+          id: rent.id,
+          url: "/rents/#{rent.id}",
+          end: rent.end
           })
       end
     end

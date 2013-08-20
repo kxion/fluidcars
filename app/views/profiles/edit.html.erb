@@ -1,0 +1,29 @@
+<div class="page-header"><h1>我的资料</h1></div>
+<div class="row info-list">
+  <div class="span7">
+    <%= form_for @profile, url: profile_update_path, method: 'post' do |f| %>
+      <div class="form-header"><h2>个人资料设置</h2></div>
+      <div class="form-container">
+
+        <div class="control-group">
+          <%= f.label :avatar, '上传头像', :class=>"control-label" %>
+          <div class="controls">
+            <%= f.file_field :avatar %>
+            <%= f.hidden_field :avatar_cache %>
+          </div>
+        </div>
+        
+        <div class="actions">
+          <%= f.submit "更新资料", :class => "btn btn-large btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="span4">
+    <div class="face-box">
+      <%= image_tag @profile.avatar.url %>
+    </div>
+  </div>
+</div>
+

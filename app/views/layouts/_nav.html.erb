@@ -27,9 +27,9 @@
           <li class="dropdown">
             <a href="#" id="current_city" class="dropdown-toggle" data-toggle="dropdown">选择城市<b class="caret"></b></a>            
             <ul class="dropdown-menu">
-              <li><%= link_to '北京', search_info_by_city_path(city: '北京市') %></li>
-              <li><%= link_to '合肥', search_info_by_city_path(city: '合肥市') %></li>
-              <li><%= link_to '沈阳', search_info_by_city_path(city: '沈阳市') %></li>
+              <li><%= link_to '北京', search_rents_by_city_path(city: '北京市') %></li>
+              <li><%= link_to '合肥', search_rents_by_city_path(city: '合肥市') %></li>
+              <li><%= link_to '沈阳', search_rents_by_city_path(city: '沈阳市') %></li>
             </ul>
           </li>
         </ul>
@@ -42,9 +42,9 @@
               <li class="dropdown-submenu">
                 <a tabindex="-1" href="#">我是车主</a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to '我的车辆', cars_path %></li>
-                  <li><%= link_to '发布出租信息', select_car_path %></li>
-                  <li><%= link_to '我的出租信息', myinfo_path %></li>
+                  <li><%= link_to '我的车辆', mycars_path %></li>
+                  <li><%= link_to '发布出租信息', new_rent_path %></li>
+                  <li><%= link_to '我的出租信息', myrents_path %></li>
                 </ul>
               </li>
               <li class="dropdown-submenu">
@@ -53,19 +53,19 @@
                   <li><%= link_to '我的订单', my_order_path %></li>
                 </ul>
               </li>
-              <li><%= link_to '个人资料设置', profile_path %></li>
+              <li><%= link_to '个人资料设置', edit_profile_path %></li>
               <li><%= link_to '登出', logout_path, method: :delete%></li>
             </ul>
           </li>
         </ul>
         <% else %>
         <ul class="nav pull-right">
-          <li><%= link_to "注册", new_identity_path %></li>  
+          <li><%= link_to "注册", signup_path %></li>  
         </ul>
         <%= render 'layouts/nav_login_form' %>
         <% end %>        
         <ul class="nav pull-right" style="padding-top:8px;margin-right:5px">
-          <li><%= button_to '出租', select_car_path, class: "btn btn-small btn-success", id: 'rent', method: 'get' %>
+          <li><%= button_to '出租', new_rent_path, class: "btn btn-small btn-success", id: 'rent', method: 'get' %>
           </li>
         </ul> 
       </div><!--/.nav-collapse -->

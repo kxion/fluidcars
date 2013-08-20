@@ -1,0 +1,47 @@
+<div class="row rent-list">
+  <div class="span7">
+    <table class="table table-hover">
+      <%= render partial: 'rents/rents_list_item', collection: @rents, as: :rent %>
+    </table>
+    <%= will_paginate @rents %>
+  </div>
+  <div class="span4">
+    <%#= render 'rents/rent_search_by_time' %>
+  </div>
+</div>
+
+<!-- datetime picker -->
+<script type="text/javascript">
+  function UTCDate(){
+    return new Date(Date.UTC.apply(Date, arguments));
+  }
+  function UTCToday(){
+    var today = new Date();
+    return UTCDate(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
+  }
+  var start = new Date(2013,1,1);
+  var end = new Date(2013,1,2);
+  $("#rent_start").datepicker({
+          format: "yyyy-MM-dd",
+          startDate: UTCToday(),
+          autoclose: true,
+          todayBtn: true,
+          todayHighlight: true,
+          language: "chs"
+          }).on('changeDate', function(ev){
+            start = new Date(ev.date);
+            $("#rent_end").datepicker('setStartDate', start);
+            if (start.valueOf() > end.valueOf()){
+              $("#rent_end").datepicker('setDate', start);}
+            });
+
+  $("#rent_end").datepicker({
+          format: "yyyy-MM-dd",
+          autoclose: true,
+          todayBtn: true,
+          todayHighlight: true,
+          language: "chs"
+          }).on('changeDate', function(ev){
+            end = new Date(ev.date);
+            });
+</script>

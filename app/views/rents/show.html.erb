@@ -1,0 +1,27 @@
+<%= render 'shared/notice' %>
+<div class="row-fluid margin-box">
+  <div class="span7">
+    <div class="withborder"> 
+      <%= render partial: 'cars/pic_desc', object: @rent.car, as: :car %>
+      开始日期:<%= @rent.start %><br>
+      结束日期:<%= @rent.end %><br>
+    </div>
+    <div class="withborder"> 
+      <%= render partial: 'comments/comment_list', object: @comments, as: :comments %>
+    </div>
+  </div>
+  <div class="span4">
+
+    <div id="request-box">
+      <%= render partial: 'rents/rent_rate', object: @rent.rate, as: :rate %>
+      <div class="request-tool">
+        <% if @rent.status == "active" %>
+        <%= button_to '预订', neworder_path(rent_id: @rent.id), id: 'request', class: 'btn submit' %>
+        <% end %>
+      </div>
+    </div>
+
+    <%= render partial: 'cars/loc_user', locals: { car: @rent.car, onwer_name: @rent.onwer_name, onwer_avatar: @rent.onwer_avatar } %>
+  </div>
+</div>
+<%= render partial: 'shared/check_login', locals: { id: 'request', destination: neworder_path(rent_id: @rent.id) } %>

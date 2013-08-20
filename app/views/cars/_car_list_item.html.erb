@@ -3,16 +3,16 @@
     <ul class="thumbnails">
       <li class="span2">
         <a href="<%= car_path(car) %>" class="thumbnail"> 
-          <%= image_tag(car.avatar.thumb.url) %>
+          <%= image_tag(car.picture.thumb.url) %>
         </a>
       </li>
     </ul>
   </td>
   <td>
     <ul class="span2 abstract_info">
-      <li><%= car.band %></li>
-      <li><%= car.city %></li>
-      <li><%= car.location %></li>
+      <li><%= car.brand %></li>
+      <li><%= car.location.city %></li>
+      <li><%= car.location.detail %></li>
     </ul>
   </td>
   <td>

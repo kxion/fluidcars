@@ -46,7 +46,7 @@
         $("#calendar").fullCalendar('renderEvent',event,true);
       },
       events: function(start,end,callback){
-        var events = <%= raw(convert_to_event_json(infos)) %>;
+        var events = <%= raw(convert_to_event_json(rents)) %>;
         console.log(events);
         callback(events);
       }

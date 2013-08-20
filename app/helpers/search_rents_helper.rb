@@ -1,0 +1,2 @@
+module SearchRentsHelper
+end

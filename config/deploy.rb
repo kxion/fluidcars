@@ -31,7 +31,7 @@ set :application, "zuche"
 set :domain, 'fluidcars.com'
 set :user, "root" # 一個伺服器上的帳戶用來放你的應用程式，不需要有sudo權限，但是需要有權限可以讀取Git repository拿到原始碼
 set :branch, "master"
-set :repository, "root@loveltyoic:~/git/fluidcars.git"
+set :repository, "root@loveltyoic:~/git/fluidcars_mongodb.git"
 set :scm, "git"
 set :port, "22"
 
@@ -45,10 +45,10 @@ role :db,  domain, :primary => true
 
 namespace :deploy do
 
-  task :copy_config_files, :roles => [:app] do
-    db_config = "#{shared_path}/database.yml"
-    run "cp #{db_config} #{release_path}/config/database.yml"
-  end
+  # task :copy_config_files, :roles => [:app] do
+  #   db_config = "#{shared_path}/database.yml"
+  #   run "cp #{db_config} #{release_path}/config/database.yml"
+  # end
 
   desc "install the necessary prerequisites"
   task :bundle_install, :roles => :app do
@@ -66,6 +66,6 @@ namespace :deploy do
   end
 end
 
-after "deploy:update_code", "deploy:copy_config_files" # 如果將database.yml放在shared下，請打開
+# after "deploy:update_code", "deploy:copy_config_files" # 如果將database.yml放在shared下，請打開
 after "deploy:update_code", "deploy:bundle_install"
-after "deploy:finalize_update", "deploy:update_symlink" # 如果有實作使用者上傳檔案到public/system，請打開
+# after "deploy:finalize_update", "deploy:update_symlink" # 如果有實作使用者上傳檔案到public/system，請打開

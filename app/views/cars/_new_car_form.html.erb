@@ -1,49 +1,34 @@
 <div class="container-radius">
-  <%= form_for @car do |f| %>
+  <%= simple_form_for @car do |f| %>
     <div class="form-header"><h2>车辆信息</h2></div>
     <div class="form-container">
-      <div class="control-group">
-        <%= f.label :band, '型号', :class=>"control-label" %>
-        <div class="controls">
-          <%= f.text_field :band, :placeholder=>"车辆型号" %>
-        </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :description, '描述', :class=>"control-label" %>
-        <div class="controls">
-          <%= f.text_area :description, :rows => 5,:placeholder=>"描述" %>
-        </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :city, '所在城市', :class=>"control-label" %>
-        <div class="controls">
-          <%= f.select :city, options_for_select(%w{ 北京市 上海市 沈阳市 合肥市}), :prompt => '选择您所在的城市' %>
-        </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :location, '交车地点', :class=>"control-label" %>
-        <div class="controls input-prepend">
-          <%= f.text_field :location, :placeholder=>"交车地点" %>
-        </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :avatar, '上传车辆照片', :class=>"control-label" %>
-        <div class="controls">
-          <%= f.file_field :avatar %>
-          <%= f.hidden_field :avatar_cache %>
-        </div>
-      </div>
-      <% if @car.avatar? %>
+      <%= f.input :brand, label: '型号', :placeholder=>"车辆型号" %>
+      <%= f.input :description, as: :text_area, label: '描述', :placeholder=>"描述" %>
+      <%= f.simple_fields_for :location do |loc| %>
+        <select id="province"></select>
+        <%= loc.input :city, label: '城市', collection:[] %>
+        <%= loc.input :district, :as => :select %>
+        <%= loc.input :detail, label: '详细地址', :placeholder=>"详细地址" %>
+      <% end %> 
+      <%= f.input :picture, label: '上传车辆照片', as: :file %>
+      <%= f.input :picture_cache, as: :hidden %>
+      <% if @car.picture? %>
       <ul class="thumbnails">
         <li class="span2">
-          <%= image_tag(@car.avatar.thumb.url)  %>
+          <%= image_tag(@car.picture.thumb.url)  %>
         </li>
       </ul>
       <% end %>
-      <div class="actions">
-        <%= f.submit "保存",:class => "btn btn-success btn-large"%>
-      </div>
+      <%= f.submit "保存", class: 'btn btn-success btn-large' %>
     </div>
   <% end %>
 </div>
+<script type="text/javascript" src="/sitedata.js" charset="utf-8"></script>
+<script type="text/javascript" src="/location.js" charset="utf-8"></script>
+<script type="text/javascript">
+window.onload=function(){
+  siteSelect(["province","car_location_attributes_city","car_location_attributes_district"],["","",""]);
+}
+</script>
+
 

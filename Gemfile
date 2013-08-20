@@ -8,6 +8,7 @@ gem 'rails', '3.2.13'
 
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'will_paginate'
+gem 'will_paginate_mongoid'
 gem 'bootstrap-will_paginate'
 gem 'faker'
 gem 'rmagick'
@@ -15,8 +16,9 @@ gem 'dynamic_form'
 gem 'capistrano'
 gem 'rvm-capistrano'
 gem 'omniauth-identity'
+gem 'simple_form'
 # gem 'mongo', :git => 'git://github.com/mongodb/mongo-ruby-driver.git'
-# gem 'bson_ext'
+gem 'bson_ext'
 gem "mongoid"
 #
 # Gems used only for assets and not required
