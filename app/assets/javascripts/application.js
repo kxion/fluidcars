@@ -13,5 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require fullcalendar
-//= require ../bootstrap/js/bootstrap.js
-//= require ../bootstrap/js/bootstrap-datepicker.js
+//= require bootstrap
+//= require bootstrap-datepicker

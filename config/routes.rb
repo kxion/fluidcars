@@ -53,17 +53,12 @@ Zuche::Application.routes.draw do
     get 'show_profile/:id' => :show
   end
 
-  
-
-
   controller :search_rents do
     get 'search_rents_by_location' => :search_rents_by_location
     get 'search_rents_by_date' => :search_rents_by_date
     get 'search_rents_by_city' => :search_rents_by_city
 
   end
-
-
 
   controller :orders do
     post 'neworder' => :create
