@@ -52,7 +52,7 @@ namespace :deploy do
 
   desc "install the necessary prerequisites"
   task :bundle_install, :roles => :app do
-    run "cd #{release_path} && bundle install"
+    run "cd #{release_path} && RAILS_ENV=production bundle install"
   end
 
   # task :update_symlink do

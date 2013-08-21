@@ -16,7 +16,6 @@ class User
       create_with_omniauth(auth)
   end
 
-  # auth={info:{name: 'lzh', email: 'love@163.com'}, provider: 'weibo', uid: '123434343134'}
 
   def self.create_with_omniauth(auth)
     if user = User.find_by(email: auth[:info][:email])
