@@ -1,29 +1,14 @@
-<div class="row-fluid">
-  <div class="span4 offset2">
-    <div class="row-fluid alert-box">
-      <% if flash[:notice] %>
-        <div class="alert alert-error span12" >
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <%= flash[:notice] %>
-        </div>
-      <% end %>
-    </div>
-    <%= form_tag '/auth/identity/callback' do %>
-      <div class="control-group" style="position:relative">
-        <%= email_field_tag :auth_key, params[:auth_key], :placeholder => "邮箱", class: 'login-field' %>
-        <label class="login-field-icon" for="email"></label>
-      </div>
-     
-      <div class="control-group" style="position:relative">
-        <%= password_field_tag :password, params[:password], :placeholder => "密码", class: 'login-field' %>
-        <label class="login-field-icon" for="email"></label>
-      </div>
-
-      <%= submit_tag "登录", :class => "btn btn-large btn-primary" %>
-      <div>
-        没有帐号？<a href="<%= signup_path %>">现在就注册</a>
-      </div>
-    <% end %>
+<%= simple_form_for :identity, url: '/auth/identity/callback' do |f| %>
+<div class="fieldset">
+  <legend>登录</legend>
+  <%= f.input :auth_key, placeholder: 'xxx@xxx.com', label: 'Email', input_html:{ name: :auth_key }%>
+  <%= f.input :password, placeholder: '密码', label: '密码', input_html: { name: :password } %>
+  <div class="form-actions">
+    <%= f.submit "登录", :class => "btn btn-large btn-primary" %>
   </div>
+</div>
+<% end %>
+<div>
+  没有帐号？<a href="<%= signup_path %>">现在就注册</a>
 </div>
 
