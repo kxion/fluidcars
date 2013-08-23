@@ -18,7 +18,7 @@
       <%= f.input :picture, label: '上传车辆照片', as: :file %>
       <%= f.input :picture_cache, as: :hidden %>
       <% if @car.picture? %>
-      <ul class="thumbnails">
+      <ul class="controls thumbnails">
         <li class="span2">
           <%= image_tag(@car.picture.thumb.url)  %>
         </li>

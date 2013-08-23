@@ -42,16 +42,9 @@ Zuche::Application.routes.draw do
   # carrierwave-mongoid的路由
   get "/upload/grid/*path" => "gridfs#avatar"
 
-  get "search_infos/result"
-
   get "home_pages/home"
 
-  
-  controller :profiles do
-    post 'profile_update' => :update
-    get 'edit_profile' => :edit
-    get 'show_profile/:id' => :show
-  end
+  resources :profiles
 
   controller :search_rents do
     get 'search_rents_by_location' => :search_rents_by_location

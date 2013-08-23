@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <%= render partial: 'cars/loc_user', locals: { car: @rent.car, onwer_name: @rent.onwer_name, onwer_avatar: @rent.onwer_avatar } %>
+    <%= render partial: 'cars/loc_owner', locals: { car: @rent.car, owner: @rent.user } %>
   </div>
 </div>
 <%= render partial: 'shared/check_login', locals: { id: 'request', destination: neworder_path(rent_id: @rent.id) } %>

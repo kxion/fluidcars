@@ -3,7 +3,7 @@ class RentsController < ApplicationController
 
   # 显示详细出租信息
   def show
-    @rent = Rent.find(params[:id])
+    @rent = Rent.includes(:user).find(params[:id])
     @comments = Comment.where('car_id' => @rent.car.id)
     respond_to do |format|
       format.html # show.html.erb
