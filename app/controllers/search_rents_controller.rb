@@ -1,12 +1,12 @@
 class SearchRentsController < ApplicationController
   def search_rents_by_location
-    @rents = Rent.any_of('location.detail' => /#{params[:location]}/).where(:end.gt => Time.now.to_date)
+    @rents = Rent.any_of('car.location.detail' => /#{params[:location]}/).where(:end.gt => Time.now.to_date)
     @results = @rents.paginate(page: params[:page], per_page: 5)
     render 'result'
   end
 
   def search_rents_by_date
-    @rents = @rents.where("start <= ? and end >= ?", params[:rent_start], params[:rent_end])
+    @rents = Rent.where(:start.lte => params[:rent_start]).where(:end.gte => params[:rent_end])
     @results = @rents.paginate(page: params[:page], per_page: 5)
     render 'result'
   end

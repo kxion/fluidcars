@@ -1,25 +1,14 @@
-<%= form_for @rent, url: confirm_select_time_path, method: 'post' do |f| %>
-  <div class="form-header"><h2>选择时间</h2></div>
-  <div class="form-container">
-    <div class="control-group">
-      <div class="controls input-append date" id="rent_start">
-        <%= f.label :start, '开始时间' %> 
-        <%= f.text_field :start %>
-        <span class="add-on"><i class="icon-calendar"></i></span>
-      </div>
-    </div>
-    <div class="control-group">
-      <div class="controls input-append date" id="rent_end">
-        <%= f.label :end, '结束时间' %>
-        <%= f.text_field :end %>
-        <span class="add-on"><i class="icon-calendar"></i></span>
-      </div>
-    </div>
-    <div class="actions">
+<%= simple_form_for @rent, wrapper: :append, url: confirm_select_time_path do |f| %>
+  <div class="fieldset">
+    <legend>选择时间</legend>
+    <%= f.input :start, label: '开始时间', hint: "<i class='icon-calendar'></i>" %>
+    <%= f.input :end, label: '结束时间', hint: "<i class='icon-calendar'></i>"  %>
+    <div class="form-actions">
       <%= f.submit "确定",:class => "btn btn-primary"%>
     </div>
   </div>
 <% end %>
+
 <!-- datetime picker -->
 <script type="text/javascript">
   function UTCDate(){

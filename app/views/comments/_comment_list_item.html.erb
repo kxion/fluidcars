@@ -1,7 +1,9 @@
 <li class="media thumbnails">
-  <%= link_to image_tag(comment.user.profile.face.thumb.url), comment.user, class: "pull-left span2" %>
+  <div class="pull-left span2">
+    <%=image_tag(comment.user_avatar.thumb.url)%>
+  </div>
   <div class="media-body">
-    <h4 class="media-heading"><%= comment.user.name %></h4>
+    <h4 class="media-heading"><%= comment.user_name %></h4>
     <p><%= comment.content %></p>
   </div>
 </li>

@@ -1,4 +1,4 @@
-<%= simple_form_for @ do |f| %>
+<%= simple_form_for @comment do |f| %>
   <%= f.input :car_id, as: :hidden %>
   <%= f.input :content, as: :text, :placeholder=>"comment" %>
   <%= f.submit 'Add comment', class: "btn btn-primary" %>

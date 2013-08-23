@@ -1,30 +1,16 @@
-<div class="container-radius">
-  <%= form_tag '/auth/identity/register' do %>
-    <div class="form-header"><h2>注册</h2></div>
-    <div class="form-container">
-      <div class="control-group">
-        <div class="controls">
-          <%= email_field_tag :email, params[:email], :placeholder => "邮箱" %>
-        </div>
-      </div>
-      <div class="control-group">
-        <div class="controls" id="tip_control">
-          <%= password_field_tag :password, params[:password], :placeholder => "密码" %>
-          <span class="help-inline"><a id="tip_password" href="#" data-placement='right' data-toggle="tooltip" title="用熟悉的一句话的首字母来作密码，好记又安全!">Tips</a></span>
-        </div>
-      </div>
-      <div class="control-group">
-        <div class="controls"> 
-          <%= password_field_tag :password_confirmation, params[:password_confirmation], :placeholder => "确认密码" %>
-        </div>
-      </div>
-      <div class="actions">
-        <%= submit_tag "确认注册", :class => "btn btn-large btn-primary" %>
+<div class="box">
+  <%= simple_form_for @identity, url: '/auth/identity/register' do |f| %>
+    <div class="fieldset">
+      <legend>注册</legend>
+      <%= f.input :email, as: :email, label: 'Email', input_html: { name: 'email' }, :placeholder => "xxx@xxx.com" %>
+      <%= f.input :password, as: :password, label: '密码', hint: "<a id='tip_password' href='#' data-placement='right' data-toggle='tooltip' title='用熟悉的一句话的首字母来作密码，好记又安全!'>Tips</a>", input_html: { name: 'password' }, :placeholder => "密码" %>
+      <%= f.input :password_confirmation, as: :password, label: '确认密码', input_html: { name: 'password_confirmation' }, :placeholder => "确认密码" %>
+      <div class="form-actions">
+        <%= f.submit "确认注册", :class => "btn btn-large btn-primary" %>
       </div>
     </div>
   <% end %>
 </div>
-
 <script>
   $('#tip_password').tooltip();
 </script>

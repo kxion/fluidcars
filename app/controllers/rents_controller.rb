@@ -4,7 +4,7 @@ class RentsController < ApplicationController
   # 显示详细出租信息
   def show
     @rent = Rent.find(params[:id])
-    @comments = Comment.where('car_id' => @rent.car_id)
+    @comments = Comment.where('car_id' => @rent.car.id)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @rent }
@@ -49,8 +49,9 @@ class RentsController < ApplicationController
   # 确认时间
   def confirm_select_time
     @rent = Rent.find(session[:current_rent_id])
+    @rent.onwer_name = current_user.name
+    @rent.onwer_avatar = current_user.profile.avatar
     @rent.update_attributes!(params[:rent])
-    @rent.car_id = session[:current_car_id]
     @rent.user_id = current_user.id
     if @rent.save
       redirect_to set_rate_url
@@ -64,13 +65,14 @@ class RentsController < ApplicationController
   end
   # 确认费率
   def confirm_set_rate
-    set_rate = { day: params[:day], week: params[:week], month: params[:month] }
-    rent = Rent.find(session[:current_rent_id]).update_attributes(rate: set_rate)
+    @rent = Rent.find(session[:current_rent_id])
+    @rent.update_attributes(rate: params[:rate])
     redirect_to complete_url
   end
   # 出租完成
   def complete
-    @rent = Rent.find(session[:current_rent_id])   
+    @rent = Rent.last
+    # @rent = Rent.find(session[:current_rent_id])   
     session[:current_rent_id] = nil
     session[:current_car_id] = nil 
   end

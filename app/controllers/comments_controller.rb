@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
     @comment.user_name = current_user.name
-    @comment.user_avatar = current_user.avatar
+    @comment.user_avatar = current_user.profile.avatar
     if @comment.save
       redirect_to my_order_url, notice: '评论成功！'
     else

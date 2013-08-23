@@ -13,11 +13,11 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    profile = current_user.profile
-    profile.avatar = params[:profile][:avatar]
-    profile.save
+    @profile = current_user.profile
+    @profile.avatar = params[:profile][:avatar]
+    @profile.save
     # @profile.update_attributes!(params[:profile])
     flash[:notice] = "个人资料更新成功！"
-    redirect_to profile_url
+    render 'show'
   end
 end

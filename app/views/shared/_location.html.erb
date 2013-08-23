@@ -1,19 +1,35 @@
 <%= content_for(:mapapi) do %>
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
   <script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=D6ced4fa35c14b09189fba6b898c905f"></script>
+  <script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
+  <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
 <% end %>
 <script type="text/javascript">
   $(document).ready(function() {
     var map = new BMap.Map("map_container");  
-    map.centerAndZoom(new BMap.Point(<%= car.location.gps[0] %>, <%= car.location.gps[1] %>), 16);  
-    var pt = new BMap.Point(<%= car.location.gps[0] %>, <%= car.location.gps[1] %>);
-    var myIcon = new BMap.Icon("<%= asset_path('corner.png') %>", new BMap.Size(30,30));
-    var marker = new BMap.Marker(pt,{icon:myIcon});  // 创建标注
-    map.addOverlay(marker);              // 将标注添加到地图中
-
-    //（创建信息窗口）
-    var infoWindow = new BMap.InfoWindow("<p style='font-size:14px;'><%= car.location.detail %></p>");
-    // marker.addEventListener("click", window.open('http://map.baidu.com')); 
+    var car_point = new BMap.Point(<%= car.location.gps[0] %>, <%= car.location.gps[1] %>);
+    map.centerAndZoom(car_point,15);  
     map.enableScrollWheelZoom(true);
+    var myIcon = new BMap.Icon("<%= asset_path('corner.png') %>", new BMap.Size(30,30));
+    var marker = new BMap.Marker(car_point,{icon:myIcon});  // 创建标注
+    // var marker = new BMap.Marker(pt);  // 创建标注
+    map.addOverlay(marker);              // 将标注添加到地图中
+    marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+//（创建信息窗口）
+    var searchInfoWindow = new BMapLib.SearchInfoWindow(map, "地址", {
+      title: "<%= car.location.city + car.location.district + car.location.detail %>", //标题
+      panel : "panel", //检索结果面板
+      enableAutoPan : true, //自动平移
+      searchTypes :[
+          BMAPLIB_TAB_FROM_HERE, //从这里出发
+          BMAPLIB_TAB_SEARCH   //周边检索
+        ]
+      });
+    function openInfoWindow() {
+        searchInfoWindow.open(car_point);
+    }
+    map.addEventListener("click", function(){
+      openInfoWindow();
+    });
   });
 </script>

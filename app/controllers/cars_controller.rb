@@ -30,7 +30,11 @@ class CarsController < ApplicationController
 
   # 编辑车辆
   def edit
-    @car = current_user.cars.find(params[:id])
+    @car = Car.find(params[:id])
+    unless @car.user_id == current_user.id
+      render 'mycars'
+    end
+    render 'edit'
   end
 
   # 提交车辆信息

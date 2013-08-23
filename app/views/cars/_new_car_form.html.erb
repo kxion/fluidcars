@@ -1,14 +1,19 @@
-<div class="container-radius">
-  <%= simple_form_for @car do |f| %>
-    <div class="form-header"><h2>车辆信息</h2></div>
-    <div class="form-container">
-      <%= f.input :brand, label: '型号', :placeholder=>"车辆型号" %>
-      <%= f.input :description, as: :text_area, label: '描述', :placeholder=>"描述" %>
+<div class="box">
+  <%= simple_form_for @car, wrapper: 'bootstrap' do |f| %>
+    <div class="fieldset">
+      <legend>车辆信息</legend>
+      <%= f.input :brand, label: '型号', hint: '车辆品牌及型号', :placeholder=>"车辆型号" %>
+      <%= f.input :description, as: :text, input_html: {rows: 5}, label: '描述', :placeholder=>"描述" %>
       <%= f.simple_fields_for :location do |loc| %>
-        <select id="province"></select>
-        <%= loc.input :city, label: '城市', collection:[] %>
-        <%= loc.input :district, :as => :select %>
-        <%= loc.input :detail, label: '详细地址', :placeholder=>"详细地址" %>
+      <div class="control-group">
+        <label class="control-label">地区</label>
+        <div class="controls">
+          <select id="province"></select>
+          <%= loc.select :city, collection: [] %>
+          <%= loc.select :district, collection: [] %>
+        </div>
+      </div>
+        <%= loc.input :detail, label: '街道地址', :placeholder=>"街道地址" %>
       <% end %> 
       <%= f.input :picture, label: '上传车辆照片', as: :file %>
       <%= f.input :picture_cache, as: :hidden %>
@@ -19,16 +24,23 @@
         </li>
       </ul>
       <% end %>
-      <%= f.submit "保存", class: 'btn btn-success btn-large' %>
+      <div class="form-actions">
+        <%= f.submit "保存", class: 'btn btn-primary btn-large' %>
+      </div>
     </div>
   <% end %>
 </div>
 <script type="text/javascript" src="/sitedata.js" charset="utf-8"></script>
 <script type="text/javascript" src="/location.js" charset="utf-8"></script>
 <script type="text/javascript">
-window.onload=function(){
-  siteSelect(["province","car_location_attributes_city","car_location_attributes_district"],["","",""]);
-}
+  window.onload=function(){
+    siteSelect(["province","car_location_attributes_city","car_location_attributes_district"],["","",""]);
+  }
 </script>
+<style>
+  select {
+    width:80px;
+  }
+</style>
 
 

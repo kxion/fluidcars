@@ -59,7 +59,7 @@ Zuche::Application.routes.draw do
     get 'search_rents_by_city' => :search_rents_by_city
 
   end
-
+  resources :comments
   controller :orders do
     post 'neworder' => :create
     get 'order' => :show

@@ -3,12 +3,12 @@
   <div class="span7">
     <%= @rents.size %> 结果.
     <table class="table table-hover">
-      <%= render partial: 'rents/rent_list_item', collection: @results, as: :rent %>
+      <%= render partial: 'rents/rents_list_item', collection: @results, as: :rent %>
     </table>
     <%= will_paginate @results %>
   </div>
   <div class="span4">
-    <%= form_tag search_date_path, method: 'get' do %>
+    <%= form_tag search_rents_by_date_path, method: 'get' do %>
       <div class="control-group">
         <div class="controls input-append date" id="rent_start">
           <%= text_field_tag :rent_start, params[:rent_start] %>
