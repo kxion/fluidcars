@@ -71,8 +71,7 @@ class RentsController < ApplicationController
   end
   # 出租完成
   def complete
-    @rent = Rent.last
-    # @rent = Rent.find(session[:current_rent_id])   
+    @rent = Rent.find(session[:current_rent_id])   
     session[:current_rent_id] = nil
     session[:current_car_id] = nil 
   end
