@@ -7,7 +7,7 @@ class Identity
   field :email, type: String
   field :password_digest, type: String
   field :name, type: String
-
+  validates_presence_of :email
   def create_name
     self.name = self.email.split('@')[0]
   end

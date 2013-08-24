@@ -32,11 +32,12 @@ Zuche::Application.routes.draw do
     get 'destroy' => :destroy
   end
 
-  controller :cars do
-    get 'mycars' => :mycars
-  end
+  # controller :cars do
+  #   get 'mycars' => :mycars
+  # end
 
   resources :cars do
+    get 'mycars' => :mycars
   end
 
   # carrierwave-mongoid的路由
