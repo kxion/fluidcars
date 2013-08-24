@@ -3,6 +3,9 @@
     color: rgb(48, 48, 48);
     background-color: rgb(229, 227, 222);
 }
+.button_to {
+  margin: 0;
+}
 </style>
 <script>
   $(document).ready(function(){
@@ -64,7 +67,7 @@
         </ul>
         <%= render 'layouts/nav_login_form' %>
         <% end %>        
-        <ul class="nav pull-right" style="padding-top:8px;margin-right:5px">
+        <ul class="nav pull-right" style="padding-top:8px;margin:0 5px">
           <li><%= button_to '出租', new_rent_path, class: "btn btn-small btn-success", id: 'rent', method: 'get' %>
           </li>
         </ul> 

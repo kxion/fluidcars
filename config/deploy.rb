@@ -55,9 +55,9 @@ namespace :deploy do
     run "cd #{release_path} && RAILS_ENV=production bundle install"
   end
 
-  # task :update_symlink do
-  #   # run "ln -s #{shared_path}/upload #{current_path}/public/upload"
-  # end
+  task :update_symlink do
+   run "ln -s #{shared_path}/uploads #{release_path}/public/uploads"
+  end
 
   task :start do ; end
   task :stop do ; end
@@ -67,5 +67,4 @@ namespace :deploy do
 end
 
 # after "deploy:update_code", "deploy:copy_config_files" # 如果將database.yml放在shared下，請打開
-after "deploy:finalize_update", "deploy:bundle_install"
-# after "deploy:finalize_update", "deploy:update_symlink" # 如果有實作使用者上傳檔案到public/system，請打開
+after "deploy:finalize_update", "deploy:bundle_install","deploy:update_symlink"

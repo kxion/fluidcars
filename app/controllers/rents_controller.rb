@@ -34,7 +34,7 @@ class RentsController < ApplicationController
   def confirm_select_car
     selected_car = Car.find(params[:car_id])
     if selected_car.user_id == current_user.id
-      rent = Rent.create!(car: selected_car)
+      rent = Rent.create!(car: selected_car, user_id: current_user.id)
       session[:current_rent_id] = rent.id
       redirect_to select_time_url
     else
@@ -49,10 +49,7 @@ class RentsController < ApplicationController
   # 确认时间
   def confirm_select_time
     @rent = Rent.find(session[:current_rent_id])
-    @rent.onwer_name = current_user.name
-    @rent.onwer_avatar = current_user.profile.avatar
     @rent.update_attributes!(params[:rent])
-    @rent.user_id = current_user.id
     if @rent.save
       redirect_to set_rate_url
     else
