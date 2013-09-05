@@ -1,58 +1,50 @@
 source 'http://ruby.taobao.org'
 
-gem 'rails', '3.2.13'
+gem 'rails', '4.0.0'
+gem 'sass-rails', "~> 4.0.0"
+gem 'coffee-rails', "~> 4.0.0"
+gem 'uglifier', '>= 1.3.0'
+gem "jquery-rails", "2.0.1"
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-
-gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+# 分页
 gem 'will_paginate'
 gem 'will_paginate_mongoid'
 gem 'bootstrap-will_paginate'
-gem 'faker'
-gem 'rmagick'
-gem 'dynamic_form'
-gem 'capistrano'
-gem 'rvm-capistrano'
+
+# Bootstrap
+gem 'anjlab-bootstrap-rails', '>= 3.0.0.0', :require => 'bootstrap-rails'
+
+# 上传组件
+gem 'carrierwave'
+gem 'mini_magick','3.3', require: false
+gem 'carrierwave-upyun', '0.1.5'
+gem 'carrierwave-mongoid'
+
+# 第三方认证
 gem 'omniauth-identity'
-gem 'simple_form'
-# gem 'mongo', :git => 'git://github.com/mongodb/mongo-ruby-driver.git'
+
+# 分享功能
+gem "social-share-button", '0.1.4'
+
+# 表单
+gem 'simple_form', git: 'https://github.com/plataformatec/simple_form'
+
+# Mongoid 辅助插件
 gem 'bson_ext'
-gem "mongoid"
-#
-# Gems used only for assets and not required
-# in production environments by default.
-gem 'sass-rails',   '~> 3.2.3'
-gem 'coffee-rails', '~> 3.2.1'
+gem 'mongoid', git: 'https://github.com/mongoid/mongoid.git'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
-gem 'uglifier', '>= 1.0.3'
-
-
-gem 'jquery-rails'
-
-# To use ActiveModel has_secure_password
+# 口令加密
 gem 'bcrypt-ruby', '~> 3.0.0'
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
 
-# Use unicorn as the app server
-# gem 'unicorn'
+group :development, :test do
+  gem 'capistrano', '~> 2.15.4', require: false
+  gem 'rvm-capistrano', require: false
+  gem 'rspec-rails', '~> 2.13.2'
 
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
-
-group :development do
-  gem 'bullet'
-  gem 'rspec-rails'
-  gem 'capybara'
-
-end
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem "rspec-cells", '0.1.7'
+  gem "capybara", "~> 0.4.1"
+end 
 

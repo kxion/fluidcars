@@ -2,7 +2,6 @@ class Car
   include Mongoid::Document
   include BaiduMap
 
-  attr_accessible :brand, :description, :rate, :picture, :picture_cache, :gps, :location_attributes
   mount_uploader :picture, PictureUploader
   
   belongs_to :user

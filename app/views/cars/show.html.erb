@@ -1,16 +1,16 @@
-<%= render 'shared/notice'%>
-<div class="row-fluid car-detail">
-  <div class="span7">
+<%= render 'shared/success'%>
+<div class="row">
+  <div class="col-md-7">
     <div class="withborder"> 
       <%= render partial: 'cars/pic_desc', object: @car, as: :car %>
     </div>
   </div>
-  <div class="span4">
+  <div class="col-md-4">
     <div class="margin_button">
-      <%= link_to '编辑', edit_car_path(@car), class: 'btn btn-large btn-info' %>
+      <%= link_to '编辑', edit_car_path(@car), class: 'btn btn-lg btn-info' %>
     </div>
     <div class="margin_button">
-      <%= button_to '出租', confirm_select_car_path(car_id: @car.id), class: 'btn btn-large btn-success' %>
+      <%= button_to '出租', confirm_select_car_path(car_id: @car.id), class: 'btn btn-lg btn-success' %>
     </div>
     <div class="withborder"> 
       <%= render partial: 'comments/comment_list', object: @car.comments, as: :comments %>

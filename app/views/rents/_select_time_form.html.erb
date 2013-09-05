@@ -1,49 +1,13 @@
 <%= simple_form_for @rent, wrapper: :append, url: confirm_select_time_path do |f| %>
-  <div class="fieldset">
+  <div class="fieldset col-md-8">
     <legend>选择时间</legend>
-    <%= f.input :start, label: '开始时间', hint: "<i class='icon-calendar'></i>" %>
-    <%= f.input :end, label: '结束时间', hint: "<i class='icon-calendar'></i>"  %>
-    <div class="form-actions">
-      <%= f.submit "确定",:class => "btn btn-primary"%>
+    <%= f.input :start, label: '开始时间', hint: "<span class='glyphicon glyphicon-calendar'></span>" %>
+    <%= f.input :end, label: '结束时间', hint: "<span class='glyphicon glyphicon-calendar'></span>"  %>
+    <div class="form-group">
+      <div class="col-md-4 col-md-offset-4">
+        <%= f.submit "确定",:class => "btn btn-primary"%>
+      </div>
     </div>
   </div>
 <% end %>
-
-<!-- datetime picker -->
-<script type="text/javascript">
-  function UTCDate(){
-    return new Date(Date.UTC.apply(Date, arguments));
-  }
-  function UTCToday(){
-    var today = new Date();
-    return UTCDate(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
-  }
-  var start = new Date(2013,1,1);
-  var end = new Date(2013,1,2);
-  var one_day = 24*3600*1000;
-  $("#rent_start").datepicker({
-          format: "yyyy-MM-dd",
-          startDate: UTCToday(),
-          autoclose: true,
-          todayBtn: true,
-          todayHighlight: true,
-          language: "chs"
-          }).on('hide', function(ev){
-            start = new Date(ev.date.valueOf() + one_day);
-            console.log(ev.date);
-            $("#rent_end").datepicker('setStartDate', start);
-            });
-
-  $("#rent_end").datepicker({
-          format: "yyyy-MM-dd",
-          startDate: UTCToday(),
-          autoclose: true,
-          todayBtn: true,
-          todayHighlight: true,
-          language: "chs"
-          }).on('hide', function(ev){
-            end = new Date(ev.date);
-            $("#rent_start").datepicker('setEndDate', end);
-            });
-
-</script>
+<%= render 'shared/datepicker' %>

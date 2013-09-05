@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(params[:comment])
+    @comment = Comment.new(comment_params)
     @comment.user_name = current_user.name
     @comment.user_avatar = current_user.profile.avatar
     if @comment.save
@@ -15,4 +15,7 @@ class CommentsController < ApplicationController
     end
   end
 
+  def comment_params
+    params.require(:comment).permit(:content, :score)
+  end
 end

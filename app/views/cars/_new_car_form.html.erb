@@ -1,35 +1,41 @@
-<div class="box">
-  <%= simple_form_for @car, wrapper: 'bootstrap' do |f| %>
-    <div class="fieldset">
-      <legend>车辆信息</legend>
-      <%= f.input :brand, label: '型号', hint: '车辆品牌及型号', :placeholder=>"车辆型号" %>
-      <%= f.input :description, as: :text, input_html: {rows: 5}, label: '描述', :placeholder=>"描述" %>
-      <%= f.simple_fields_for :location do |loc| %>
-      <div class="control-group">
-        <label class="control-label">地区</label>
-        <div class="controls">
-          <select id="province"></select>
-          <%= loc.select :city, collection: [] %>
-          <%= loc.select :district, collection: [] %>
-        </div>
+
+<%= simple_form_for @car do |f| %>
+  <div class="fieldset col-md-8">
+    <legend>车辆信息</legend>
+    <%= f.input :brand, label: '型号', hint: '车辆品牌及型号', :placeholder=>"车辆型号" %>
+    <%= f.input :description, as: :text, input_html: {rows: 5}, label: '描述', :placeholder=>"描述" %>
+    <%= f.simple_fields_for :location do |loc| %>
+    <div class="form-group">
+      <%= loc.label '地区' %>
+      <div class="col-lg-8">
+        <select id="province"></select>
+        <%= loc.select :city, collection: [] %>
+        <%= loc.select :district, collection: [] %>
       </div>
-        <%= loc.input :detail, label: '街道地址', :placeholder=>"街道地址" %>
-      <% end %> 
-      <%= f.input :picture, label: '上传车辆照片', as: :file %>
-      <%= f.input :picture_cache, as: :hidden %>
-      <% if @car.picture? %>
-      <ul class="controls thumbnails">
-        <li class="span2">
-          <%= image_tag(@car.picture.thumb.url)  %>
-        </li>
-      </ul>
-      <% end %>
-      <div class="form-actions">
+    </div>
+      <%= loc.input :detail, label: '街道地址', :placeholder=>"街道地址" %>
+    <% end %> 
+    <div class="form-group">
+      <%= f.label '上传车辆照片', :picture %>
+      <div class="col-md-8">
+        <input type="file" name="car[picture]" id="car_picture" class="optional">
+      </div>
+    </div>
+    <%= f.input :picture_cache, as: :hidden %>
+    <% if @car.picture? %>
+    <ul class="controls thumbnails">
+      <li class="col-md-2">
+        <%= image_tag(@car.picture.url("240"))  %>
+      </li>
+    </ul>
+    <% end %>
+    <div class="form-group">
+      <div class="col-md-offset-4 col-md-4">
         <%= f.submit "保存", class: 'btn btn-primary btn-large' %>
       </div>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
 <script type="text/javascript" src="/sitedata.js" charset="utf-8"></script>
 <script type="text/javascript" src="/location.js" charset="utf-8"></script>
 <script type="text/javascript">

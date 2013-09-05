@@ -1,6 +1,7 @@
 CarrierWave.configure do |config|
-  config.storage = :grid_fs
-  
-  # Storage access url
-  config.grid_fs_access_url = "/upload/grid"
+  config.storage = :upyun
+  config.upyun_username = "loveltyoic"
+  config.upyun_password = "tyzl1988"
+  config.upyun_bucket = "fluidcars"
+  config.upyun_bucket_domain = "fluidcars.b0.upaiyun.com"
 end

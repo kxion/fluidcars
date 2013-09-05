@@ -1,16 +1,16 @@
-<div class="map-box">
+<div id="map-box" class="map-box">
   <div class="map-header">
-    <i class="icon-map-marker icon-white"></i><%= car.location.city+car.location.district+car.location.detail %>
+    <span class="glyphicon glyphicon-map-marker"></span><%= car.location.city+car.location.district+car.location.detail %>
   </div>
   <div id="map_container" class="withborder" style="height:200px">/
   </div>
 </div>
 <div class="withborder">
-  <%= owner.name %>
-  <ul class= "thumbnails">
-    <li class="span3">
-      <%= link_to image_tag(owner.profile.avatar.thumb.url), profile_path(owner) %> 
-    </li>
-  </ul>
+  <div class="media">
+    <%= link_to image_tag(owner.profile.avatar.url("100x100")), profile_path(owner), class: 'pull-left' %>
+    <div class="media-body">
+    <h4 class="media-heading"><%= owner.name %></h4>
+    </div>
+  </div>
 </div>
 <%= render :partial => 'shared/location', object: car, as: :car %>

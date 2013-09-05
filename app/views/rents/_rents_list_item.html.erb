@@ -1,24 +1,20 @@
 <tr>
   <td>
-    <ul class="thumbnails">
-      <li class="span2">
+    <div class="row">
+      <div class="col-md-4">
         <a href="<%= show_rent_path(id: rent.id) %>">
-          <%= image_tag(rent.car.picture.thumb.url, class: 'thumbnail') %>
+          <%= image_tag(rent.car.picture.url("240"), class: 'thumbnail') %>
         </a>
-      </li>
-    </ul>
-  </td>
-  <td>
-    <ul class="span2 abstract_rent">
-      <li><%= rent.car.brand %></li>
-      <li><%= rent.car.location.city %><%= rent.car.location.detail %></li>
-      <li>开始时间：<%= rent.start %></li>
-      <li>结束时间：<%= rent.end %></li>
-    </ul>
-  </td>
-  <td>
-    <div class="span2">
-      <%= render partial: 'rents/rent_rate', object: rent.rate, as: :rate %>
+      </div>
+      <ul class="col-md-4 rent-abstract">
+        <li><%= rent.car.brand %></li>
+        <li><%= rent.car.location.city %><%= rent.car.location.detail %></li>
+        <li>开始时间：<%= rent.start %></li>
+        <li>结束时间：<%= rent.end %></li>
+      </ul>
+      <div class="col-md-3">
+        <%= render partial: 'rents/rent_rate', object: rent.rate, as: :rate %>
+      </div>
     </div>
   </td>
 </tr>

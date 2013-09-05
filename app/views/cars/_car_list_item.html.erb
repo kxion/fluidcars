@@ -1,27 +1,25 @@
 <tr>
   <td>
-    <ul class="thumbnails">
-      <li class="span2">
+    <div class="row">
+      <li class="col-md-4">
         <a href="<%= car_path(car) %>" class="thumbnail"> 
-          <%= image_tag(car.picture.thumb.url) %>
+          <%= image_tag(car.picture.url("240")) %>
         </a>
       </li>
-    </ul>
-  </td>
-  <td>
-    <ul class="span2 abstract_info">
-      <li><%= car.brand %></li>
-      <li><%= car.location.city %></li>
-      <li><%= car.location.detail %></li>
-    </ul>
-  </td>
-  <td>
-    <div class="span2">
-      <div class="margin_button">
-        <%= link_to '编辑', edit_car_path(car), class: 'btn btn-large btn-info' %>
-      </div>
-      <div class="margin_button">
-        <%= button_to '出租', confirm_select_car_path(car_id: car.id), class: 'btn btn-large btn-success' %>
+
+      <ul class="col-md-4 rent-abstract">
+        <li><%= car.brand %></li>
+        <li><%= car.location.city %></li>
+        <li><%= car.location.detail %></li>
+      </ul>
+
+      <div class="col-md-3">
+        <div class="margin_button">
+          <%= link_to '编辑', edit_car_path(car), class: 'btn btn-large btn-info' %>
+        </div>
+        <div class="margin_button">
+          <%= button_to '出租', confirm_select_car_path(car_id: car.id), class: 'btn btn-large btn-success' %>
+        </div>
       </div>
     </div>
   </td>

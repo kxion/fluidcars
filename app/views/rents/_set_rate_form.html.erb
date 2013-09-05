@@ -1,12 +1,13 @@
 <%= simple_form_for :rate, wrapper: :append, url: confirm_set_rate_path do |f| %>
-  <div class="fieldset">
+  <div class="fieldset col-md-8">
     <legend>出租费用</legend>
-
     <%= f.input :day, as: :integer, label: '日租金', placeholder: "日租金", hint: '元' %>
     <%= f.input :week, as: :integer, label: '周租金', placeholder: '周租金', hint: '元' %>
     <%= f.input :month, as: :integer, label: '月租金', placeholder: '月租金', hint: '元' %>
-    <div class="form-actions">
-      <%= submit_tag "确定",:class => "btn btn-primary"%> 
+    <div class="form-group">
+      <div class="col-md-offset-4">
+        <%= submit_tag "确定",:class => "btn btn-primary"%> 
+      </div>
     </div>
   </div>
 <% end %>

@@ -26,4 +26,8 @@ module ApplicationHelper
     @events_json.to_json
   end
 
+  def current_city
+    session[:current_city]||'选择城市'
+  end
+
 end

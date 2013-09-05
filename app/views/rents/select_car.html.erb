@@ -1,10 +1,8 @@
-<%= render 'shared/notice' %>
-<div class="row car-list">
-  <div class="span7 box">
+<%= render 'shared/error' %>
+<div class="row">
+  <div class="col-md-7 box">
     <div class="rent_process">
-      <div style='margin:0 30px;width:560px;'>
-          <%= image_tag 'rent_step_1.png' %>
-      </div>
+      <%= image_tag 'rent_step_1.png', class: 'step' %>
       <ul class="rent_steps">
         <li class="step_active">选择车辆</li>
         <li>选择日期</li>
@@ -19,7 +17,7 @@
       </div>
     </div>
   </div>
-  <div class="span4">
+  <div class="col-md-4">
     <%= link_to '创建新车辆信息', new_car_path, class:'btn btn-large btn-success' %>
   </div>
 

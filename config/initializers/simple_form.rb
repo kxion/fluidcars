@@ -45,39 +45,24 @@ SimpleForm.setup do |config|
     b.use :error, :wrap_with => { :tag => :span, :class => :error }
   end
 
-  config.wrappers :bootstrap, :tag => 'div', :class => 'control-group', :error_class => 'error' do |b|
+  config.wrappers :bootstrap, :tag => 'div', :class => 'form-group', :error_class => 'error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label
-    b.wrapper :tag => 'div', :class => 'controls' do |ba|
-      ba.use :input
-      ba.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
-      ba.use :hint,  :wrap_with => { :tag => 'p', :class => 'help-block' }
-    end
-  end
-
-  config.wrappers :prepend, :tag => 'div', :class => "control-group", :error_class => 'error' do |b|
-    b.use :html5
-    b.use :placeholder
-    b.use :label
-    b.wrapper :tag => 'div', :class => 'controls' do |input|
-      input.wrapper :tag => 'div', :class => 'input-prepend' do |prepend|
-        prepend.use :input
-      end
-      input.use :hint,  :wrap_with => { :tag => 'span', :class => 'help-block' }
+    b.wrapper :tag => 'div', :class => 'col-lg-8' do |input|
+      input.use :input
       input.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
+      input.use :hint,  :wrap_with => { :tag => 'p', :class => 'help-block' }
     end
   end
 
-  config.wrappers :append, :tag => 'div', :class => "control-group", :error_class => 'error' do |b|
+  config.wrappers :append, :tag => 'div', :class => "form-group", :error_class => 'error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label
-    b.wrapper :tag => 'div', :class => 'controls' do |input|
-      input.wrapper :tag => 'div', :class => 'input-append' do |append|
-        append.use :input
-        append.use :hint, :wrap_with => { :tag => 'span', :class => 'add-on' }
-      end
+    b.wrapper :tag => 'div', :class => 'input-group col-lg-8' do |input|
+      input.use :input
+      input.use :hint,  :wrap_with => { :tag => 'span', :class => 'input-group-addon' }
       input.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
     end
   end
@@ -133,7 +118,8 @@ SimpleForm.setup do |config|
   # config.label_text = lambda { |label, required| "#{required} #{label}" }
 
   # You can define the class to use on all labels. Default is nil.
-  config.label_class = 'control-label'
+  config.label_class = 'control-label col-lg-4'
+  config.input_class = 'form-control'
 
   # You can define the class to use on all forms. Default is simple_form.
   config.form_class = "simple_form form-horizontal"
@@ -142,7 +128,7 @@ SimpleForm.setup do |config|
   # config.generate_additional_classes_for = [:wrapper, :label, :input]
 
   # Whether attributes are required by default (or not). Default is true.
-  config.required_by_default = false
+  # config.required_by_default = true
 
   # Tell browsers whether to use default HTML5 validations (novalidate option).
   # Default is enabled.

@@ -1,13 +1,13 @@
-<div style="height:500px;overflow:hidden">
-  <%= image_tag "home_background.jpg"%>
-</div>
-<div class="row" style="position:absolute;top:350px;margin-left:105px;height:300px;z-index:10">
-  <div  class="span10">
+<div class="relative-box">
+  <div style="height:500px;overflow:hidden">
+    <%= image_tag "home_background.jpg"%>
+  </div>
+  <div class="search-hero col-md-8">
     <%= render 'home_pages/home_search' %>
   </div>
-</div>
-<div class="row">
-  <div class="span6 offset3">
-    <%# render partial: 'home_pages/recommend_show', object: @infos %> 
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%# render partial: 'home_pages/recommend_show', object: @infos %> 
+    </div>
   </div>
 </div>

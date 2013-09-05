@@ -1,6 +1,8 @@
 // Place all the styles related to the cars controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "twitter/bootstrap";
+
 html {
   /*background: url("bg.png") repeat scroll left bottom #EEEEEE;*/
   height: 100%;
@@ -20,6 +22,16 @@ body {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.05);
   margin: 0 0 20px;
   padding: 10px;
+}
+.relative-box {
+  position: relative;
+}
+.search-hero {
+  position: absolute;
+  top: 250px;
+  margin-left: 105px;
+  height: 300px;
+  z-index: 10;
 }
 #request-box {
   border: 1px solid #CCCCCC;
@@ -102,15 +114,6 @@ body {
   line-height: 18px;
   padding: 9px 5px;
 }
-.page-header, .form-header {
-  margin: 0;
-  background-color: #F2F2F2;
-  text-align: center;
-}
-.page-header h1, .form-header h2 {
-  margin: 0;
-  padding: 20px 8px;
-}
 #car-description h4 {
   color: #FC7C1A
 }
@@ -123,6 +126,10 @@ body {
 }
 .rent_process {
   width:640px;
+  img.step {
+    margin:0 30px;
+    width:560px;
+  }
 }
 .rent_steps li:first-child {
     margin-left: 0;
@@ -139,8 +146,11 @@ body {
 .margin_button {
   margin: 10px;
 }
-ul.abstract_info li {
-  line-height: 2;
+ul.rent-abstract {
+  vertical-align: middle;
+  li {
+    line-height: 2;
+  }
 }
 .step_active {
   color: #00ADF2;
@@ -185,30 +195,18 @@ ul.abstract_info li {
   padding: 15px 20px 0px;
   width: 400px;
   position: relative;
-  top: -31px;
+  top: -5px;
 }
 .table td {
   vertical-align: top;
   padding-top: 20px;
   padding-bottom: 0;
 }
-.container-radius {
-  border: 1px solid #e5e5e5;
+.container-box {
   margin-bottom: 40px;
   margin-top: 20px;
   padding-bottom: 20px;
-  -webkit-border-radius: 5px;
-     -moz-border-radius: 5px;
-          border-radius: 5px;
   min-height: 500px;
-}
-.rent-list {
-  padding: 20px 20px;
-  
-}
-.margin-box, .order-detail, .info-detail, .car-detail, .info-list, .order-list, .car-list {
-  margin-top: 30px;
-  margin-left: 40px;
 }
 
 .alert-box {

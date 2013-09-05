@@ -1,9 +1,9 @@
-<div style="position:relative">
-  <ul class="thumbnails">
-    <li class="span12">
-      <%= image_tag(car.picture_url) %>
-    </li>
-  </ul>
+<div class="row relative-box">
+  <div class="col-md-12">
+    <div class="thumbnail">
+      <%= image_tag(car.picture.url) %>
+    </div>
+  </div>
 </div>
 <div class="mark-box">
   <h1 class="mark-brand"><%= car.brand %></h1>

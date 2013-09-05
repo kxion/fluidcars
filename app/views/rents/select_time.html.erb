@@ -1,9 +1,7 @@
-<div class="row margin-box">
-  <div class="span7 box">
+<div class="row">
+  <div class="col-md-7 box">
     <div class="rent_process">
-      <div style='margin:0 30px;width:560px;'>
-        <%= image_tag 'rent_step_2.png' %>
-      </div>
+      <%= image_tag 'rent_step_2.png', class: 'step' %>
       <ul class="rent_steps">
         <li>选择车辆</li>
         <li class="step_active">选择日期</li>
@@ -15,7 +13,7 @@
       <%= render 'select_time_form'%>
     </div>
   </div>
-  <div class="span4">
+  <div class="col-md-4">
   </div>
 
 </div>

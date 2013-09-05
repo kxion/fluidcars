@@ -6,7 +6,7 @@ class SearchRentsController < ApplicationController
   end
 
   def search_rents_by_date
-    @rents = Rent.where(:start.lte => params[:rent_start]).where(:end.gte => params[:rent_end])
+    @rents = Rent.where(:start.lte => params[:rent][:start]).where(:end.gte => params[:rent][:end])
     @results = @rents.paginate(page: params[:page], per_page: 5)
     render 'result'
   end

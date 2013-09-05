@@ -3,9 +3,7 @@
   <legend>登录</legend>
   <%= f.input :auth_key, placeholder: 'xxx@xxx.com', label: 'Email', input_html:{ name: :auth_key }%>
   <%= f.input :password, placeholder: '密码', label: '密码', input_html: { name: :password } %>
-  <div class="form-actions">
-    <%= f.submit "登录", :class => "btn btn-large btn-primary" %>
-  </div>
+  <%= f.submit "登录", :class => "btn btn-large btn-primary col-md-offset-2" %>
 </div>
 <% end %>
 <div>

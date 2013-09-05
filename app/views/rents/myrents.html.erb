@@ -1,6 +1,6 @@
 <div class="page-header"><h1>我的出租</h1></div>
-<div class="row rent-list">
-  <div class="span7">
+<div class="row">
+  <div class="col-md-7">
   <% unless @rents.empty? %>
     <table class="table table-hover">
       <%= render partial: 'rents_list_item', collection: @rents, as: :rent %>
@@ -10,7 +10,7 @@
     还没有出租,<%= link_to '立刻发布出租信息', new_rent_path %>
   <% end %>
   </div>
-  <div class="span4">
+  <div class="col-md-4">
     <%= render partial: 'shared/calendar', object: @rents, as: :rents %>
   </div>
 </div>

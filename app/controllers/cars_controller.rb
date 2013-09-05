@@ -39,9 +39,8 @@ class CarsController < ApplicationController
 
   # 提交车辆信息
   def create
-    @car = Car.new(params[:car])
+    @car = Car.new(car_params)
     @car.user_id = current_user.id
-    @car.build_location(params[:car][:location_attributes])
     respond_to do |format|
       if @car.save
         flash[:notice] = '车辆信息创建成功!'
@@ -56,10 +55,9 @@ class CarsController < ApplicationController
 
   # 提交修改
   def update
-    @car = Car.find(params[:id])
-
+    @car = current_user.cars.find(params[:id])
     respond_to do |format|
-      if @car.update_attributes(params[:car])
+      if @car.update_attributes(car_params)
         format.html { redirect_to @car, notice: '车辆信息修改成功！' }
         format.json { head :no_content }
       else
@@ -79,5 +77,10 @@ class CarsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def car_params
+    params.require(:car).permit(:picture, :description, :brand, :picture, :picture_cache, :location_attributes => [:district, :detail, :city])
+  end
+
   
 end

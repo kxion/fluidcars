@@ -28,7 +28,12 @@ class RentsController < ApplicationController
   # 选择要出租的车辆
   def select_car
     @cars = current_user.cars.paginate(page: params[:page], per_page: 5)
-    render 'select_car'
+    if @cars.empty?
+      flash[:notice] = '请先创建车辆信息'
+      redirect_to new_car_url
+    else
+      render 'select_car'
+    end
   end
   # 确认出租车辆
   def confirm_select_car
@@ -49,7 +54,7 @@ class RentsController < ApplicationController
   # 确认时间
   def confirm_select_time
     @rent = Rent.find(session[:current_rent_id])
-    @rent.update_attributes!(params[:rent])
+    @rent.update_attributes!(time_params)
     if @rent.save
       redirect_to set_rate_url
     else
@@ -63,7 +68,8 @@ class RentsController < ApplicationController
   # 确认费率
   def confirm_set_rate
     @rent = Rent.find(session[:current_rent_id])
-    @rent.update_attributes(rate: params[:rate])
+    @rent.rate = params[:rate]
+    @rent.save
     redirect_to complete_url
   end
   # 出租完成
@@ -72,4 +78,9 @@ class RentsController < ApplicationController
     session[:current_rent_id] = nil
     session[:current_car_id] = nil 
   end
+
+  def time_params
+    params.require(:rent).permit(:start, :end)
+  end
+
 end
