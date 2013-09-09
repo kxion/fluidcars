@@ -14,10 +14,14 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = current_user.profile
-    @profile.avatar = params[:profile][:avatar]
-    @profile.save
-    # @profile.update_attributes!(params[:profile])
+    # debugger
+    @profile.update_attributes!(profile_params)
     flash[:notice] = "个人资料更新成功！"
-    render 'show'
+    redirect_to profile_path(current_user)
   end
+
+  def profile_params
+    params.require(:profile).permit(:avatar, :avatar_cache, :nickname)
+  end
+
 end

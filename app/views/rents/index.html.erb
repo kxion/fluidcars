@@ -3,7 +3,7 @@
     <table class="table table-hover">
       <%= render partial: 'rents/rents_list_item', collection: @rents, as: :rent %>
     </table>
-    <%= will_paginate @rents %>
+    <%= paginate @rents %>
   </div>
   <div class="col-md-4">
     <%#= render 'rents/rent_search_by_time' %>

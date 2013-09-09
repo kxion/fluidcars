@@ -22,12 +22,12 @@ class RentsController < ApplicationController
   end
   # 显示当前用户的所有出租信息
   def myrents
-    @rents = current_user.rents.desc(:create_at).paginate(page: params[:page], per_page: 5)
+    @rents = current_user.rents.desc(:create_at).page params[:page]
   end
 
   # 选择要出租的车辆
   def select_car
-    @cars = current_user.cars.paginate(page: params[:page], per_page: 5)
+    @cars = current_user.cars.page params[:page]
     if @cars.empty?
       flash[:notice] = '请先创建车辆信息'
       redirect_to new_car_url

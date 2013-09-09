@@ -1,11 +1,16 @@
-<div class="page-header"><h1>我的出租</h1></div>
+<ul class="nav nav-tabs">
+  <li><%= link_to '我的资料', profile_path(current_user) %></li> 
+  <li><%= link_to '我的车辆', mycars_path %></li>
+  <li class="active"><%= link_to '我的出租', myrents_path %></li>
+  <li><%= link_to '我的订单', my_order_path %></li>
+</ul>
 <div class="row">
   <div class="col-md-7">
   <% unless @rents.empty? %>
     <table class="table table-hover">
       <%= render partial: 'rents_list_item', collection: @rents, as: :rent %>
     </table>
-    <div class="pagination"><%= will_paginate @rents %></div>
+    <div class="pagination"><%= paginate @rents %></div>
   <% else %>
     还没有出租,<%= link_to '立刻发布出租信息', new_rent_path %>
   <% end %>

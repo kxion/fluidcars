@@ -9,6 +9,12 @@ Zuche::Application.routes.draw do
     get '/auth/:provider/callback' => :create
   end
   
+  resources :users do
+    collection do
+      get 'panel' => :panel
+    end
+  end
+
   controller :identities do
     get 'signup' => :new
   end
@@ -38,9 +44,6 @@ Zuche::Application.routes.draw do
 
   resources :cars do
   end
-
-  # carrierwave-mongoid的路由
-  get "/upload/grid/*path" => "gridfs#avatar"
 
   get "home_pages/home"
 

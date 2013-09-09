@@ -29,11 +29,15 @@ module BaiduMap
     params = { address: self.location.detail, city: self.location.city, output: 'json', ak: 'D6ced4fa35c14b09189fba6b898c905f'}
     response = JSON.parse(http_get("api.map.baidu.com", "/geocoder/v2/", params))
 
-    while response['status'] != 0 
-      response = JSON.parse(http_get("api.map.baidu.com", "/geocoder/v2/", params))
-    end  
-   
-    self.location.gps = [].push(response['result']['location']['lng'], response['result']['location']['lat'])
+    # while response['status'] != 0 
+    #   response = JSON.parse(http_get("api.map.baidu.com", "/geocoder/v2/", params))
+    # end
+
+    begin
+      self.location.gps = [].push(response['result']['location']['lng'], response['result']['location']['lat'])
+    rescue
+      self.location.gps = nil
+    end
 
   end
 

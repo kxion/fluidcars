@@ -6,7 +6,7 @@ class CarsController < ApplicationController
   end
   # 列出当前用户所拥有的车辆
   def mycars
-    @cars = current_user.cars.paginate(page: params[:page], per_page: 5)
+    @cars = current_user.cars.page params[:page]
     respond_to do |format|
       format.html { render 'mycars'}
       format.json { render json: @cars }
@@ -57,7 +57,7 @@ class CarsController < ApplicationController
   def update
     @car = current_user.cars.find(params[:id])
     respond_to do |format|
-      if @car.update_attributes(car_params)
+      if @car.update_attributes!(car_params)
         format.html { redirect_to @car, notice: '车辆信息修改成功！' }
         format.json { head :no_content }
       else
@@ -79,8 +79,7 @@ class CarsController < ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:picture, :description, :brand, :picture, :picture_cache, :location_attributes => [:district, :detail, :city])
+    params.require(:car).permit(:picture, :description, :brand, :picture, :picture_cache, :location_attributes => [:province, :district, :detail, :city])
   end
-
   
 end

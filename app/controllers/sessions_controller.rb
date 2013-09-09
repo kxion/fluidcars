@@ -8,13 +8,15 @@ class SessionsController < ApplicationController
     else
       user = User.from_omniauth(request.env["omniauth.auth"])
       sign_in user
-      redirect_to root_url, notice: "登录成功!"
+      flash[:notice] = "登录成功!"
+      redirect_to root_url
     end
   end
 
   def destroy
     sign_out
-    redirect_to root_url, notice: "已注销！"
+    flash[:notice] = "已注销！"
+    redirect_to root_url
   end
 
   def failure

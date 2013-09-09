@@ -1,37 +1,12 @@
-# set :application, "set your application name here"
-# set :repository,  "set your repository location here"
-
-# set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
-# Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
-
-# role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-# role :app, "your app-server here"                          # This may be the same as your `Web` server
-# role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
-# role :db,  "your slave db-server here"
-
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
-
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
-
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
 require 'rvm/capistrano'
-set :rvm_ruby_string, '2.0.0'
+set :rvm_ruby_string, :local
 # require 'hoptoad_notifier/capistrano'
 
 set :application, "fluidcars"
 set :domain, 'fluidcars.com'
 set :user, "root" # 一個伺服器上的帳戶用來放你的應用程式，不需要有sudo權限，但是需要有權限可以讀取Git repository拿到原始碼
 set :branch, "master"
-set :repository, "root@loveltyoic:~/git/fluidcars_mongodb.git"
+set :repository, "root@fluidcars.com:~/git/fluidcars.git"
 set :scm, "git"
 set :port, "22"
 
@@ -42,6 +17,9 @@ set :use_sudo, false
 role :web, domain
 role :app, domain
 role :db,  domain, :primary => true
+
+# unicorn.rb 路径
+set :unicorn_path, "#{deploy_to}/current/config/unicorn.rb"
 
 namespace :deploy do
 
@@ -55,17 +33,25 @@ namespace :deploy do
     run "cd #{release_path} && RAILS_ENV=production bundle install"
   end
 
-  task :update_symlink do
-   run "ln -s #{shared_path}/uploads #{release_path}/public/uploads"
+  task :start, :roles => :app do
+    run "cd #{deploy_to}/current/; RAILS_ENV=production bundle exec unicorn_rails -c #{unicorn_path} -D"
   end
 
-  task :start do ; end
-  task :stop do ; end
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "touch #{File.join(current_path,'tmp','restart.txt')}"
+  task :stop, :roles => :app do
+    run "kill -QUIT `cat #{deploy_to}/current/tmp/pids/unicorn.pid`"
   end
+
+  desc "Restart Application"
+  task :restart, :roles => :app do
+    run "kill -USR2 `cat #{deploy_to}/current/tmp/pids/unicorn.pid`"
+  end
+end
+
+task :link_shared_files, :roles => :web do
+  run "ln -sf #{deploy_to}/shared/config/*.yml #{deploy_to}/current/config/"
+  run "ln -s #{deploy_to}/current/config/nginx.conf /etc/nginx/conf.d/nginx.conf"
+  # run "ln -sf #{deploy_to}/shared/config/unicorn.rb #{deploy_to}/current/config/"
 end
 
 # after "deploy:update_code", "deploy:copy_config_files" # 如果將database.yml放在shared下，請打開
 after "deploy:finalize_update", "deploy:bundle_install"
-after "deploy:bundle_install", "deploy:update_symlink"

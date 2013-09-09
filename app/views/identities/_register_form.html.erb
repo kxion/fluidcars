@@ -2,11 +2,13 @@
   <%= simple_form_for @identity, url: '/auth/identity/register' do |f| %>
     <div class="fieldset">
       <legend>注册</legend>
-      <%= f.input :email, as: :email, label: 'Email', input_html: { name: 'email' }, :placeholder => "xxx@xxx.com" %>
+      <%= f.input :email, as: :email, label: 'Email', input_html: { name: 'email' }, :placeholder => "example@example.com" %>
       <%= f.input :password, as: :password, label: '密码', hint: "<a id='tip_password' href='#' data-placement='right' data-toggle='tooltip' title='用熟悉的一句话的首字母来作密码，好记又安全!'>Tips</a>", input_html: { name: 'password' }, :placeholder => "密码" %>
       <%= f.input :password_confirmation, as: :password, label: '确认密码', input_html: { name: 'password_confirmation' }, :placeholder => "确认密码" %>
-      <div class="form-actions">
-        <%= f.submit "确认注册", :class => "btn btn-large btn-primary" %>
+      <div class="form-group">
+        <div class="col-md-offset-2">
+          <%= f.submit "确认注册", :class => "btn btn-large btn-primary" %>
+        </div>
       </div>
     </div>
   <% end %>

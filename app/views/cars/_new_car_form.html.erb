@@ -1,19 +1,18 @@
-
 <%= simple_form_for @car do |f| %>
-  <div class="fieldset col-md-8">
+  <div class="fieldset">
     <legend>车辆信息</legend>
     <%= f.input :brand, label: '型号', hint: '车辆品牌及型号', :placeholder=>"车辆型号" %>
-    <%= f.input :description, as: :text, input_html: {rows: 5}, label: '描述', :placeholder=>"描述" %>
+    <%= f.input :description, as: :text, input_html: {rows: 5}, label: '描述', :placeholder=>"描述", hint: '请简单描述车况，更利于出租' %>
     <%= f.simple_fields_for :location do |loc| %>
-    <div class="form-group">
-      <%= loc.label '地区' %>
-      <div class="col-lg-8">
-        <select id="province"></select>
-        <%= loc.select :city, collection: [] %>
-        <%= loc.select :district, collection: [] %>
+      <div class="form-group">
+        <%= loc.label '地区' %>
+        <div class="col-lg-8">
+          <%= loc.select :province, collection: [] %>
+          <%= loc.select :city, collection: [] %>
+          <%= loc.select :district, collection: [] %>
+        </div>
       </div>
-    </div>
-      <%= loc.input :detail, label: '街道地址', :placeholder=>"街道地址" %>
+      <%= loc.input :detail, label: '详细地址', :placeholder=>"详细地址" %>
     <% end %> 
     <div class="form-group">
       <%= f.label '上传车辆照片', :picture %>
@@ -30,7 +29,7 @@
     </ul>
     <% end %>
     <div class="form-group">
-      <div class="col-md-offset-4 col-md-4">
+      <div class="col-md-offset-2 col-md-4">
         <%= f.submit "保存", class: 'btn btn-primary btn-large' %>
       </div>
     </div>
@@ -40,7 +39,7 @@
 <script type="text/javascript" src="/location.js" charset="utf-8"></script>
 <script type="text/javascript">
   window.onload=function(){
-    siteSelect(["province","car_location_attributes_city","car_location_attributes_district"],["","",""]);
+    siteSelect(["car_location_attributes_province","car_location_attributes_city","car_location_attributes_district"],["","",""]);
   }
 </script>
 <style>

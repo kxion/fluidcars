@@ -4,7 +4,7 @@ class User
 
 
   has_many :authorizations
-  embeds_one :profile
+  embeds_one :profile, cascade_callbacks: true
   has_many :cars, dependent: :destroy
   has_many :rents, dependent: :destroy
 

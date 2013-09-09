@@ -1,18 +1,21 @@
-<div class="page-header">
-  <h1>我的车辆</h1>
-</div>
-<div class="row car-list">
-  <div class="span7">
+<ul class="nav nav-tabs">
+  <li><%= link_to '我的资料', profile_path(current_user) %></li> 
+  <li class="active"><%= link_to '我的车辆', mycars_path %></li>
+  <li><%= link_to '我的出租', myrents_path %></li>
+  <li><%= link_to '我的订单', my_order_path %></li>
+</ul>
+<div class="row">
+  <div class="col-md-7">
     <% unless @cars.empty? %>
     <table class="table table-hover">
       <%= render partial: 'car_list_item', collection: @cars, as: :car %>
     </table>
-    <%= will_paginate @cars %>
+    <%= paginate @cars %>
     <% else %>
     暂无车辆信息
     <% end %>
   </div>
-  <div class="span4">
+  <div class="col-md-4">
     <%= link_to '创建新车辆信息', new_car_path, class:'btn btn-large btn-success' %>
   </div>
 </div>
