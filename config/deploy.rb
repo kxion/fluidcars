@@ -48,10 +48,10 @@ namespace :deploy do
 end
 
 task :link_shared_files, :roles => :web do
-  run "ln -sf #{deploy_to}/shared/config/*.yml #{deploy_to}/current/config/"
-  run "ln -s #{deploy_to}/current/config/nginx.conf /etc/nginx/conf.d/nginx.conf"
+  # run "ln -sf #{deploy_to}/shared/config/*.yml #{deploy_to}/current/config/"
+  run "ln -sf #{deploy_to}/current/config/nginx.conf /etc/nginx/nginx.conf"
   # run "ln -sf #{deploy_to}/shared/config/unicorn.rb #{deploy_to}/current/config/"
 end
 
 # after "deploy:update_code", "deploy:copy_config_files" # 如果將database.yml放在shared下，請打開
-after "deploy:finalize_update", "deploy:bundle_install"
+after "deploy:finalize_update", "deploy:bundle_install", :link_shared_files
