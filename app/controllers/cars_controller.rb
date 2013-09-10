@@ -79,7 +79,7 @@ class CarsController < ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:picture, :description, :brand, :picture, :picture_cache, :location_attributes => [:province, :district, :detail, :city])
+    params.require(:car).permit(:description, :brand, :picture, :picture_cache, :location_attributes => [:province, :district, :detail, :city])
   end
   
 end
