@@ -48,6 +48,8 @@ group :development, :test do
   gem 'database_cleaner'
   gem "rspec-cells", '0.1.7'
   gem "capybara", "~> 0.4.1"
+  gem 'pry-rails'
+  gem 'pry-debugger'
 end 
 
 group :production do
