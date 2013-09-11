@@ -9,14 +9,11 @@
   <div class="col-md-4">
     <div class="box">
       <%= @profile.nickname %>
-   
-      <div class="pull-right">
-        <%= image_tag @profile.avatar.url %>
-      </div>
     </div>
+    <%= link_to '修改资料', edit_profile_path(current_user.profile), class: 'btn btn-primary btn-large' %>
   </div>
-  <div class="col-md-4">
-    <%= link_to '修改资料', edit_profile_path(current_user.profile) %>
+  <div class="pull-right col-md-4">
+    <%= image_tag @profile.avatar.url %>
   </div>
 
 </div>

@@ -9,13 +9,10 @@
   <div class="col-md-4">
     <div class="box">
       <%= @profile.nickname %>
-   
-      <div class="pull-right">
-        <%= image_tag @profile.avatar.url %>
-      </div>
     </div>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-4 pull-right">
+    <%= image_tag @profile.avatar.url %>
   </div>
 
 </div>
