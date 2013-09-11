@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
 
   def create
     if request.env['omniauth.auth'].nil?
+      flash[:notice] = '信息输入有误'
       render new
     else
       user = User.from_omniauth(request.env["omniauth.auth"])

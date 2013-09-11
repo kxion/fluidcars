@@ -1,4 +1,4 @@
-<%= render 'shared/success' %>
+<%= render 'shared/notice', locals: { alert_type: 'success'} %>
 <div class="row">
   <div class="col-md-7">
     <div class="withborder"> 
@@ -12,7 +12,7 @@
   <div class="col-md-4">
     <div id="request-box">
       <%= render partial: 'rents/rent_rate', object: @rent.rate, as: :rate %>
-      <div class='rent-period'>
+      <div class='well'>
         出租期限:<%= @rent.start %>----------<%= @rent.end %>
       </div>
       <div class="request-tool">

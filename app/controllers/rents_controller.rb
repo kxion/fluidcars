@@ -74,7 +74,8 @@ class RentsController < ApplicationController
   end
   # 出租完成
   def complete
-    @rent = Rent.find(session[:current_rent_id])   
+    @rent = Rent.find(session[:current_rent_id])
+    flash[:notice] = "发布成功！"   
     session[:current_rent_id] = nil
     session[:current_car_id] = nil 
   end

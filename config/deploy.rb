@@ -1,4 +1,5 @@
 require 'rvm/capistrano'
+require "bundler/capistrano"
 set :rvm_ruby_string, :local
 # require 'hoptoad_notifier/capistrano'
 
@@ -66,4 +67,4 @@ task :compile_and_rsync_assets, roles => :web do
 end
 
 # after "deploy:update_code", "deploy:copy_config_files" # 如果將database.yml放在shared下，請打開
-after "deploy:finalize_update", "deploy:bundle_install"#, :link_shared_files
+# after "deploy:finalize_update", "deploy:bundle_install"#, :link_shared_files
