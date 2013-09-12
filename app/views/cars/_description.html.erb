@@ -1,0 +1,14 @@
+
+  <div id="car-description">
+    <h4>关于这辆车</h4>
+    <dl class="dl-horizontal">
+      <dt>车辆型号:</dt>
+      <dd><%= car.brand %></dd>
+      <dt>所在城市:</dt>
+      <dd><%= car.location.city %></dd>
+      <dt>地   点:</dt>
+      <dd><%= car.location.detail %></dd>
+      <dt>描   述:</dt>
+      <dd><%= simple_format(car.description) %></dd>
+  	<dl>
+  </div>

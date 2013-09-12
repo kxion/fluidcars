@@ -7,33 +7,37 @@
       <div class="form-group">
         <%= loc.label '地区' %>
         <div class="col-lg-8">
-          <%= loc.select :province, collection: [] %>
-          <%= loc.select :city, collection: [] %>
+          <%= loc.select :province, collection: [], value: 'yes' %>
+          <%= loc.select :city, collection: [], value: 'ok' %>
           <%= loc.select :district, collection: [] %>
         </div>
       </div>
       <%= loc.input :detail, label: '详细地址', :placeholder=>"详细地址" %>
     <% end %> 
-    <div class="form-group">
-      <%= f.label '上传车辆照片', :picture %>
-      <div class="col-md-8">
-        <input type="file" name="car[picture]" id="car_picture" class="optional">
-      </div>
-    </div>
-    <%= f.input :picture_cache, as: :hidden %>
+    <%= f.fields_for :car_pictures do |pic| %>
+      <% unless pic.object.new_record? %>
+        <div class="form-group">
+          <div class="col-md-10 col-md-offset-2">
+            <div class="media">
+              <div class="pull-left">
+                <%= image_tag pic.object.picture.url("120") %>
+              </div>
+              <div class="media-body">
+                <span class="glyphicon glyphicon-floppy-remove">删除</span>
+                <%= pic.check_box :_destroy %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    <%= render 'picture_upload' %>
     <div class="form-group">
       <div class="col-md-offset-2 col-md-4">
         <%= f.submit "保存", class: 'btn btn-primary btn-large' %>
       </div>
     </div>
   </div>
-<% end %>
-<% if @car.picture? %>
-<div class="col-md-offset-2 col-md-4">
-  <div class="thumbnail">
-    <%= image_tag(@car.picture.url("240"))  %>
-  </div>
-</div>
 <% end %>
 <script type="text/javascript" src="/sitedata.js" charset="utf-8"></script>
 <script type="text/javascript" src="/location.js" charset="utf-8"></script>

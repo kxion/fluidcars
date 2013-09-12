@@ -30,4 +30,11 @@ module ApplicationHelper
     session[:current_city]||'选择城市'
   end
 
+  def display_notice_and_alert
+    msg = ''
+    msg << (content_tag :div, notice, :class => "notice") if notice
+    msg << (content_tag :div, alert, :class => "alert") if alert
+    msg
+  end
+
 end

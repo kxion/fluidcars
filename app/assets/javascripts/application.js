@@ -15,3 +15,5 @@
 //= require twitter/bootstrap
 //= require fullcalendar
 //= require bootstrap-datepicker
+//= require location
+//= require sitedata

@@ -1,10 +1,10 @@
-<%= render 'shared/notice', locals: { alert_type: 'success'} %>
 <div class="row">
   <div class="col-md-7">
-    <div class="withborder"> 
-      <%= render partial: 'cars/pic_desc', object: @rent.car, as: :car %>
+    <div class="border-box">
+      <%= render 'cars/car_pictures_slide' %>
+      <%= render partial: 'cars/description', object: @car, as: :car %>
     </div>
-    <div class="withborder"> 
+    <div class="border-box"> 
       <h4>评论</h4>
       <%= render partial: 'comments/comment_list', object: @comments, as: :comments %>
     </div>
@@ -13,7 +13,7 @@
     <div id="request-box">
       <%= render partial: 'rents/rent_rate', object: @rent.rate, as: :rate %>
       <div class='well'>
-        出租期限:<%= @rent.start %>----------<%= @rent.end %>
+        出租期限:<%= @rent.start %>至<%= @rent.end %>
       </div>
       <div class="request-tool">
         <% if @rent.status == "active" %>
@@ -21,8 +21,7 @@
         <% end %>
       </div>
     </div>
-
-    <%= render partial: 'cars/loc_owner', locals: { car: @rent.car, owner: @rent.user } %>
+    <%= render partial: 'cars/loc_owner', locals: { car: @car, owner: @rent.user } %>
   </div>
 </div>
 <%= render partial: 'shared/check_login', locals: { id: 'request', destination: neworder_path(rent_id: @rent.id) } %>

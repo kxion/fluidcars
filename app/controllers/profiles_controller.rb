@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
     @profile = current_user.profile
     # debugger
     @profile.update_attributes!(profile_params)
-    flash[:notice] = "个人资料更新成功！"
+    flash[:success] = "个人资料更新成功！"
     redirect_to profile_path(current_user)
   end
 

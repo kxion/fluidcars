@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-4">
         <a href="<%= show_rent_path(id: rent.id) %>">
-          <%= image_tag(rent.car.picture.url("240"), class: 'thumbnail') %>
+          <%= image_tag(rent.car.car_pictures[0].picture.url("240"), class: 'thumbnail') %>
         </a>
       </div>
       <ul class="col-md-4 rent-abstract">

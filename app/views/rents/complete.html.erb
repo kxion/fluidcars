@@ -1,4 +1,3 @@
-<%= render partial: 'shared/notice', locals: { alert_type: 'success'} %>
 <div class="row">
   <div class="col-md-7 box">
     <div class="rent_process">
@@ -17,8 +16,10 @@
 </div>
 <div class="row">
   <div class="col-md-7 box">
-    <%= render partial: 'cars/pic_desc', object: @rent.car, as: :car %>
-  </div>
+    <div class="border-box"> 
+      <%= render partial: 'cars/car_pictures_slide' %>
+      <%= render partial: 'cars/description', object: @rent.car, as: :car %>
+    </div>  </div>
   <div class="col-md-4">
     <div id="request-box">
       <%= render partial: 'rents/rent_rate', object: @rent.rate, as: :rate %>

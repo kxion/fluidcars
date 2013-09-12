@@ -26,6 +26,7 @@ class CarsController < ApplicationController
   def new
     @car = Car.new
     @car.build_location
+    @car.car_pictures.build
   end
 
   # 编辑车辆
@@ -43,7 +44,7 @@ class CarsController < ApplicationController
     @car.user_id = current_user.id
     respond_to do |format|
       if @car.save
-        flash[:notice] = '车辆信息创建成功!'
+        flash[:success] = '车辆信息创建成功!'
         format.html { redirect_to @car }
         format.json { render json: @car, status: :created, location: @car }
       else
@@ -58,7 +59,10 @@ class CarsController < ApplicationController
     @car = current_user.cars.find(params[:id])
     respond_to do |format|
       if @car.update_attributes!(car_params)
-        format.html { redirect_to @car, notice: '车辆信息修改成功！' }
+        format.html do
+          flash[:success] = '车辆信息修改成功！'
+          redirect_to @car
+        end
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -73,13 +77,13 @@ class CarsController < ApplicationController
     @car.destroy
 
     respond_to do |format|
-      format.html { redirect_to cars_url }
+      format.html { redirect_to mycars_url }
       format.json { head :no_content }
     end
   end
 
   def car_params
-    params.require(:car).permit(:description, :brand, :picture, :picture_cache, :location_attributes => [:province, :district, :detail, :city])
+    params.require(:car).permit(:description, :brand, car_pictures_attributes: [:picture, :picture_cache, :_destroy, :id], :location_attributes => [:province, :district, :detail, :city])
   end
   
 end

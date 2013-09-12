@@ -1,19 +1,37 @@
-<%= render partial:'shared/notice', locals: { alert_type: 'success' } %>
 <div class="row">
   <div class="col-md-7">
-    <div class="withborder"> 
-      <%= render partial: 'cars/pic_desc', object: @car, as: :car %>
+    <div class="border-box"> 
+      <%= render 'cars/car_pictures_slide' %>
+      <%= render partial: 'cars/description', object: @car, as: :car %>
     </div>
   </div>
   <div class="col-md-4">
-    <div class="margin_button">
+    <div class="button-group">
       <%= link_to '编辑', edit_car_path(@car), class: 'btn btn-lg btn-info' %>
+      <a data-toggle="modal" href="#deleteModal" class="btn btn-danger btn-lg">删除</a>
     </div>
-    <div class="margin_button">
-      <%= button_to '出租', confirm_select_car_path(car_id: @car.id), class: 'btn btn-lg btn-success' %>
-    </div>
-    <div class="withborder"> 
+    <div style="height:80px; margin:15px 0">
+      <%= button_to '出租', confirm_select_car_path(car_id: @car.id), class: 'btn btn-lg btn-success col-md-5' %>
+    </div>  
+    <div class="border-box"> 
       <%= render partial: 'comments/comment_list', object: @car.comments, as: :comments %>
     </div>
   </div>
 </div>
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">确定要删除吗？</h4>
+      </div>
+      <div class="modal-body">
+        一旦删除，将不可回复，请慎重考虑
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <%= link_to '确定删除', car_path(@car), method: :delete, class: 'btn btn-danger'%>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

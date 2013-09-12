@@ -4,6 +4,7 @@ class RentsController < ApplicationController
   # 显示详细出租信息
   def show
     @rent = Rent.includes(:user).find(params[:id])
+    @car = @rent.car
     @comments = Comment.where('car_id' => @rent.car.id)
     respond_to do |format|
       format.html # show.html.erb
@@ -29,7 +30,7 @@ class RentsController < ApplicationController
   def select_car
     @cars = current_user.cars.page params[:page]
     if @cars.empty?
-      flash[:notice] = '请先创建车辆信息'
+      flash[:warning] = '请先创建车辆信息'
       redirect_to new_car_url
     else
       render 'select_car'
@@ -43,7 +44,7 @@ class RentsController < ApplicationController
       session[:current_rent_id] = rent.id
       redirect_to select_time_url
     else
-      flash[:notice] = '只能出租属于自己的车辆'
+      flash[:error] = '只能出租属于自己的车辆'
       redirect_to select_car_url
     end
   end
@@ -75,7 +76,8 @@ class RentsController < ApplicationController
   # 出租完成
   def complete
     @rent = Rent.find(session[:current_rent_id])
-    flash[:notice] = "发布成功！"   
+    @car = @rent.car
+    flash.now[:success] = "发布成功！"   
     session[:current_rent_id] = nil
     session[:current_car_id] = nil 
   end

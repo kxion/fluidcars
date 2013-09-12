@@ -1,0 +1,10 @@
+    <%= f.simple_fields_for :car_pictures do |pic| %>
+      <div class="form-group">
+        <%= pic.label '上传车辆照片', :picture %>
+        <div class="col-md-8">
+          <!-- <input type="file" name="car[picture_attributes][picture]" id="car_picture" class="optional"> -->
+          <%= pic.input :picture, as: :file %>
+        </div>
+      </div>
+      <%= pic.input :picture_cache, as: :hidden %>
+    <% end %>

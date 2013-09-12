@@ -1,9 +1,17 @@
-IMAGE_UPLOADER_ALLOW_IMAGE_VERSION_NAMES = %w(100x100 30x30 800 240 thumbnail)
+IMAGE_UPLOADER_ALLOW_IMAGE_VERSION_NAMES = %w(100x100 30x30 800 400 240 thumbnail 600 120)
 class ImageUploader < CarrierWave::Uploader::Base
   def store_dir
     "#{model.class.to_s.underscore}/#{mounted_as}"
   end
 
+  def filename
+    if super.present?
+      # current_path 是 Carrierwave 上传过程临时创建的一个文件，有时间标记，所以它将是唯一的
+      @name ||= Digest::MD5.hexdigest(File.dirname(current_path))
+      "#{@name}.#{file.extension.downcase}"
+    end
+  end
+  
   # Override url method to implement with "Image Space"
   def url(version_name = "")
     @url ||= super({})
