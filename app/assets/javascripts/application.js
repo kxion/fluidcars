@@ -17,3 +17,4 @@
 //= require bootstrap-datepicker
 //= require location
 //= require sitedata
+//= require jquery-fileupload/basic

@@ -1,0 +1,14 @@
+<% unless @car.new_record? %>
+<div class="col-md-offset-2">
+  <% @car.car_pictures.each do |pic| %>
+    <div class="media" id= <%='pic_' + pic.id %> >
+      <div class="pull-left">
+        <%= image_tag pic.picture.url("120") %>
+      </div>
+      <div class="media-body">
+        <%= link_to raw("<span class='glyphicon glyphicon-floppy-remove'>删除<span>"), car_picture_path(id: pic.id, car_id: @car.id), method: 'delete', remote: true, "data-type" => 'script' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<% end %>

@@ -13,37 +13,37 @@
         </div>
       </div>
       <%= loc.input :detail, label: '详细地址', :placeholder=>"详细地址" %>
-    <% end %> 
-    <%= f.fields_for :car_pictures do |pic| %>
-      <% unless pic.object.new_record? %>
-        <div class="form-group">
-          <div class="col-md-10 col-md-offset-2">
-            <div class="media">
-              <div class="pull-left">
-                <%= image_tag pic.object.picture.url("120") %>
-              </div>
-              <div class="media-body">
-                <span class="glyphicon glyphicon-floppy-remove">删除</span>
-                <%= pic.check_box :_destroy %>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
     <% end %>
-    <%= render 'picture_upload' %>
+    <div class="form-group">
+      <label class="control-label col-lg-2">上传图片</label>
+      <div class="col-md-8">
+        <div><input type='file' id="upload_file" multiple=true></input></div>
+      </div>
+    </div>
     <div class="form-group">
       <div class="col-md-offset-2 col-md-4">
         <%= f.submit "保存", class: 'btn btn-primary btn-large' %>
       </div>
     </div>
   </div>
+  <div class="add-upload"></div>
 <% end %>
-<script type="text/javascript" src="/sitedata.js" charset="utf-8"></script>
-<script type="text/javascript" src="/location.js" charset="utf-8"></script>
+<%= render 'car_pictures/thumbnails' %> 
+
 <script type="text/javascript">
-  window.onload=function(){
+  window.onload = function(){
     siteSelect(["car_location_attributes_province","car_location_attributes_city","car_location_attributes_district"],["","",""]);
+    document.getElementById('upload_file').addEventListener("change", attachFiles, false);
+    function attachFiles() {
+      var files = this.files; /* now you can work with the file list */
+      console.log(files.length);
+      for (var index = 0, numFiles = files.length; index < numFiles; index++) {
+        id = "upload_car_pictures"+index;
+        $("div.add-upload").append("<input type='file' multiple = true name='car[car_pictures_attributes]["+index+"][picture]' id='"+id+"'></input>");
+        $("#"+id).get(0).files = files;
+        console.log($("#"+id).get(0).files[0]);
+      };
+    }
   }
 </script>
 <style>

@@ -77,13 +77,13 @@ class CarsController < ApplicationController
     @car.destroy
 
     respond_to do |format|
-      format.html { redirect_to mycars_url }
+      format.html { redirect_to mycars_cars_url }
       format.json { head :no_content }
     end
   end
 
   def car_params
-    params.require(:car).permit(:description, :brand, car_pictures_attributes: [:picture, :picture_cache, :_destroy, :id], :location_attributes => [:province, :district, :detail, :city])
+    params.require(:car).permit(:description, :brand, car_pictures_attributes: [:picture, :picture_cache], :location_attributes => [:province, :district, :detail, :city])
   end
   
 end

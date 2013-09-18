@@ -38,15 +38,14 @@ Zuche::Application.routes.draw do
     get 'destroy' => :destroy
   end
 
-  controller :cars do
-    get 'mycars' => :mycars
-  end
-
   resources :cars do
+    collection do 
+      get 'mycars' => :mycars
+    end
   end
 
-  get "home_pages/home"
-
+  resources :car_pictures 
+  
   resources :profiles
 
   controller :search_rents do

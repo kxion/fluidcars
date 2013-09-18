@@ -20,7 +20,7 @@ gem 'carrierwave'
 gem 'carrierwave-upyun'
 gem 'carrierwave-mongoid', git: "git://github.com/jnicklas/carrierwave-mongoid.git"
 gem "mongoid-grid_fs", github: "ahoward/mongoid-grid_fs", branch: "master"
-
+gem "jquery-fileupload-rails"
 # 第三方认证
 gem 'omniauth-identity'
 
