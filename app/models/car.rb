@@ -4,17 +4,23 @@ class Car
   
   belongs_to :user
   has_many :comments, dependent: :destroy
-
-  embeds_many :car_pictures, cascade_callbacks: true
+  has_many :pictures, autosave: true
   embeds_one :location
 
   accepts_nested_attributes_for :location
-  accepts_nested_attributes_for :car_pictures, allow_destroy: true
+  # accepts_nested_attributes_for :pictures, allow_destroy: true
 
   field :description, type: String # 车辆描述
   field :brand, type: String # 车辆品牌型号
+  field :token, type: String
 
   validates :description, :brand, presence: true
   before_save :gps_from_baidu_map
 
+  def generate_token
+    self.token = loop do
+      random_token = SecureRandom.urlsafe_base64
+      break random_token if Car.find(token: random_token).nil?
+    end
+  end
 end

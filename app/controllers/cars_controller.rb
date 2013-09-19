@@ -15,7 +15,7 @@ class CarsController < ApplicationController
 
   # 显示车辆详细信息
   def show
-    @car = Car.includes(:comments).find(params[:id])
+    @car = Car.includes(:comments, :pictures).find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @car }
@@ -25,8 +25,9 @@ class CarsController < ApplicationController
   # 新建车辆
   def new
     @car = Car.new
+    @car.generate_token
+    @pictures = []
     @car.build_location
-    @car.car_pictures.build
   end
 
   # 编辑车辆
@@ -41,9 +42,10 @@ class CarsController < ApplicationController
   # 提交车辆信息
   def create
     @car = Car.new(car_params)
+    @car.pictures << Picture.where(car_token: @car.token)
     @car.user_id = current_user.id
     respond_to do |format|
-      if @car.save
+      if @car.save!
         flash[:success] = '车辆信息创建成功!'
         format.html { redirect_to @car }
         format.json { render json: @car, status: :created, location: @car }
@@ -57,6 +59,7 @@ class CarsController < ApplicationController
   # 提交修改
   def update
     @car = current_user.cars.find(params[:id])
+    @car.pictures << Picture.where(car_token: @car.token)
     respond_to do |format|
       if @car.update_attributes!(car_params)
         format.html do
@@ -83,7 +86,7 @@ class CarsController < ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:description, :brand, car_pictures_attributes: [:picture, :picture_cache], :location_attributes => [:province, :district, :detail, :city])
+    params.require(:car).permit(:token, :description, :brand, :location_attributes => [:province, :district, :detail, :city])
   end
   
 end

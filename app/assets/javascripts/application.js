@@ -18,3 +18,4 @@
 //= require location
 //= require sitedata
 //= require jquery-fileupload/basic
+//= require pictures

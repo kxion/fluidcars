@@ -44,7 +44,7 @@ Zuche::Application.routes.draw do
     end
   end
 
-  resources :car_pictures 
+  resources :pictures 
   
   resources :profiles
 

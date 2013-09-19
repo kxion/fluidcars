@@ -1,7 +1,7 @@
-<% unless more_than_one_picture?(@car.car_pictures) %> 
+<% unless more_than_one_picture?(@car.pictures) %> 
   <!-- 只有一张图片，不用幻灯片 -->
   <div class="picture-box">
-    <%= image_tag @car.car_pictures.first.picture.url("600") %>
+    <%= image_tag @car.pictures.first.image.url("600") %>
   </div>
   <div class="mark-box">
     <h1 class="mark-brand"><%= @car.brand %></h1>
@@ -11,9 +11,9 @@
   <div id="car-pictures" class="carousel slide">
     <!-- 多于一张图片，用幻灯片播放 -->
     <div class="carousel-inner">
-      <% @car.car_pictures.each do |pic| %>
+      <% @car.pictures.each do |pic| %>
         <div class="item picture-box">
-          <%= image_tag pic.picture.url("600") %>
+          <%= image_tag pic.image.url("600") %>
           <div class="carousel-caption">
           </div>
         </div>
@@ -25,18 +25,18 @@
     <h2 class="mark-location"><%= @car.location.detail %></h2>
   </div>
   <!-- Controls -->
-<!--     <a class="carousel-control" href="#product-picture" data-slide="prev">
+    <a href="#product-picture" data-slide="prev">
     <span class="icon-prev"></span>
   </a>
-  <a class="right carousel-control" href="#product-picture" data-slide="next">
+  <a href="#product-picture" data-slide="next">
     <span class="icon-next"></span>
-  </a> -->
+  </a>
 <!-- 用图片缩略图作为选择器 -->
   <div class="picture-indicator">
-    <% @car.car_pictures.each_index do |index| %>
+    <% @car.pictures.each_index do |index| %>
       <div class="col-md-2">
         <div class="thumbnail">
-          <%= image_tag @car.car_pictures[index].picture.url("120"), "data-target" => "#car-pictures", "data-slide-to" => "#{index}" %>
+          <%= image_tag @car.pictures[index].image.url("120"), "data-target" => "#car-pictures", "data-slide-to" => "#{index}" %>
         </div>
       </div>
     <% end %>

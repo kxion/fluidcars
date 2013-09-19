@@ -18,7 +18,7 @@ class SearchRentsController < ApplicationController
   end
 
   def search_rents_by_car
-    @rents = Rent.find_by(car_id: params[:car_id])
+    @rents = Rent.where(car_id: params[:car_id])
     render 'rents/index'
   end
 end
