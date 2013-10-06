@@ -10,8 +10,8 @@
     var car_point = new BMap.Point(<%= car.location.gps[0] %>, <%= car.location.gps[1] %>);
     map.centerAndZoom(car_point,15);  
     map.enableScrollWheelZoom(true);
-    var myIcon = new BMap.Icon("<%= asset_path('corner.png') %>", new BMap.Size(30,30));
-    var marker = new BMap.Marker(car_point,{icon:myIcon});  // 创建标注
+    //var myIcon = new BMap.Icon("<%= asset_path('corner.png') %>", new BMap.Size(30,30));
+    var marker = new BMap.Marker(car_point)//,{icon:myIcon});  // 创建标注
     // var marker = new BMap.Marker(pt);  // 创建标注
     map.addOverlay(marker);              // 将标注添加到地图中
     marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
@@ -28,7 +28,8 @@
         searchInfoWindow.open(car_point);
     }
     map.addEventListener("click", function(){
-      openInfoWindow();
+      // openInfoWindow();
+      window.open('http://map.baidu.com/?newmap=1&ie=utf-8&s=s%26wd%3D'+'<%= car.location.city %>'+'<%= car.location.district %>'+'<%= car.location.detail %>');
     });
   });
 </script>

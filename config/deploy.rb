@@ -29,11 +29,11 @@ namespace :deploy do
   #   db_config = "#{shared_path}/database.yml"
   #   run "cp #{db_config} #{release_path}/config/database.yml"
   # end
-  namespace :assets do
-    task :precompile, :roles => :web, :except => { :no_release => true } do
-      logger.info "Skipping asset pre-compilation"
-    end
-  end
+  # namespace :assets do
+  #   task :precompile, :roles => :web, :except => { :no_release => true } do
+  #     logger.info "Skipping asset pre-compilation"
+  #   end
+  # end
 
   desc "install the necessary prerequisites"
   task :bundle_install, :roles => :app do
