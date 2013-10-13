@@ -13,14 +13,10 @@
     <meta property="wb:webmaster" content="06a88c0b148dcdc2" />
   </head>
   <body id="main">
-
-    <div class="container container-box">
-      <%= render 'layouts/nav' %>
-      <%= render 'shared/notice' %>
-      <%= yield %>
-    </div>
+    <%= render 'layouts/nav' %>
+    <%= render 'shared/notice' %>
+    <%= yield %>
     <%= render 'layouts/footer' %>
-    <%= yield :mapapi %>
   </body>
 </html>
 

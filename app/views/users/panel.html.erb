@@ -1,20 +1,9 @@
-<ul class="nav nav-tabs">
-  <li class="active"><%= link_to '我的资料', panel_users_path %></li> 
-  <li><%= link_to '我的车辆', mycars_cars_path %></li>
-  <li><%= link_to '我的出租', myrents_path %></li>
-  <li><%= link_to '我的订单', my_order_path %></li>
-</ul>
-<%= render partial:'shared/notice', locals: { alert_type: 'success'} %>
+<%= render partial: 'shared/panel_nav', locals: { active: 'nav_profile'} %>
 <div class="row">
+  <div class="box col-md-6">
+    <%= render partial: 'profiles/info' %>
+  </div>
   <div class="col-md-4">
-    <div class="box">
-      <%= @profile.nickname %>
-    </div>
     <%= link_to '修改资料', edit_profile_path(current_user.profile), class: 'btn btn-primary btn-large' %>
   </div>
-  <div class="pull-right col-md-4">
-    <%= image_tag @profile.avatar.url %>
-  </div>
-
 </div>
-

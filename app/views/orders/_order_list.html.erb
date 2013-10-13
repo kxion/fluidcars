@@ -1,0 +1,19 @@
+<tr>
+  <td>
+    <div class="row">
+      <div class="col-md-4">
+        <%= link_to (image_tag order.rent.car.pictures[0].image.url), order_path(order), class: 'thumbnail' %>
+      </div>
+      <ul class="col-md-4 list-unstyled">
+          <li><%= order.rent.car.brand %></li>
+          <li><%= order.rent.car.location.city %><%= order.rent.car.location.detail %></li>
+          <li>开始时间：<%= order.rent.start %></li>
+          <li>结束时间：<%= order.rent.end %></li>
+        </ul>
+        <div class="col-md-3">
+          <%= render partial: 'rents/rent_rate', object: order.rent.rate, as: :rate %>
+        </div>
+      </div>
+  </td>
+  
+</tr>

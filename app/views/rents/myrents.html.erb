@@ -1,9 +1,5 @@
-<ul class="nav nav-tabs">
-  <li><%= link_to '我的资料', panel_users_path %></li> 
-  <li><%= link_to '我的车辆', mycars_cars_path %></li>
-  <li class="active"><%= link_to '我的出租', myrents_path %></li>
-  <li><%= link_to '我的订单', my_order_path %></li>
-</ul>
+<%= render partial: 'shared/panel_nav', locals: { active: 'nav_rent'} %>
+
 <div class="row">
   <div class="col-md-7">
   <% unless @rents.empty? %>
@@ -12,7 +8,7 @@
     </table>
     <div class="pagination"><%= paginate @rents %></div>
   <% else %>
-    还没有出租,<%= link_to '立刻发布出租信息', new_rent_path %>
+    还没有出租,<%= link_to '立刻发布出租信息', select_car_rents_path %>
   <% end %>
   </div>
   <div class="col-md-4">

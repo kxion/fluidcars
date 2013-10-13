@@ -1,5 +1,5 @@
 class RentsController < ApplicationController
-  before_filter :signed_in_user, except: [:show]
+  before_action :signed_in_user, except: [:show]
 
   # 显示详细出租信息
   def show
@@ -42,10 +42,10 @@ class RentsController < ApplicationController
     if selected_car.user_id == current_user.id
       rent = Rent.create!(car: selected_car, user_id: current_user.id)
       session[:current_rent_id] = rent.id
-      redirect_to select_time_url
+      redirect_to select_time_rents_url
     else
       flash[:error] = '只能出租属于自己的车辆'
-      redirect_to select_car_url
+      redirect_to select_car_rents_url
     end
   end
   # 选择出租时间
@@ -57,7 +57,7 @@ class RentsController < ApplicationController
     @rent = Rent.find(session[:current_rent_id])
     @rent.update_attributes!(time_params)
     if @rent.save
-      redirect_to set_rate_url
+      redirect_to set_rate_rents_url
     else
       render 'select_time'
     end
@@ -71,7 +71,7 @@ class RentsController < ApplicationController
     @rent = Rent.find(session[:current_rent_id])
     @rent.rate = params[:rate]
     @rent.save
-    redirect_to complete_url
+    redirect_to complete_rents_url
   end
   # 出租完成
   def complete

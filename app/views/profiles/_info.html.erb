@@ -1,0 +1,9 @@
+    <div class="box profile">
+      <div class="pull-right">
+        <%= image_tag @profile.avatar.url %>
+      </div>
+      <ul class="list-unstyled">
+        <li><label>昵称:</label><strong><%= @profile.nickname %></strong></li>
+        <li><label>联系方式:</label><strong><%= @profile.contact %></strong></li>
+      </ul>
+    </div>

@@ -12,16 +12,19 @@
   <div class="col-md-4">
     <div id="request-box">
       <%= render partial: 'rents/rent_rate', object: @rent.rate, as: :rate %>
-      <div class='well'>
+      <div>
         出租期限:<%= @rent.start %>至<%= @rent.end %>
       </div>
       <div class="request-tool">
-        <% if @rent.status == "active" %>
-        <%= button_to '预订', neworder_path(rent_id: @rent.id), id: 'request', class: 'btn submit btn-warning col-md-12' %>
+        <% if @rent.status == "已预订" %>
+          <button class="btn btn-block btn" disabled='disabled'>不可预订</button>
+        <% else %>
+          <a data-toggle="modal" href="#confirm" class="btn btn-warning btn-block">预订</a>
         <% end %>
       </div>
     </div>
     <%= render partial: 'cars/loc_owner', locals: { car: @car, owner: @rent.user } %>
   </div>
 </div>
-<%= render partial: 'shared/check_login', locals: { id: 'request', destination: neworder_path(rent_id: @rent.id) } %>
+<%= render partial: 'shared/check_login', locals: { id: 'request', destination: new_order_path(@rent) } %>
+<%= render 'orders/confirm' %>

@@ -19,28 +19,27 @@ Zuche::Application.routes.draw do
     get 'signup' => :new
   end
 
-  controller :rents do
+  resources :rents do
+    collection do
+      get 'my' => :myrents
 
-    get 'show_rent' => :show
-    get 'rents/:id' => :show
-    get 'myrents' => :myrents
+      get 'select_car' => :select_car
+      post 'confirm_select_car' => :confirm_select_car
 
-    get 'new_rent' => :select_car
-    post 'confirm_select_car' => :confirm_select_car
-
-    get 'select_time' => :select_time
-    post 'confirm_select_time' => :confirm_select_time
-    
-    get 'set_rate' => :set_rate
-    post 'confirm_set_rate' => :confirm_set_rate
-    
-    get 'complete' => :complete
-    get 'destroy' => :destroy
+      get 'select_time' => :select_time
+      post 'confirm_select_time' => :confirm_select_time
+      
+      get 'set_rate' => :set_rate
+      post 'confirm_set_rate' => :confirm_set_rate
+      
+      get 'complete' => :complete
+      get 'destroy' => :destroy
+    end
   end
 
   resources :cars do
     collection do 
-      get 'mycars' => :mycars
+      get 'my' => :mycars
     end
   end
 
@@ -54,19 +53,23 @@ Zuche::Application.routes.draw do
     get 'search_rents_by_city' => :search_rents_by_city
 
   end
+
   resources :comments
-  controller :orders do
-    post 'neworder' => :create
-    get 'order' => :show
-    post 'check_out' => :check_out
-    get 'my_order' => :my_order
+
+  resources :orders do
+    collection do 
+      get 'my' => :my_order
+    end
+    member do
+      post 'checkout' => :check_out
+    end
   end
   
-  controller :test_pages do
-    get 'test_page' => :test_page
-    get 'test_format' => :test_format
-  end
   root :to => 'home_pages#home'
+  # controller :test_pages do
+  #   get 'test_page' => :test_page
+  #   get 'test_format' => :test_format
+  # end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

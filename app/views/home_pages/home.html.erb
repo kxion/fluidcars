@@ -1,13 +1,17 @@
 <div class="relative-box">
-  <div style="height:500px;overflow:hidden">
-    <%= image_tag "home_background.jpg"%>
+  <div class="homepage">
+    <div class="container">
+      <div class="row">
+        <div class="search-hero col-md-8">
+          <%= render 'home_pages/home_search' %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="search-hero col-md-8">
-    <%= render 'home_pages/home_search' %>
-  </div>
-  <div class="row">
+
+<!--   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <%# render partial: 'home_pages/recommend_show', object: @infos %> 
     </div>
-  </div>
+  </div> -->
 </div>

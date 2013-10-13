@@ -20,6 +20,12 @@ body {
 select {
   width:80px;
 }
+.homepage {
+  background-image: image-url('background.jpg');
+  height: 800px;
+  width: 100%;
+  position: relative;
+}
 
 .box {
   background-color: #FFFFFF;
@@ -37,7 +43,6 @@ select {
 .search-hero {
   position: absolute;
   top: 250px;
-  margin-left: 105px;
   height: 300px;
   z-index: 10;
 }
@@ -45,66 +50,82 @@ select {
   border: 1px solid #CCCCCC;
   border-radius: 3px 3px 3px 3px;
   padding: 0;
+  .request-tool {
+    padding: 20px;
+  }
 }
 #request-box .rent-rates {
   background-color: #54544E;
   color: white;
   padding: 10px 0;
-}
-#request-box .request-tool {
-  padding: 20px;
-}
-#request-box .rent-rates .price-block {
-  -moz-box-sizing: border-box;
-  display: inline-block;
-  text-align: center;
-  width: 49%;
-  height: 50px;
-}
-#request-box .rent-rates .price-block .rmb-symbol {
-    font-size: 15px;
-    position: relative;
-    right: 2px;
-    top: -19px;
-}
-#request-box .rent-rates .price-block .rmb {
-    font-size: 42px;
-    font-weight: 500;
-}
-#request-box .rent-rates .price-block .cents {
-    font-size: 15px;
-    position: relative;
-    top: -19px;
-}
-#request-box .rent-rates .price-block .separator {
-    font-family: 'Helvetica Neue Ultra Light','HelveticaNeue-Ultralight',"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 32px;
-}
-#request-box .rent-rates .price-block .unit {
-    font-size: 15px;
-}
-#request-box .rent-rates .price-block .unit {
-    font-size: 15px;
-}
-#request-box .rent-rates .price-block.small .rmb-symbol {
-    font-size: 13px;
-    top: -4px;
-}
-#request-box .rent-rates .price-block.small .rmb {
-    font-size: 18px;
-}
-#request-box .rent-rates .price-block.small .cents {
-    font-size: 13px;
-    top: -4px;
-}
-#request-box .rent-rates .price-block.small .separator {
+  .price-block {
+    -moz-box-sizing: border-box;
     display: inline-block;
-    font-size: 15px;
-    margin-left: 0.1em;
-    margin-right: 0.15em;
+    text-align: center;
+    width: 49%;
+    height: 50px;
+    padding: 10px;
+    .rmb-symbol {
+        font-size: 15px;
+        position: relative;
+        right: 2px;
+        top: -19px;
+    }
+    .rmb {
+        font-size: 42px;
+        font-weight: 500;
+    }
+    .cents {
+        font-size: 15px;
+        position: relative;
+        top: -19px;
+    }
+    .unit {
+        font-size: 15px;
+    }
+    .separator {
+        font-family: 'Helvetica Neue Ultra Light','HelveticaNeue-Ultralight',"HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 32px;
+    }
+  }
 }
-#request-box .rent-rates .price-block.small .unit {
+.profile {
+  li {
+    font-size: 14px;
+    line-height: 180%;
+    border-bottom: 1px dashed #eee;
+  }
+
+  label {
+    color: #999;
+    font-size: 12px;
+    margin-right: 8px;
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+  }
+}
+.rent-rates .price-block.small {
+  .rmb-symbol {
     font-size: 13px;
+    top: -4px;
+  }
+  .rmb {
+      font-size: 18px;
+  }
+  .cents {
+    font-size: 13px;
+    top: -4px;
+  }
+  .separator {
+      display: inline-block;
+      font-size: 15px;
+      margin-left: 0.1em;
+      margin-right: 0.15em;
+  }
+  .unit {
+      font-size: 13px;
+  }
 }
 #request-box .rent-period {
   background-color: #54544E;

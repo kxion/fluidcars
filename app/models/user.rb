@@ -7,6 +7,7 @@ class User
   embeds_one :profile, cascade_callbacks: true
   has_many :cars, dependent: :destroy
   has_many :rents, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   field :name, type: String
   field :email, type: String  

@@ -1,9 +1,11 @@
+<%= render partial: 'shared/panel_nav', locals: { active: 'nav_profile'} %>
 <div class="row">
   <div class="col-md-7">
     <%= simple_form_for @profile, :html => {:multipart => true} do |f| %>
       <div class="fieldset">
         <legend>个人资料</legend>
         <%= f.input :nickname, label: '昵称' %>
+        <%= f.input :contact, label: '联系方式' %>
         <div class="form-group">
           <%= f.label '上传头像', :avatar %>
           <div class="col-md-4">

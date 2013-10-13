@@ -13,8 +13,11 @@
     <meta property="wb:webmaster" content="06a88c0b148dcdc2" />
   </head>
   <body id="main">
-    <%= render 'layouts/nav' %>
+
     <div class="container container-box">
+      <%= render 'layouts/nav' %>
+      <%= render 'shared/notice' %>
+      <%= render partial: 'shared/panel_nav', locals: { active: 'nav_order'} %>
       <%= yield %>
     </div>
     <%= render 'layouts/footer' %>

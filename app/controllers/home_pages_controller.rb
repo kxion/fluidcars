@@ -1,5 +1,7 @@
 class HomePagesController < ApplicationController
   include BaiduMap
+  layout 'homepage', only: :home
+
   def home
     # Set headers
     # headers["loveltyoic"] = "Top secret"

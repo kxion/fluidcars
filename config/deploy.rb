@@ -23,17 +23,20 @@ role :db,  domain, :primary => true
 # unicorn.rb 路径
 set :unicorn_path, "#{deploy_to}/current/config/unicorn.rb"
 
+#nginx.conf 路径
+set :nginx_path, "/etc/nginx"
+
 namespace :deploy do
 
   # task :copy_config_files, :roles => [:app] do
   #   db_config = "#{shared_path}/database.yml"
   #   run "cp #{db_config} #{release_path}/config/database.yml"
   # end
-  # namespace :assets do
-  #   task :precompile, :roles => :web, :except => { :no_release => true } do
-  #     logger.info "Skipping asset pre-compilation"
-  #   end
-  # end
+  namespace :assets do
+    task :precompile, :roles => :web, :except => { :no_release => true } do
+      logger.info "Skipping asset pre-compilation"
+    end
+  end
 
   desc "install the necessary prerequisites"
   task :bundle_install, :roles => :app do
@@ -64,6 +67,11 @@ end
 
 task :compile_and_rsync_assets, roles => :web do 
   run_locally "RAILS_ENV=production bundle exec rake assets:precompile; rsync -vr --exclude='.DS_Store' public/assets #{user}@#{domain}:#{shared_path}/"
+end
+
+desc "Copy nginx.conf to server"
+task :nginx_config, roles => :web do
+  run_locally "rsync config/nginx.conf #{user}@#{domain}:#{nginx_path}/"
 end
 
 # after "deploy:update_code", "deploy:copy_config_files" # 如果將database.yml放在shared下，請打開

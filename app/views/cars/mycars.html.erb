@@ -1,9 +1,4 @@
-<ul class="nav nav-tabs">
-  <li><%= link_to '我的资料', panel_users_path %></li> 
-  <li class="active"><%= link_to '我的车辆', mycars_cars_path %></li>
-  <li><%= link_to '我的出租', myrents_path %></li>
-  <li><%= link_to '我的订单', my_order_path %></li>
-</ul>
+<%= render partial: 'shared/panel_nav', locals: { active: 'nav_car'} %>
 <div class="row">
   <div class="col-md-7">
     <% unless @cars.empty? %>

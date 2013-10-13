@@ -27,6 +27,7 @@ module BaiduMap
   def gps_from_baidu_map
     # url = "http://api.map.baidu.com/geocoder/v2/?address="+self.location+"&city="+self.city+"&output=json&ak=D6ced4fa35c14b09189fba6b898c905f"
     params = { address: self.location.detail, city: self.location.city, output: 'json', ak: 'D6ced4fa35c14b09189fba6b898c905f'}
+    
     response = JSON.parse(http_get("api.map.baidu.com", "/geocoder/v2/", params))
 
     # while response['status'] != 0 

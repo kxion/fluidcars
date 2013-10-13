@@ -11,7 +11,7 @@
       <a data-toggle="modal" href="#deleteModal" class="btn btn-danger btn-lg">删除</a>
     </div>
     <div style="height:80px; margin:15px 0">
-      <%= button_to '出租', confirm_select_car_path(car_id: @car.id), class: 'btn btn-lg btn-success col-md-5' %>
+      <%= button_to '出租', confirm_select_car_rents_path(car_id: @car.id), class: 'btn btn-lg btn-success col-md-5' %>
     </div>  
     <div class="border-box"> 
       <%= render partial: 'comments/comment_list', object: @car.comments, as: :comments %>

@@ -1,9 +1,9 @@
 <div class="row order-list">
-  <div class="span7">
+  <div class="col-md-7">
     <table class="table table-hover">
-      <%= render partial: 'order', collection: @orders %>
+      <%= render partial: 'order_list', collection: @orders, as: :order %>
     </table>
   </div>
-  <div class="span5">
+  <div class="col-md-5">
   </div>
 </div>

@@ -8,5 +8,6 @@ class Profile
   field :nickname, type: String
   field :avatar, type: String
   field :avatar_cache, type: String
+  field :contact, type: String
   
 end

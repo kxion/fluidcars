@@ -1,5 +1,5 @@
 class CarsController < ApplicationController
-  before_filter :signed_in_user
+  before_action :signed_in_user
   # 搜索指定用户的所有车辆
   def search_cars_by_onwer
     @cars = Car.find_by(user_id: params[:onwer_id])

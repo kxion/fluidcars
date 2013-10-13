@@ -2,15 +2,14 @@
   <td>
     <div class="row">
       <div class="col-md-4">
-        <a href="<%= show_rent_path(id: rent.id) %>">
-          <%= image_tag(rent.car.pictures[0].image.url("240"), class: 'thumbnail') %>
-        </a>
+        <%= link_to (image_tag rent.car.pictures[0].image.url("240")), rent, class: 'thumbnail' %>
       </div>
-      <ul class="col-md-4 rent-abstract">
+      <ul class="col-md-4 list-unstyled">
         <li><%= rent.car.brand %></li>
         <li><%= rent.car.location.city %><%= rent.car.location.detail %></li>
         <li>开始时间：<%= rent.start %></li>
         <li>结束时间：<%= rent.end %></li>
+        <li><span class="label label-info"><%= rent.status %></span></li>
       </ul>
       <div class="col-md-3">
         <%= render partial: 'rents/rent_rate', object: rent.rate, as: :rate %>
