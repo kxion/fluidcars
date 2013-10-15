@@ -1,8 +1,7 @@
 class PicturesController < ApplicationController
 
   def destroy
-    car = Car.find(params[:car_id])
-    @pic = car.pictures.find(params[:id])
+    @pic = Picture.find(params[:id])
     @pic.destroy
     respond_to do |format|
       format.js
@@ -28,7 +27,7 @@ class PicturesController < ApplicationController
   end
 
   def pic_params
-    params.require(:picture).permit(:image, :image_cache, :car_token)
+    params.require(:picture).permit(:image, :image_cache, :car_id)
   end
 
 end

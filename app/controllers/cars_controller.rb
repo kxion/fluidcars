@@ -13,6 +13,8 @@ class CarsController < ApplicationController
     end
   end
 
+
+
   # 显示车辆详细信息
   def show
     @car = Car.includes(:comments, :pictures).find(params[:id])
@@ -42,18 +44,17 @@ class CarsController < ApplicationController
   # 提交车辆信息
   def create
     @car = Car.new(car_params)
-    @car.pictures << Picture.where(car_token: @car.token)
     @car.user_id = current_user.id
-    respond_to do |format|
-      if @car.save!
-        flash[:success] = '车辆信息创建成功!'
-        format.html { redirect_to @car }
-        format.json { render json: @car, status: :created, location: @car }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @car.errors, status: :unprocessable_entity }
-      end
+    if @car.save!
+      flash[:success] = '车辆信息创建成功,请上传图片'
+      redirect_to upload_pictures_car_url(@car)
+    else
+      render action: "new"
     end
+  end
+
+  def upload_pictures
+    @car = Car.find(params[:id])
   end
 
   # 提交修改

@@ -11,7 +11,8 @@ Zuche::Application.routes.draw do
   
   resources :users do
     collection do
-      get 'panel' => :panel
+      get 'profile' => :panel
+      get 'main' => :main
     end
   end
 
@@ -40,6 +41,9 @@ Zuche::Application.routes.draw do
   resources :cars do
     collection do 
       get 'my' => :mycars
+    end
+    member do
+      get 'upload_pictures' => :upload_pictures
     end
   end
 

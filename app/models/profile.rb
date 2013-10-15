@@ -5,7 +5,7 @@ class Profile
   
   embedded_in :user
 
-  field :nickname, type: String
+  field :name, type: String
   field :avatar, type: String
   field :avatar_cache, type: String
   field :contact, type: String

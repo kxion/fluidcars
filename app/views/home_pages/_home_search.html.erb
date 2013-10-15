@@ -1,8 +1,8 @@
 <%= form_tag search_rents_by_location_path, :class => 'fomr-horizontal', method: 'get' do %>
   <div class="form-group">
     <div class="col-lg-8">
-      <%= text_field_tag :location, params[:location], class: "form-control input-lg", style: "padding:10px", :placeholder => "地点" %>
+      <%= text_field_tag :location, params[:location], class: "form-control input-lg", style: "padding:10px", :placeholder => "你想在哪里租车？" %>
     </div>
   </div>
-  <button type="submit" class="btn btn-success col-md-2" style="padding:10px;float:none;margin-left:0">找 车</button>
+  <button type="submit" class="btn btn-success col-md-2" style="padding:10px;float:none;margin-left:0"><span class='glyphicon glyphicon-search'></span>开 始 找 吧</button>
 <% end %>

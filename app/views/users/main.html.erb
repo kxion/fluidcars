@@ -1,0 +1,12 @@
+<%= render partial: 'shared/panel_nav', locals: { active: 'nav_main'} %>
+<div class="row box">
+  <div class="col-md-3 left-box">
+    <%= image_tag @user.profile.avatar.url('100x100') %>
+    <ul class='list-unstyled'>
+      <li><%= @user.profile.name %>
+      <li><%= link_to '修改资料', edit_profile_path(@user.profile)%></li>
+    </ul>
+  </div>
+  <div class="col-md-9">
+  </div>
+</div>

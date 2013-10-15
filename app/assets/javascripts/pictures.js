@@ -7,9 +7,6 @@ $(function () {
         $('#progress .progress-bar').css(
             'width', progress + '%'
         );
-      },
-      done: function (e, data) {
-        
       }
     });
 });

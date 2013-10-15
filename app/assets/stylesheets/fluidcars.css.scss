@@ -9,9 +9,7 @@ html {
 }
 
 body {
-  padding-bottom: 40px;
   padding-top: 50px;
-  margin-bottom: 40px;
   background: none repeat scroll 0 0 transparent;
   background-color: #F5F5F5;
   color: #585858;
@@ -33,6 +31,9 @@ select {
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.05);
   margin: 0 0 20px;
   padding: 10px;
+}
+.left-box {
+  border-right: solid 1px #E2E2E2
 }
 .relative-box {
   position: relative;
