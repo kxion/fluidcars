@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       user = User.from_omniauth(request.env["omniauth.auth"])
       sign_in user
       flash[:success] = "登录成功!"
-      redirect_to root_url
+      redirect_to session[:back_path]||root_url
     end
   end
 

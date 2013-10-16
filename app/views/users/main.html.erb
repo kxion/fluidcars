@@ -1,12 +1,23 @@
 <%= render partial: 'shared/panel_nav', locals: { active: 'nav_main'} %>
 <div class="row box">
   <div class="col-md-3 left-box">
-    <%= image_tag @user.profile.avatar.url('100x100') %>
-    <ul class='list-unstyled'>
-      <li><%= @user.profile.name %>
-      <li><%= link_to '修改资料', edit_profile_path(@user.profile)%></li>
-    </ul>
+    <div class='border-box'><%= image_tag @user.profile.avatar.url('200x200') %></div>
+      <p>你好，<%= @user.profile.name %>
+        <span class='text-right'><%= link_to '修改资料', edit_profile_path(@user.profile)%></span>
+      </p>
   </div>
   <div class="col-md-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">我的车辆</div>
+      <div class="panel-body">
+        您目前拥有<%=link_to @user.cars.count, my_cars_path %>辆汽车
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">我的出租</div>
+      <div class="panel-body">
+        您目前发布了<%= @user.rents.count  %>条出租信息
+      </div>
+    </div>
   </div>
 </div>

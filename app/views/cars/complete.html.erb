@@ -1,0 +1,20 @@
+<%= render partial: 'shared/panel_nav', locals: { active: 'nav_car'} %>
+<div class="row">
+  <div class="col-md-7">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <%= image_tag 'new_car_3.png'%>
+      </div>
+      <div class='panel-body'> 
+        <div class='box'>
+          <%= render 'cars/pictures_slide' %>
+          <%= render partial: 'cars/description', object: @car, as: :car %>
+          <%= button_to '出租这辆车', confirm_select_car_rents_path(car_id: @car.id), class: 'btn btn-primary btn-block' %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='col-md-5'>
+  </div>
+</div>

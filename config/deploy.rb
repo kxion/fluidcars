@@ -74,6 +74,6 @@ desc "Copy nginx.conf to server"
 task :nginx_config, roles => :web do
   run_locally "rsync config/nginx.conf #{user}@#{domain}:#{nginx_path}/"
 end
-after "deploy:finalize_update", :compile_assets
+# after "deploy:finalize_update", :compile_assets
 # after "deploy:update_code", "deploy:copy_config_files" # 如果將database.yml放在shared下，請打開
 # after "deploy:finalize_update", "deploy:bundle_install"#, :link_shared_files

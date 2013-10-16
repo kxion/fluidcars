@@ -15,11 +15,10 @@ class RentsController < ApplicationController
   # 删除出租信息
   def destroy
     rent = current_user.rents.find(params[:id])
-    rent.destroy
-    respond_to do |format|
-      format.html { redirect_to myrents_url }
-      format.json { head :no_content }
+    if rent.destroy
+      redirect_to myrents_url 
     end
+
   end
   # 显示当前用户的所有出租信息
   def myrents

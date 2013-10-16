@@ -14,11 +14,11 @@ class ProfilesController < ApplicationController
     # debugger
     @profile.update_attributes!(profile_params)
     flash[:success] = "个人资料更新成功！"
-    redirect_to panel_users_url
+    redirect_to profile_path(current_user)
   end
 
   def profile_params
-    params.require(:profile).permit(:avatar, :avatar_cache, :nickname, :contact)
+    params.require(:profile).permit(:avatar, :avatar_cache, :name, :contact)
   end
 
 end

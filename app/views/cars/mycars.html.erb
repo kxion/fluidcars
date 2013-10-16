@@ -7,11 +7,11 @@
     </table>
     <%= paginate @cars %>
     <% else %>
-    暂无车辆信息
+    暂无车辆信息,<%= link_to '添加车辆', new_car_path %>
     <% end %>
   </div>
   <div class="col-md-4">
-    <%= link_to '创建新车辆信息', new_car_path, class:'btn btn-large btn-success' %>
+    <%= link_to '+ 添加车辆', new_car_path, class:'btn btn-large btn-success' %>
   </div>
 </div>
 

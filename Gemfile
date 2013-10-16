@@ -18,8 +18,9 @@ gem 'anjlab-bootstrap-rails', '>= 3.0.0.0', :require => 'bootstrap-rails'
 # 上传组件
 gem 'carrierwave'
 gem 'carrierwave-upyun'
-gem 'carrierwave-mongoid', git: "git://github.com/jnicklas/carrierwave-mongoid.git"
+gem 'carrierwave-mongoid', '~> 0.6.3'
 gem "mongoid-grid_fs", github: "ahoward/mongoid-grid_fs", branch: "master"
+gem 'carrierwave-qiniu'
 gem "jquery-fileupload-rails"
 # 第三方认证
 gem 'omniauth-identity'

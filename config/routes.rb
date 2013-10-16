@@ -43,6 +43,7 @@ Zuche::Application.routes.draw do
       get 'my' => :mycars
     end
     member do
+      get 'complete' => :complete
       get 'upload_pictures' => :upload_pictures
     end
   end
@@ -63,6 +64,7 @@ Zuche::Application.routes.draw do
   resources :orders do
     collection do 
       get 'my' => :my_order
+      get 'select_time' => :select_time
     end
     member do
       post 'checkout' => :check_out

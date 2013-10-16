@@ -1,0 +1,49 @@
+
+<div id="calendar"></div>
+
+<script>
+$('document').ready(function (){
+  $('#calendar').fullCalendar({
+    // put your options and callbacks here
+    header: {
+      center : 'prev title next',
+      right : '',
+      // right : 'month',
+      left : ''
+    },
+    buttonText: {
+      month: '月',
+      day: '日',
+      week: '周',
+      today: '今天'
+    },
+    monthNames: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+    dayNames: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
+    dayNamesShort: ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"],
+    monthNamesShort: ['01','02','03','04','05','06','07','08','09','10','11','12'],
+    titleFormat: {
+      month: 'yyyy - MMM',                             // September 2009
+      week: "yyyy MMM d[ yyyy]{ '&#8212;'[ MMM] d }", // Sep 7 - 13 2009
+      day: 'yyyy , MMM d, dddd'                  // Tuesday, Sep 8, 2009
+    },
+    aspectRatio: 1,
+    eventClick: function(calEvent, jsEvent, view) {
+      $(this).css('border-color', 'red');
+    },
+
+    eventMouseout: function() {
+      $(this).popover('hide');
+    },
+
+    events: function(start,end,callback){
+      var events = <%= raw(reservation_events(@rent)) %>;
+      console.log(events);
+      callback(events);
+    }
+      // more events here
+  });    
+});
+function dateFormat(date){
+  return date.getMonth()+1+'月'+date.getDate()+'日';
+}
+</script>

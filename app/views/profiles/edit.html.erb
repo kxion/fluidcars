@@ -14,7 +14,7 @@
         </div>
         <%= f.input :avatar_cache, as: :hidden %>        
         <div class="form-group">
-          <div class="col-md-4 col-md-offset-2">
+          <div class="col-md-3 col-md-offset-2">
             <%= f.submit "更新资料", :class => "btn btn-large btn-primary" %>
           </div>
         </div>
@@ -22,9 +22,9 @@
     <% end %>
   </div>
 
-  <div class="col-md-4 pull-right">
-    <div class="face-box">
-      <%= image_tag @profile.avatar.url %>
+  <div class="col-md-3">
+    <div class="border-box">
+      <%= image_tag @profile.avatar.url('200x200') %>
     </div>
   </div>
 </div>

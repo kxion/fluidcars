@@ -25,13 +25,6 @@ select {
   position: relative;
 }
 
-.box {
-  background-color: #FFFFFF;
-  border-radius: 6px 6px 6px 6px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.05);
-  margin: 0 0 20px;
-  padding: 10px;
-}
 .left-box {
   border-right: solid 1px #E2E2E2
 }
@@ -47,14 +40,10 @@ select {
   height: 300px;
   z-index: 10;
 }
-#request-box {
-  border: 1px solid #CCCCCC;
-  border-radius: 3px 3px 3px 3px;
-  padding: 0;
-  .request-tool {
+#request-box .request-tool {
     padding: 20px;
-  }
 }
+
 #request-box .rent-rates {
   background-color: #54544E;
   color: white;
@@ -127,11 +116,6 @@ select {
   .unit {
       font-size: 13px;
   }
-}
-#request-box .rent-period {
-  background-color: #54544E;
-  color: #FFF;
-  padding: 0 15px;
 }
 .map-box {
   margin-top: 20px;
@@ -242,8 +226,8 @@ ul.rent-abstract {
 .alert-box {
   margin: 0;
 }
-.border-box {
-  margin: 0px auto 20px;
+.border-box, .box, #request-box {
+  margin: 20px 0;
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(229, 229, 229);
   border-radius: 5px 5px 5px 5px;
@@ -251,6 +235,7 @@ ul.rent-abstract {
   padding: 1em 20px;
   @include clearfix;
 }
+
 #calendar {
   margin-bottom: 10px;
 }

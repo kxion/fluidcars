@@ -11,7 +11,7 @@
   var start = new Date(2013,1,1);
   var end = new Date(2013,1,2);
   var one_day = 24*3600*1000;
-  $("#rent_start").datepicker({
+  $("#start").datepicker({
           format: "yyyy-MM-dd",
           startDate: UTCToday(),
           autoclose: true,
@@ -21,10 +21,10 @@
           }).on('hide', function(ev){
             start = new Date(ev.date.valueOf() + one_day);
             console.log(ev.date);
-            $("#rent_end").datepicker('setStartDate', start);
+            $("#end").datepicker('setStartDate', start);
             });
 
-  $("#rent_end").datepicker({
+  $("#end").datepicker({
           format: "yyyy-MM-dd",
           startDate: UTCToday(),
           autoclose: true,
@@ -33,7 +33,7 @@
           language: "chs"
           }).on('hide', function(ev){
             end = new Date(ev.date);
-            $("#rent_start").datepicker('setEndDate', end);
+            $("#start").datepicker('setEndDate', end);
             });
 
 </script>

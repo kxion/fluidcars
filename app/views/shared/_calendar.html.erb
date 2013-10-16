@@ -27,26 +27,26 @@
       eventClick: function(calEvent, jsEvent, view) {
         $(this).css('border-color', 'red');
       },
-      eventMouseover: function(calEvent, jsEvent, view) {
-        $(this).popover({
-          title: calEvent.title,
-          placement: 'top',
-          trigger: 'hover',
-          html: true,
-          content: '<div class="span2"><ul><li>开始时间：'+dateFormat(calEvent.start)+'</li><li>结束时间：'+dateFormat(calEvent.end)+'</li></ul></div>'
-          });
-        $(this).popover('show');
-      },
-      eventMouseout: function() {
-        $(this).popover('hide');
-      },
+      // eventMouseover: function(calEvent, jsEvent, view) {
+      //   $(this).popover({
+      //     title: calEvent.title,
+      //     placement: 'top',
+      //     trigger: 'hover',
+      //     html: true,
+      //     content: '<div class="span2"><ul><li>开始时间：'+dateFormat(calEvent.start)+'</li><li>结束时间：'+dateFormat(calEvent.end)+'</li></ul></div>'
+      //     });
+      //   $(this).popover('show');
+      // },
+      // eventMouseout: function() {
+      //   $(this).popover('hide');
+      // },
       dayClick: function(date,allDay,jsEvent,view) {
         event = { start: date, title: '出租'};
         console.log(event);
         $("#calendar").fullCalendar('renderEvent',event,true);
       },
       events: function(start,end,callback){
-        var events = <%= raw(convert_to_event_json(rents)) %>;
+        var events = <%= raw(convert_events_to_json(rents)) %>;
         console.log(events);
         callback(events);
       }

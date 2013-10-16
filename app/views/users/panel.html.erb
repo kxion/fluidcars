@@ -1,9 +1,0 @@
-<%= render partial: 'shared/panel_nav', locals: { active: 'nav_profile'} %>
-<div class="row">
-  <div class="box col-md-6">
-    <%= render partial: 'profiles/info' %>
-  </div>
-  <div class="col-md-4">
-    <%= link_to '修改资料', edit_profile_path(current_user.profile), class: 'btn btn-primary btn-large' %>
-  </div>
-</div>

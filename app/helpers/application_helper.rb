@@ -8,23 +8,57 @@ module ApplicationHelper
     obj.errors[attr].any?
   end
 
-  def convert_to_event_json(rents)
-    @events_json = []
+  def convert_events_to_json(rents)
+    @events = []
     unless rents.nil?
       # @events_json = rents.to_json
       rents.each do |rent|
-        @events_json.push({
+        @events.push({
           start: rent.start,
-          title: rent.status,
+          title: '未预订',
           allDay: true,
           id: rent.id,
           url: "/rents/#{rent.id}",
           end: rent.end
+        })
+        rent.reservations.each do |reservation|
+          @events.push ({
+            start: reservation.start,
+            title: '已预订',
+            allDay: true,
+            id: reservation.id,
+            end: reservation.end,
+            color: '#E2E2E2'
           })
+        end
       end
     end
-    @events_json.to_json
+    @events.to_json
   end
+
+  def reservation_events(rent)
+    @events = []
+    @events.push ({
+      start: rent.start,
+      title: '可预订',
+      allDay: true,
+      id: rent.id,
+      url: "/rents/#{rent.id}",
+      end: rent.end
+    })
+    rent.reservations.each do |reservation|
+      @events.push ({
+        start: reservation.start,
+        title: '已预订',
+        allDay: true,
+        id: reservation.id,
+        end: reservation.end,
+        color: '#E2E2E2'
+      })
+    end
+    @events.to_json
+  end
+
 
   def current_city
     session[:current_city]||'选择城市'

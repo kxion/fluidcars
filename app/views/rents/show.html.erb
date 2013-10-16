@@ -1,30 +1,49 @@
 <div class="row">
   <div class="col-md-7">
     <div class="border-box">
-      <%= render 'cars/pictures_slide' %>
-      <%= render partial: 'cars/description', object: @car, as: :car %>
-    </div>
-    <div class="border-box"> 
-      <h4>评论</h4>
-      <%= render partial: 'comments/comment_list', object: @comments, as: :comments %>
+      <ul class="nav nav-tabs" id="myTab">
+        <li class="active"><a href="#picture_tab">图片</a></li>
+        <li><a href="#description_tab">描述</a></li>
+        <li><a href="#map">地图</a></li>
+        <li><a href="#comment">评价</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="picture_tab">
+          <%= render 'cars/pictures_slide' %>
+        </div>
+        <div class="tab-pane" id="description_tab">
+          <%= render partial: 'cars/description', object: @car, as: :car %>
+        </div>
+        <div class="tab-pane" id="map">
+          <%= render 'cars/map' %>
+        </div>
+        <div class="tab-pane" id="comment">
+          <h4>评论</h4>
+          <%= render partial: 'comments/comment_list', object: @comments, as: :comments %>
+        </div>
+      </div>      
     </div>
   </div>
   <div class="col-md-4">
     <div id="request-box">
       <%= render partial: 'rents/rent_rate', object: @rent.rate, as: :rate %>
-      <div>
-        出租期限:<%= @rent.start %>至<%= @rent.end %>
-      </div>
+      <%= render 'rents/rent_calendar' %>
       <div class="request-tool">
-        <% if @rent.status == "已预订" %>
-          <button class="btn btn-block btn" disabled='disabled'>不可预订</button>
+        <% if signed_in?  %>
+          <%= link_to '预订', select_time_orders_path(rent_id: @rent.id), class: 'btn btn-warning btn-block' %>
         <% else %>
-          <a data-toggle="modal" href="#confirm" class="btn btn-warning btn-block">预订</a>
+          <a data-toggle='modal' href='#login' class='btn btn-default btn-block'>登录后可预订</a>
+          <%= render partial: 'shared/login' %>
         <% end %>
       </div>
     </div>
-    <%= render partial: 'cars/loc_owner', locals: { car: @car, owner: @rent.user } %>
+    <%= render partial: 'cars/owner', locals: { owner: @rent.user } %>
   </div>
 </div>
-<%= render partial: 'shared/check_login', locals: { id: 'request', destination: new_order_path(@rent) } %>
-<%= render 'orders/confirm' %>
+<script>
+$('#myTab a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+});
+</script>

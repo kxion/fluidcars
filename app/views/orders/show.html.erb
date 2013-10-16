@@ -9,12 +9,12 @@
     <div id="request-box">
       <%= render partial: 'rents/rent_rate', object: @rent.rate, as: :rate %>
       <div>
-        出租期限:<%= @rent.start %>至<%= @rent.end %>
+        预订时间:<%= @order.start %>至<%= @order.end %>
       </div>
       <div class="request-tool">
         <%= button_to '取消预订', @order, method: :delete, class: 'btn btn-danger btn-block' %>
       </div>
     </div>
-    <%= render partial: 'cars/loc_owner', locals: { car: @car, owner: @rent.user } %>
+    <%= render partial: 'cars/owner', locals: { owner: @rent.user } %>
   </div>
 </div>

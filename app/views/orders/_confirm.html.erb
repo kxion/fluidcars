@@ -16,7 +16,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-          <%= link_to '确定', new_order_path(rent_id: @rent.id), class: "btn btn-primary" %>
+          <%= link_to '确定', select_time_orders_path(rent_id: @rent.id), class: "btn btn-primary" %>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

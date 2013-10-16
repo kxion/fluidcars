@@ -57,6 +57,11 @@ class CarsController < ApplicationController
     @car = Car.find(params[:id])
   end
 
+  def complete
+    @car = Car.find(params[:id])
+    flash[:success] = '图片已更新！'
+  end
+
   # 提交修改
   def update
     @car = current_user.cars.find(params[:id])

@@ -1,5 +1,15 @@
 class PicturesController < ApplicationController
 
+ 
+  def index
+    @car = Car.find(params[:car_id])
+    @pictures = @car.pictures
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @pictures.map{|picture| picture.output_json} }
+    end
+  end
+
   def destroy
     @pic = Picture.find(params[:id])
     @pic.destroy
@@ -17,9 +27,8 @@ class PicturesController < ApplicationController
           :content_type => 'text/html',
           :layout => false
         }
-        format.json {
-          render :json => @picture.output_json
-        }
+        format.json { render json: { files: [@picture.output_json]}, status: :created, location: @picture }
+        format.js
       end
     else
       render :json => [{:error => "custom_failure"}], :status => 304

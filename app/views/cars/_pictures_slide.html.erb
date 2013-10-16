@@ -1,7 +1,7 @@
 <% unless more_than_one_picture?(@car.pictures) %> 
   <!-- 只有一张图片，不用幻灯片 -->
   <div class="picture-box">
-    <%= image_tag @car.pictures.first.image.url("600") %>
+    <%= image_tag @car.pictures.first.image.url("600x450") %>
   </div>
   <div class="mark-box">
     <h1 class="mark-brand"><%= @car.brand %></h1>
@@ -13,7 +13,7 @@
     <div class="carousel-inner">
       <% @car.pictures.each do |pic| %>
         <div class="item picture-box">
-          <%= image_tag pic.image.url("600") %>
+          <%= image_tag pic.image.url("600x450") %>
           <div class="carousel-caption">
           </div>
         </div>
@@ -36,7 +36,7 @@
     <% @car.pictures.each_index do |index| %>
       <div class="col-md-2">
         <div class="thumbnail">
-          <%= image_tag @car.pictures[index].image.url("120"), "data-target" => "#car-pictures", "data-slide-to" => "#{index}" %>
+          <%= image_tag @car.pictures[index].image.url("160x120"), "data-target" => "#car-pictures", "data-slide-to" => "#{index}" %>
         </div>
       </div>
     <% end %>
