@@ -35,6 +35,9 @@ gem 'mongoid', git: 'https://github.com/mongoid/mongoid.git'
 # 口令加密
 gem 'bcrypt-ruby', '~> 3.0.0'
 
+# 网站流量监控
+gem 'newrelic_rpm'
+
 group :development, :test do
   gem 'capistrano', '~> 2.15.4', require: false
   gem 'rvm-capistrano', require: false
