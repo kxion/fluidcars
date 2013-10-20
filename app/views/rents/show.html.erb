@@ -33,7 +33,7 @@
         <% if signed_in?  %>
           <%= link_to '预订', select_time_orders_path(rent_id: @rent.id), class: 'btn btn-warning btn-block' %>
         <% else %>
-          <a data-toggle='modal' href='#login' class='btn btn-default btn-block'>登录后可预订</a>
+          <button data-toggle='modal' data-target='#myModal' href='/login' class='btn btn-default btn-block'>登录后可预订</button>
           <%= render partial: 'shared/login' %>
         <% end %>
       </div>
@@ -41,6 +41,8 @@
     <%= render partial: 'cars/owner', locals: { owner: @rent.user } %>
   </div>
 </div>
+
+
 <script>
 $('#myTab a').click(function (e) {
   e.preventDefault()

@@ -12,15 +12,13 @@ class Order
   before_save :add_reservation_to_rent
   def add_reservation_to_rent
     rent = Rent.find(self.rent_id)
-    rs = rent.reservations.build(:start => self.start, :end => self.end)
-    rs.status = '已预订'
+    rs = rent.insert_reservation(self.start, self.end)
     self.reservation_id = rs.id
-    rs.save
   end
 
   before_destroy :remove_reservation_from_rent
   def remove_reservation_from_rent
-    Reservation.find(self.reservation_id).destroy
+    Reservation.find(self.reservation_id).update_attributes(status: '可预订')
   end
 
 end

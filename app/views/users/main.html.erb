@@ -16,7 +16,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">我的出租</div>
       <div class="panel-body">
-        您目前发布了<%= @user.rents.count  %>条出租信息
+        您目前发布了<%= link_to @user.rents.count, my_rents_path  %>条出租信息
       </div>
     </div>
   </div>

@@ -3,7 +3,7 @@
     <div class="map-header">
       <span class="glyphicon glyphicon-map-marker"></span><%= @car.location.city+@car.location.district+@car.location.detail %>
     </div>
-    <div id="map_container" class="border-box" style="height:400px;overflow: hidden;">
+    <div id="map_container" style="height:400px;overflow: hidden;">
       地图加载中，请稍后<%= image_tag 'loading1.gif' %>
     </div>
   </div>
@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
 <% end %>
 <script type="text/javascript">
-  window.onload = function() {
+  $(document).ready(function() {
     var map = new BMap.Map("map_container");  
     var car_point = new BMap.Point(<%= @car.location.gps[0] %>, <%= @car.location.gps[1] %>);
     map.centerAndZoom(car_point,14);  
@@ -42,6 +42,6 @@
       // openInfoWindow();
       window.open('http://map.baidu.com/?newmap=1&ie=utf-8&s=s%26wd%3D'+'<%= @car.location.city %>'+'<%= @car.location.district %>'+'<%= @car.location.detail %>');
     });
-  };
+  });
 </script>
 

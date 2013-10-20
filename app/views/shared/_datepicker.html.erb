@@ -19,7 +19,7 @@
           todayHighlight: true,
           language: "chs"
           }).on('hide', function(ev){
-            start = new Date(ev.date.valueOf() + one_day);
+            start = new Date(ev.date.valueOf());
             console.log(ev.date);
             $("#end").datepicker('setStartDate', start);
             });

@@ -2,7 +2,7 @@
 <div id="calendar"></div>
 
 <script>
-$('document').ready(function (){
+// $('document').ready(function (){
   $('#calendar').fullCalendar({
     // put your options and callbacks here
     header: {
@@ -39,12 +39,11 @@ $('document').ready(function (){
       url: '<%= search_reservation_rents_url %>',
       data: {
         rent_id: '<%= @rent.id %>'
-      }, 
-      color: '#E2E2E2'
+      }
     }
       // more events here
   });    
-});
+// });
 function dateFormat(date){
   return date.getMonth()+1+'月'+date.getDate()+'日';
 }

@@ -9,13 +9,19 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = current_user.orders.build(order_params)
-    @order.rent = Rent.find(params[:order][:rent_id])
-    if @order.save!
-      flash[:success] = "预订成功，请尽快与车主联系！"
-      redirect_to @order
+    rent = Rent.find(params[:order][:rent_id])
+    o_start = params[:order][:start].to_time
+    o_end = params[:order][:end].to_time
+    if rent.reserved?(o_start, o_end)
+      flash[:error] = '很遗憾，所选时间已经被预订,请重新选择时间'
+      redirect_to select_time_orders_url(rent_id: rent.id)
     else
-      redirect_to rents_url
+      @order = current_user.orders.build(order_params)
+      @order.rent = rent
+      if @order.save!
+        flash[:success] = "预订成功，请尽快与车主联系！"
+        redirect_to @order
+      end
     end
   end
 
