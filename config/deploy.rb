@@ -1,13 +1,14 @@
-require 'rvm/capistrano'
 require "bundler/capistrano"
+
+# adjust if youareusing RVM, remove if youarenot
+require "rvm/capistrano"
 set :rvm_ruby_string, :local
-# require 'hoptoad_notifier/capistrano'
 
 set :application, "fluidcars"
 set :domain, 'fluidcars.com'
-set :user, "root" # 一個伺服器上的帳戶用來放你的應用程式，不需要有sudo權限，但是需要有權限可以讀取Git repository拿到原始碼
+set :user, "rails" # 一個伺服器上的帳戶用來放你的應用程式，不需要有sudo權限，但是需要有權限可以讀取Git repository拿到原始碼
 set :branch, "master"
-set :repository, "root@fluidcars.com:~/git/fluidcars.git"
+set :repository, "git@fluidcars.com:/git/fluidcars.git"
 set :scm, "git"
 set :port, "22"
 

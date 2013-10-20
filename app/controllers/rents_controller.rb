@@ -81,6 +81,18 @@ class RentsController < ApplicationController
     session[:current_car_id] = nil 
   end
 
+  def search_reservation
+    @rent = Rent.find(params[:rent_id])
+    reservations = @rent.reservations.in_callendar(params[:start].to_i,params[:end].to_i)
+    events = []
+    reservations.each do |res|
+      events << res.json_events
+    end
+    respond_to do |format|
+      format.json {render json: events.to_json}
+    end
+  end
+
   def time_params
     params.require(:rent).permit(:start, :end)
   end

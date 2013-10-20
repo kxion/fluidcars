@@ -35,10 +35,12 @@ $('document').ready(function (){
       $(this).popover('hide');
     },
 
-    events: function(start,end,callback){
-      var events = <%= raw(reservation_events(@rent)) %>;
-      console.log(events);
-      callback(events);
+    events: {
+      url: '<%= search_reservation_rents_url %>',
+      data: {
+        rent_id: '<%= @rent.id %>'
+      }, 
+      color: '#E2E2E2'
     }
       // more events here
   });    

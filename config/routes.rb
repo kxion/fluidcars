@@ -35,6 +35,8 @@ Zuche::Application.routes.draw do
       
       get 'complete' => :complete
       get 'destroy' => :destroy
+
+      get 'search_reservation' => :search_reservation
     end
   end
 
