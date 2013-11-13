@@ -6,10 +6,6 @@ class RentsController < ApplicationController
     @rent = Rent.includes(:user).find(params[:id])
     @car = @rent.car
     @comments = Comment.where('car_id' => @rent.car.id)
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @rent }
-    end
   end
 
   # 删除出租信息
@@ -88,9 +84,7 @@ class RentsController < ApplicationController
     reservations.each do |res|
       events << res.json_events
     end
-    respond_to do |format|
-      format.json {render json: events.to_json}
-    end
+    render json: events.to_json
   end
 
   def time_params

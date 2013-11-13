@@ -18,7 +18,9 @@ class Order
 
   before_destroy :remove_reservation_from_rent
   def remove_reservation_from_rent
-    Reservation.find(self.reservation_id).update_attributes(status: '可预订')
+    rent = Rent.find(self.rent_id)
+    rent.cancel_reservation(self.start, self.end)
+    Reservation.find(reservation_id).delete
   end
 
 end

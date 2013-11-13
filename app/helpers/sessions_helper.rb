@@ -1,7 +1,6 @@
 module SessionsHelper
   def sign_in(user)
     session[:user_id] = user._id
-    # require 'debug'
   	current_user = user
   end
 

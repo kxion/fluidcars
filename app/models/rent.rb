@@ -33,4 +33,23 @@ class Rent
     self.reservations.create(start: o_start, end: o_end, status: '已预订')
   end
 
+  def cancel_reservation(o_start, o_end)
+    before = self.reservations.find_from_range(o_start - 1.day, o_start - 1.day).first
+    after = self.reservations.find_from_range(o_end + 1.day, o_end + 1.day).first
+    if before.status == '可预订'
+      if after.status == '可预订'
+        self.reservations.create(start: before.start, end: after.end)
+        after.delete
+      else
+        self.reservations.create(start: before.start, end: o_end)
+      end
+      before.delete
+    elsif after.status == '已预订'
+      self.reservations.create(start: o_start, end: after.end)
+      after.delete
+    else
+      self.reservations.create(start: o_start, end: o_end)
+    end
+  end
+
 end
