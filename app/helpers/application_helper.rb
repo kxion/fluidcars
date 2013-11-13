@@ -71,6 +71,9 @@ module ApplicationHelper
     msg
   end
 
+  def format_date(date)
+    date.month+'月'+date.day+'日'
+  end
 
 
 end

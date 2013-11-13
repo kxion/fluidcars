@@ -9,7 +9,7 @@
     <div id="request-box">
       <%= render partial: 'rents/rent_rate', object: @rent.rate, as: :rate %>
       <div>
-        预订时间:<%= @order.start %>至<%= @order.end %>
+        预订时间:<%= format_date(@order.start) %>至<%= format_date(@order.end) %>
       </div>
       <div class="request-tool">
         <%= button_to '取消预订', @order, method: :delete, class: 'btn btn-danger btn-block' %>
