@@ -6,15 +6,13 @@ class Car
   has_many :comments, dependent: :destroy
   has_many :pictures, autosave: true
   embeds_one :location
-
   accepts_nested_attributes_for :location
-  # accepts_nested_attributes_for :pictures, allow_destroy: true
 
   field :description, type: String # 车辆描述
   field :brand, type: String # 车辆品牌型号
   field :token, type: String
 
-  validates :description, :brand, presence: true
+  validates :description, :brand, presence: {message: '不能为空'}
   before_save :gps_from_baidu_map
 
   def generate_token

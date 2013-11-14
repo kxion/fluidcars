@@ -1,7 +1,7 @@
 class Picture
   include Mongoid::Document
 
-  belongs_to :car
+  belongs_to :car, index: true
   mount_uploader :image, PictureUploader
 
   field :image, type: String

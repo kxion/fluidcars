@@ -9,4 +9,6 @@ class Location
   field :detail, type: String
   field :gps, type: Array
 
+  validates :province, :city, :district, :detail, presence: { message: '请填写'}
+
 end

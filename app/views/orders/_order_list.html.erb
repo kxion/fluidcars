@@ -7,8 +7,8 @@
       <ul class="col-md-4 list-unstyled">
           <li><%= order.rent.car.brand %></li>
           <li><%= order.rent.car.location.city %><%= order.rent.car.location.detail %></li>
-          <li>开始时间：<%= order.start %></li>
-          <li>结束时间：<%= order.end %></li>
+          <li>开始时间：<%= format_date(order.start) %></li>
+          <li>结束时间：<%= format_date(order.end) %></li>
         </ul>
         <div class="col-md-3">
           <%= render partial: 'rents/rent_rate', object: order.rent.rate, as: :rate %>

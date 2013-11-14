@@ -86,7 +86,7 @@ class CarsController < ApplicationController
     @car.destroy
 
     respond_to do |format|
-      format.html { redirect_to mycars_cars_url }
+      format.html { redirect_to my_cars_url }
       format.json { head :no_content }
     end
   end

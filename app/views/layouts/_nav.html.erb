@@ -17,7 +17,7 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_city %> <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <% cities = %w(北京市 合肥市 沈阳市) %>
+          <% cities = %w(北京市 上海市 合肥市) %>
           <% cities.each do |city| %>
             <li><%= link_to city, search_rents_by_city_path(city: city) %>
           <% end %>
@@ -27,7 +27,7 @@
     <%= render 'layouts/nav_search_form' %>
     <% if signed_in? %>
     <ul class="nav navbar-nav navbar-right">
-      <li><%= link_to current_user.profile.name||current_user.name, main_users_path %></li>
+      <li><%= link_to current_user.profile.name||current_user.name, main_users_path, class: 'user' %></li>
       <li><%= link_to '退出', logout_path, method: :delete %></li>
     </ul>
     <% else %>

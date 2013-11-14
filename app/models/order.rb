@@ -9,6 +9,8 @@ class Order
   field :start, type: DateTime
   field :end, type: DateTime
 
+  index({start: 1})
+
   before_save :add_reservation_to_rent
   def add_reservation_to_rent
     rent = Rent.find(self.rent_id)

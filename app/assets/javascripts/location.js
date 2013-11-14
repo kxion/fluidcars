@@ -125,6 +125,8 @@ function siteSelect(targ,addr)
         addr[1]="";
         provIndex=provinceSel.selectedIndex;
         arr=siteData[provIndex]["sub"];
+        arr.unshift({"name": '选择市/县'});
+        console.log(arr);
         areaSel.innerHTML="";
         areaList();
         countySel.innerHTML="";
@@ -136,6 +138,7 @@ function siteSelect(targ,addr)
         provIndex=provinceSel.selectedIndex;
         areaIndex=areaSel.selectedIndex;
         arr=siteData[provIndex]["sub"][areaIndex]["sub"];
+        arr.unshift({"name": '选择区'})
         countySel.innerHTML="";
         countyList();
     }

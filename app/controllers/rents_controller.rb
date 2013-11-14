@@ -50,6 +50,7 @@ class RentsController < ApplicationController
   # 确认时间
   def confirm_select_time
     @rent = Rent.find(session[:current_rent_id])
+    @rent.update_attributes(time_params)
     @rent.reservations.create(time_params)
     if @rent.save
       redirect_to set_rate_rents_url

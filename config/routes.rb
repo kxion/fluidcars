@@ -74,6 +74,7 @@ Zuche::Application.routes.draw do
   end
   
   root :to => 'home_pages#home'
+
   # controller :test_pages do
   #   get 'test_page' => :test_page
   #   get 'test_format' => :test_format

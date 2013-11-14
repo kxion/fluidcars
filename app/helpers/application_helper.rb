@@ -75,5 +75,9 @@ module ApplicationHelper
     date.month+'月'+date.day+'日'
   end
 
+  def format_location(location)
+    location.city + location.district + location.detail
+  end
+
 
 end

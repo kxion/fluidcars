@@ -8,14 +8,12 @@
   <div class="col-md-4">
     <div class="button-group">
       <%= link_to '修改信息', edit_car_path(@car), class: 'btn btn-block btn-info' %>
-      <a data-toggle="modal" href="#deleteModal" class="btn btn-danger btn-block">删除</a>
-    </div>
-    <div>
+
       <%= button_to '出租', confirm_select_car_rents_path(car_id: @car.id), class: 'btn btn-block btn-success' %>
-    </div>  
-    <div>
       <%= link_to '管理图片', upload_pictures_car_path(@car), class: 'btn btn-block btn-warning' %>
-    </div> 
+      <a data-toggle="modal" href="#deleteModal" class="btn btn-danger btn-block">删除</a>
+
+    </div>
     <div class="border-box"> 
       <%= render partial: 'comments/comment_list', object: @car.comments, as: :comments %>
     </div>
