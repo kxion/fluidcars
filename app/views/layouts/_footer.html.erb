@@ -31,4 +31,8 @@
       </div>
     </div>
   </div>
+  <% if Rails.env.development? %> 
+  <%= debug(request.session[:back_path_to]) %>
+  <%= debug(request.session[:session_id]) %>
+  <% end %>
 </footer>

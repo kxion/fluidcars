@@ -13,12 +13,3 @@
   </body>
 </html>
 
-<% if Rails.env.development? %> 
-  <%= flash[:notice] %>
-  <%= debug(params) %>
-  <%= debug(request.session) %>
-  <%= debug(request.remote_ip) %>
-  <%= debug(request.env) %>
-  <%= debug(request.headers) %>
-  <%= debug(request.env['omniauth.auth']) %>
-<% end %>

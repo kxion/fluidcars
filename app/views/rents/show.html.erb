@@ -33,10 +33,7 @@
         <% if signed_in?  %>
           <%= link_to '预订', select_time_orders_path(rent_id: @rent.id), class: 'btn btn-warning btn-block' %>
         <% else %>
-          <% session[:back_path] = request.original_url %>
-          <%= link_to '登录后可预订', select_time_orders_path(rent_id: @rent.id), class: 'btn btn-default btn-block' %>
-          <!-- <button data-toggle='modal' data-target='#myModal' class='btn btn-default btn-block'>登录后可预订</button> -->
-          <%#= render partial: 'shared/login' %>
+          <%= link_to '登录后可预订', login_path, class: 'btn btn-default btn-block', id: 'must_login' %>
         <% end %>
       </div>
     </div>

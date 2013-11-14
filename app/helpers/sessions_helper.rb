@@ -36,16 +36,16 @@ module SessionsHelper
   end
 
   def redirect_back
-    if session[:return_to]
-      redirect_to session[:return_to]
-      session.delete(:return_to)
+    if session[:back_path_to]
+      redirect_to session[:back_path_to]
+      session.delete(:back_path_to)
     else
       redirect_to root_url
     end
   end
 
-  def store_location 
-    session[:return_to] = request.url
+  def store_location(path = request.original_url)
+    session[:back_path_to] = path
   end
 
   def signed_admin
