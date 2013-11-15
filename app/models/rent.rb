@@ -14,6 +14,15 @@ class Rent
 
   default_scope ->{where(:end.gte => Time.now)}
 
+  before_save :check_period_type
+  def check_period_type
+    if self.period_type == 'long'
+      self.start = Time.now
+      self.end = Time.now + 1.year
+    end
+  end
+
+
   def reserved?(o_start, o_end)
     res = self.reservations.find_from_range(o_start, o_end).first
     res.nil?||(res.status == '已预订')

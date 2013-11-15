@@ -44,7 +44,7 @@ module SessionsHelper
     end
   end
 
-  def store_location(path = request.original_url)
+  def store_location(path = request.referer)
     session[:back_path_to] = path
   end
 

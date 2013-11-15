@@ -34,8 +34,9 @@ class RentsController < ApplicationController
   # 确认出租车辆
   def confirm_select_car
     selected_car = Car.find(params[:car_id])
+
     if selected_car.user_id == current_user.id
-      rent = Rent.create!(car: selected_car, user_id: current_user.id)
+      rent = Rent.create(car: selected_car, user_id: current_user.id)
       session[:current_rent_id] = rent.id
       redirect_to select_time_rents_url
     else
@@ -49,9 +50,9 @@ class RentsController < ApplicationController
   end
   # 确认时间
   def confirm_select_time
-    @rent = Rent.find(session[:current_rent_id])
-    @rent.update_attributes(time_params)
-    @rent.reservations.create(time_params)
+    @rent = Rent.unscoped.find(session[:current_rent_id])
+    @rent.update_attributes(rent_params)
+    @rent.reservations.create(start: @rent.start, end: @rent.end)
     if @rent.save
       redirect_to set_rate_rents_url
     else
@@ -88,8 +89,8 @@ class RentsController < ApplicationController
     render json: events.to_json
   end
 
-  def time_params
-    params.require(:rent).permit(:start, :end)
+  def rent_params
+    params.require(:rent).permit(:start, :end, :period_type)
   end
 
 end

@@ -33,7 +33,7 @@
         <% if signed_in?  %>
           <%= link_to '预订', select_time_orders_path(rent_id: @rent.id), class: 'btn btn-warning btn-block' %>
         <% else %>
-          <%= link_to '登录后可预订', login_path, class: 'btn btn-default btn-block', id: 'must_login' %>
+          <%= link_to '登录后可预订', login_path, class: 'btn btn-default btn-block' %>
         <% end %>
       </div>
     </div>

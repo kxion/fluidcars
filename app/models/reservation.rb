@@ -11,8 +11,8 @@ class Reservation
   
   def self.in_callendar(c_start, c_end)
     # any_of({ "$and" => [{ "start" => { "$gte" => c_start }}, { "start" => { "$lte" => c_end } }] }, { "$and" => [{ "end" => { "$gte" => c_start }}, { "end" => { "$lte" => c_end } }] } \
-    #   ,{ "$and" => [{"start" => {"$lte" => c_start}}, { "end" => { "$gte" => c_end } }]})
-    any_of({ "start" => { "$gte" => c_start, "$lte" => c_end }}, { "end" => { "$gte" => c_start, "$lte" => c_end }})
+      # ,{ "$and" => [{"start" => {"$lte" => c_start}}, { "end" => { "$gte" => c_end } }]})
+    any_of({ "start" => { "$gte" => c_start, "$lte" => c_end }}, { "end" => { "$gte" => c_start, "$lte" => c_end }}, { "$and" => [{"start" => {"$lte" => c_start}}, { "end" => { "$gte" => c_end } }]})
   end
 
   def json_events 
