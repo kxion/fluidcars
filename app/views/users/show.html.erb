@@ -1,0 +1,27 @@
+<% if current_user && current_user.id == @user.id %>
+  <%= render partial: 'shared/panel_nav', locals: { active: 'nav_show'} %>
+<% end %>
+
+<div class="row">
+  <div class="col-md-7">
+    <div class="panel panel-default">
+      <div class="panel-heading">正在出租</div>
+      <div class="panel-body">
+        <table class="table table-hover">
+          <%= render partial: 'rents/rents_list_item', collection: @rents, as: :rent %>
+        </table>
+        <%= paginate @rents %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-5">
+    <div class='box'>
+      <%= render 'profiles/info' %>
+    </div>
+    <div class='box'>
+      分享这个页面。
+      <%= render 'shared/share_button' %>
+    </div>
+  </div>
+</div>  

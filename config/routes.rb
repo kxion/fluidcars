@@ -14,6 +14,9 @@ Zuche::Application.routes.draw do
       get 'profile' => :panel
       get 'main' => :main
     end
+    member do
+      get 'show' => :show
+    end      
   end
 
   controller :identities do
