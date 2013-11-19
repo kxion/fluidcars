@@ -1,17 +1,214 @@
-<div class="relative-box">
-  <div class="homepage">
-    <div class="container">
-      <div class="row">
-        <div class="search-hero col-md-8">
-          <%= render 'home_pages/home_search' %>
-        </div>
-      </div>
-    </div>
-  </div>
+<div id="content">
+  <section id="home" class="updatable">
+    
+    <!-- Slider -->
+    <article class="bannercontainer">
+      <div class="banner ">
+        <ul>                        
+          <li data-transition="fade" data-slotamount="1">
+            <%= image_tag("bg_1.jpg", alt: "//") %>
+            <div 
+              class="caption lfb " 
+              data-x="left"
+              data-y="top"
+              data-speed="1000"
+              data-start="500"
+              data-easing="easeOutBack"
+            >   
+              <p><span>需要租车？</span></p>
+              <%= render 'home_search' %>
+            </div>                                 
+          </li>
 
-<!--   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <%# render partial: 'home_pages/recommend_show', object: @infos %> 
-    </div>
-  </div> -->
+          <li data-transition="3dcurtain-vertical" data-slotamount="1">
+            <%= image_tag("bg_3.jpg", alt: "//") %>
+            <div 
+              class="caption lfb " 
+              data-x="right"
+              data-y="top"
+              data-speed="1000"
+              data-start="500"
+              data-easing="easeOutBack"
+            > 
+              <p><span>出租并获利！</span></p>
+              <%= link_to '立刻发布', select_car_rents_path %>
+            </div>  
+          </li> 
+
+          <li data-transition="papercut" data-slotamount="1">
+            <%= image_tag("bg_2.jpg", alt: "//") %>
+            <div 
+              class="caption lfb " 
+              data-x="left"
+              data-y="top"
+              data-speed="1000"
+              data-start="500"
+              data-easing="easeOutBack"
+            > 
+            <!-- add here -->
+            </div>                                    
+          </li> 
+        </ul>
+      </div>
+    </article>
+    <!-- End Slider -->
+
+    <!-- begin Featured Pooch -->
+    <article class="featured">
+      <div class="container">
+        <header><h2>来自用户的声音</h2></header>
+
+        <div class="row">
+          <div class="col-md-9">
+            <%= image_tag('', class: "img-rounded thumb") %>
+            <h3>"我把闲置的车放到这里出租，并且赚到了钱！"</h3>
+            <p>我用车的频率并不很高，大多时间都闲置着。有了车流网，我可以在这里发布我的租车信息，既解决了其他人用车的难题，最重要的是，他真的让我赚到了钱，车流网真是太棒了！</p>
+            <div class="foot">Posted 17 Jul 2013 <i class="icon-dot"></i> By Chris Patterson <span class="label label-default">Featured</span> </div>
+          </div>
+          <div class="col-md-3 vitals">
+            <h4>用户 <i class="icon-heart"></i></h4>
+            <p>
+              <strong>称呼:</strong> xx<br />
+              <strong>联系方式:</strong> xx<br />
+              <strong>拥有车辆:</strong> xx<br />
+            </p>
+          </div>
+         </div>
+
+      </div>     
+    </article>
+    <!-- end Featured Pooch -->
+
+    <!-- begin Our Reputation -->
+    <article class="reputation">
+      <div class="container">
+        <header><h2>Our Reputation</h2></header>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div id="carousel-reputation" class="carousel slide" data-ride="carousel">
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner">
+                <div class="item active">
+                  <%= image_tag("img/reputation/reputation01.jpg", alt: "//", class: 'img-circle') %>
+                  <p>"Ther have the cutest puppies in our town.. Hands down!"</p>
+                  <span>Stewart Little, Unites States</span>
+                </div>
+                <div class="item">
+                  <%= image_tag("img/reputation/reputation02.jpg", alt: "//", class: 'img-circle') %>
+                  <p>"Ther have the cutest puppies in our town.. Hands down!"</p>
+                  <span>Stewart Little, Unites States</span>
+                </div>
+                <div class="item">
+                  <%= image_tag("img/reputation/reputation03.jpg", alt: "//", class: 'img-circle') %>
+                  <p>"Ther have the cutest puppies in our town.. Hands down!"</p>
+                  <span>Stewart Little, Unites States</span>
+                </div>
+              </div>
+
+              <!-- Controls -->
+              <a class="left carousel-control" href="#carousel-reputation" data-slide="prev">
+                <i class="icon-left-open"></i>
+              </a>
+              <a class="right carousel-control" href="#carousel-reputation" data-slide="next">
+                <i class="icon-right-open"></i>
+              </a>
+            </div>
+          </div>
+         </div>
+
+      </div>     
+    </article>
+    <!-- end Our Reputation -->
+
+    <!-- Our Puppies -->
+    <article class="puppies">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-xs-12"><h2>精选推荐</h2></div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="grid">
+            <ul>
+              <%= render partial: 'rents/rents_list_item', collection: @recommand, as: :rent %>
+              </li>
+            </ul>
+          </div>
+        </div>
+       </div>
+
+    </div>     
+    </article>
+    <!-- end Our Puppies -->
+
+    <!-- Our Services -->
+    <article class="services">
+      <div class="container">
+      
+        <div class="row">
+          <div class="col-xs-12"><h2 class="header">我们能做什么？</h2></div>
+        </div>
+        
+
+        <div class="row service first">
+          <div class="col-md-7">
+            <h2>全新的租车体验</h2>
+            <p>更多的车型</p>
+          </div>
+          <div class="col-md-5">
+            <%= image_tag 'img/services/services02.jpg' %>          
+          </div>
+        </div>
+        <div class="row service">
+          <div class="col-md-12 visible-xs visible-sm">
+            <h2>出租并管理</h2>
+          </div>
+          <div class="col-md-5">
+            <%= image_tag 'img/services/services01.jpg' %>          
+          </div>
+          <div class="col-md-7">
+            <h2 class="visible-md visible-lg">出租并管理</h2>
+            <p>免费发布出租信息，所有出租状态一目了然。</p>
+          </div>
+        </div>
+
+      </div>
+    </article>
+    <!-- end Our Services -->
+
+
+    <!-- Coupons -->
+    <article class="coupons">
+      <div class="container">
+        <header><h2>优惠</h2></header>
+        
+        <div class="row">
+          <div class="title">
+            <div class="centered"><div><h2>免费</h2></div></div>
+            <p>现阶段完全免费！</p>
+            <hr>
+          </div>
+        </div>
+    
+        <div class="row coupon">
+          <div class="col-sm-4">
+            <%= image_tag '' %>
+          </div>
+          <div class="col-sm-7">
+            <span class="expires">expires: 4/11/2014</span>
+            <h3>Hand Scissor Haircut</h3>
+            <span class="newnumber">Free</span>
+            <p>Cats and dogs ejoyment. Our facility was designed to offer your pet the most exclusive and unique experience, a perfect alternative to a caged</p>
+            <a href="#" class="btn btn-default">Print Code</a>
+          </div>
+        </div>
+
+      </div>     
+    </article>
+    <!-- end Coupons -->
+
+  </section>
 </div>

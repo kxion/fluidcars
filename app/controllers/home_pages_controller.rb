@@ -1,6 +1,4 @@
 class HomePagesController < ApplicationController
-  include BaiduMap
-  layout 'homepage', only: :home
 
   def home
     # Set headers
@@ -13,5 +11,6 @@ class HomePagesController < ApplicationController
     #     session[:current_gps] = [ loc['content']['point']['x'], loc['content']['point']['y'] ]
     #   end
     # end
+    @recommand = Rent.all.limit(10)
   end
 end

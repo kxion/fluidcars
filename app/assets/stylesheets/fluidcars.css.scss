@@ -3,17 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "twitter/bootstrap";
 
-html {
-  /*background: url("bg.png") repeat scroll left bottom #EEEEEE;*/
-  height: 100%;
-}
+// html {
+//   /*background: url("bg.png") repeat scroll left bottom #EEEEEE;*/
+//   height: 100%;
+// }
 
-body {
-  padding-top: 50px;
-  background: none repeat scroll 0 0 transparent;
-  background-color: #F5F5F5;
-  color: #585858;
-}
+// body {
+//   padding-top: 50px;
+//   background: none repeat scroll 0 0 transparent;
+//   background-color: #F5F5F5;
+//   color: #585858;
+// }
 
 select {
   width:80px;
@@ -49,7 +49,6 @@ select {
   color: white;
   padding: 10px 0;
   .price-block {
-    -moz-box-sizing: border-box;
     display: inline-block;
     text-align: center;
     width: 49%;
@@ -78,6 +77,33 @@ select {
         font-size: 32px;
     }
   }
+  .price-block-small {
+    display: inline-block;
+    text-align: center;
+    width: 49%;
+    height: 50px;
+    padding: 10px;
+    .rmb-symbol {
+      font-size: 13px;
+      top: -4px;
+    }
+    .rmb {
+        font-size: 18px;
+    }
+    .cents {
+      font-size: 13px;
+      top: -4px;
+    }
+    .separator {
+        display: inline-block;
+        font-size: 15px;
+        margin-left: 0.1em;
+        margin-right: 0.15em;
+    }
+    .unit {
+        font-size: 13px;
+    }
+  }
 }
 .profile {
   li {
@@ -95,28 +121,6 @@ select {
     text-align: right;
   }
 }
-.rent-rates .price-block.small {
-  .rmb-symbol {
-    font-size: 13px;
-    top: -4px;
-  }
-  .rmb {
-      font-size: 18px;
-  }
-  .cents {
-    font-size: 13px;
-    top: -4px;
-  }
-  .separator {
-      display: inline-block;
-      font-size: 15px;
-      margin-left: 0.1em;
-      margin-right: 0.15em;
-  }
-  .unit {
-      font-size: 13px;
-  }
-}
 .map-box {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -127,6 +131,13 @@ select {
   font-size: 15px;
   line-height: 18px;
   padding: 9px 5px;
+}
+#map_container {
+  height:400px;
+  overflow: hidden;
+  img {
+    width: 16px;
+  }
 }
 #car-description h4 {
   color: #FC7C1A
@@ -226,8 +237,8 @@ ul.rent-abstract {
   min-height: 500px;
 }
 
-.alert-box {
-  margin: 0;
+.alert {
+  margin: 0!important;
 }
 #request-box {
   margin: 20px 0;

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <%= render 'layouts/head' %>
+  <body>
+    <%= render 'layouts/header' %>
+    <%= render 'shared/notice' %>
+    <%= render 'rents/steps' %>
+    <%= yield %>
+    <%= render 'layouts/footer' %>
+  </body>
+  <%= yield :mapapi %>
+</html>

@@ -1,26 +1,11 @@
-<tr>
-  <td>
-    <div class="row">
-      <div class="col-md-4">
-        <a href="<%= car_path(car) %>" class="thumbnail">         
-          <%= image_tag(car.pictures.first.image.url("240x180")) %>
-        </a>
-      </div>
-
-      <ul class="col-md-4 rent-abstract">
-        <li><%= car.brand %></li>
-        <li><%= car.location.city %></li>
-        <li><%= car.location.detail %></li>
-      </ul>
-
-      <div class="col-md-3">
-        <div class="margin_button">
-          <%= link_to '编辑', edit_car_path(car), class: 'btn btn-large btn-info' %>
-        </div>
-        <div class="margin_button">
-          <%= button_to '出租', confirm_select_car_rents_path(car_id: car.id), class: 'btn btn-large btn-success' %>
-        </div>
-      </div>
+<li>
+  <a href="<%= car_path(car) %>">
+    <div class="more">
+      <i class="icon-search pull-right"></i>
+      <span class="wks"><%= car.location.city %></span>
+      <span class="txt"><%= car.location.detail %></span>
     </div>
-  </td>
-</tr>
+    <%= image_tag car.pictures[0].image.url("270x270") %>    
+    <span class="name"><%= car.brand %></span>
+  </a>
+</li>

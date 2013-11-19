@@ -1,7 +1,11 @@
-<%= form_tag search_rents_by_location_path, :class => 'navbar-form navbar-left', method: 'get' do %>
+<%= form_tag search_rents_by_location_path, :class => 'navbar-form navbar-left search', method: 'get' do %>
   <div class="form-group">
-    <%= text_field_tag :location, params[:location], class: "form-control", :placeholder => "地点" %>
+    <div class='input-group'>
+      <span class="input-group-btn">
+        <button class="btn" type="submit"><i class="icon-search"></i></button>
+      </span>
+      <%= text_field_tag :location, params[:location], class: "form-control", :placeholder => "地点" %>
+    </div>
   </div>
-  <button type="submit" name="nil" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
 <% end %>
 

@@ -1,4 +1,5 @@
 <%= render partial: 'shared/panel_nav', locals: { active: 'nav_main'} %>
+<div class="container">
 <div class="row box">
   <div class="col-md-3 left-box">
     <div class='border-box'><%= image_tag @user.profile.avatar.url('200x200') %></div>
@@ -20,4 +21,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

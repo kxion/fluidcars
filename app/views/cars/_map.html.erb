@@ -3,7 +3,7 @@
     <div class="map-header">
       <span class="glyphicon glyphicon-map-marker"></span><%= @car.location.city+@car.location.district+@car.location.detail %>
     </div>
-    <div id="map_container" style="height:400px;overflow: hidden;">
+    <div id="map_container" style="">
       地图加载中，请稍后<%= image_tag 'loading1.gif' %>
     </div>
   </div>
@@ -20,7 +20,7 @@
     map.centerAndZoom(car_point,14);  
     console.log(car_point);
     //map.setCenter(car_point);
-    map.enableScrollWheelZoom(true);
+    // map.enableScrollWheelZoom(true);
     //var myIcon = new BMap.Icon("<%= asset_path('corner.png') %>", new BMap.Size(30,30));
     var marker = new BMap.Marker(car_point)//,{icon:myIcon});  // 创建标注
     // var marker = new BMap.Marker(pt);  // 创建标注

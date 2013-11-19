@@ -8,7 +8,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <%= link_to '车流网', root_path, class: "navbar-brand" %>
+    <%= link_to image_tag('brand.png'), root_path, class: "navbar-brand" %>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
@@ -23,6 +23,8 @@
           <% end %>
         </ul>
       </li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Our Dogs</a></li>
     </ul>
     <%= render 'layouts/nav_search_form' %>
     <% if signed_in? %>

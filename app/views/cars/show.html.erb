@@ -1,24 +1,94 @@
-<div class="row">
-  <div class="col-md-7">
-    <div class="border-box"> 
-      <%= render 'cars/pictures_slide' %>
-      <%= render partial: 'cars/description', object: @car, as: :car %>
+<section id="spuppie">
+  
+  <!-- begin Our Puppies -->
+  <article>
+  <div class="container">
+
+    <div class="row">
+      <div class="col-xs-12"><h2 class="header">车辆信息</h2></div>
     </div>
-  </div>
-  <div class="col-md-4">
-    <div class="button-group">
-      <%= link_to '修改信息', edit_car_path(@car), class: 'btn btn-block btn-info' %>
+
+    <div class="row">
+      <div class="title">
+        <div class="centered"><div><h2><%= @car.brand %></h2></div></div>
+        <p>TODO</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-9">
+        <div id="carousel-puppie" class="carousel slide" data-ride="carousel" data-interval="false">
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <% @car.pictures.each do |pic| %>
+              <div class="item">
+                <%= image_tag pic.image.url("slides") %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-12">
+            <%= link_to '修改信息', edit_car_path(@car), class: 'btn btn-block btn-info' %>
 
       <%= button_to '出租', confirm_select_car_rents_path(car_id: @car.id), class: 'btn btn-block btn-success' %>
       <%= link_to '管理图片', upload_pictures_car_path(@car), class: 'btn btn-block btn-warning' %>
       <a data-toggle="modal" href="#deleteModal" class="btn btn-danger btn-block">删除</a>
+            <%= render partial: 'cars/description', object: @car, as: :car %>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-12">
 
-    </div>
-    <div class="border-box"> 
-      <%= render partial: 'comments/comment_list', object: @car.comments, as: :comments %>
+            <div id="carousel-thumb-puppie" class="carousel slide" data-ride="carousel" data-interval="false">
+            <!-- Wrapper for slides -->
+              <div class="carousel-inner">
+                <div class="item active">
+                  <ol>
+                    <% @car.pictures.each.with_index do |pic,index| %>
+                    <li data-target="#carousel-puppie" data-slide-to="<%= index %>" class="thumb">
+                        <%= image_tag pic.image.url("slides") %>
+                    </li>
+                    <% end %>              
+                  </ol>
+                </div>
+                <!-- <div class="item">
+                  <ol>
+                    <li data-target="#carousel-puppie" data-slide-to="3" class="active thumb"><img src="img/spuppie/spuppie04.jpg" alt="//"></li>
+                    <li data-target="#carousel-puppie" data-slide-to="4" class="thumb"><img src="img/spuppie/spuppie05.jpg" alt="//"></li>
+                  </ol>
+                </div> -->
+              </div>
+
+              <!-- Controls -->
+              <div class="controls">
+                <a class="left carousel-control" href="#carousel-thumb-puppie" data-slide="prev">
+                  <i class="icon-left-open"></i>
+                </a>
+                <span clasS="more-img">view more images</span>
+                <a class="right carousel-control" href="#carousel-thumb-puppie" data-slide="next">
+                  <i class="icon-right-open"></i>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        
+      </div>
     </div>
   </div>
-</div>
+  </article>
+
+  <!-- end Our Puppies -->
+
+</section>
+
+<script>
+  $('div.carousel-inner .item:first').addClass("active");
+  $('div.carousel-inner .item ol li:first').addClass("active")
+</script>
+
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

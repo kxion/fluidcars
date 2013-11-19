@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
   before_action :signed_in_user
-  layout 'order_panel'
 
   def select_time
     @order = Order.new

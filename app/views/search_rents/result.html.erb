@@ -9,8 +9,8 @@
   </div>
   <div class="col-md-4">
     <%= simple_form_for :rent, wrapper: :append, url: 'search_rents_by_date_path', method: 'get' do |f| %>
-      <%= f.input :start, label: '开始', hint: "<span class='glyphicon glyphicon-calendar'></span>" %>
-      <%= f.input :end , label: '结束', hint: "<span class='glyphicon glyphicon-calendar'></span>" %>
+      <%= f.input :start, label: '开始', hint: "<span class='glyphicon glyphicon-calendar'></span>", input_html: {id: 'start'} %>
+      <%= f.input :end , label: '结束', hint: "<span class='glyphicon glyphicon-calendar'></span>", input_html: {id: 'end'} %>
       <div class="form-group">
         <div class="col-md-8 col-md-offset-4">
           <%= submit_tag "按时间搜",:class => "btn btn-primary"%>

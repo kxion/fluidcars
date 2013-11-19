@@ -17,3 +17,44 @@
   <%= debug(request.headers) %>
   <%= debug(request.env['omniauth.auth']) %>
 <% end %>
+<div class="row">
+  <div class="col-md-7">
+    <div class="border-box">
+      <ul class="nav nav-tabs" id="myTab">
+        <li class="active"><a href="#picture_tab">图片</a></li>
+        <li><a href="#description_tab">描述</a></li>
+        <li><a href="#map">地图</a></li>
+        <li><a href="#comment">评价</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="picture_tab">
+        </div>
+        <div class="tab-pane" id="description_tab">
+          <%= render partial: 'cars/description', object: @car, as: :car %>
+        </div>
+        <div class="tab-pane" id="map">
+          <%= render 'cars/map' %>
+        </div>
+        <div class="tab-pane" id="comment">
+          <h4>评论</h4>
+          <%= render partial: 'comments/comment_list', object: @comments, as: :comments %>
+        </div>
+      </div>      
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div id="request-box">
+      <%= render partial: 'rents/rent_rate', object: @rent.rate, as: :rate %>
+      <%= render 'rents/rent_calendar' %>
+      <div class="request-tool">
+        <% if signed_in?  %>
+          <%= link_to '预订', select_time_orders_path(rent_id: @rent.id), class: 'btn btn-warning btn-block' %>
+        <% else %>
+          <%= link_to '登录后可预订', login_path, class: 'btn btn-default btn-block' %>
+        <% end %>
+      </div>
+    </div>
+    <%= render partial: 'cars/owner', locals: { owner: @rent.user } %>
+  </div>
+</div>

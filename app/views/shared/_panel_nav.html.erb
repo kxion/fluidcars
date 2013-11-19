@@ -1,3 +1,4 @@
+<div class="container">
 <ul class="nav nav-tabs">
   <li id="nav_main"><%= link_to '我的主页', main_users_path %></li>
   <li id="nav_car"><%= link_to '我的车辆', my_cars_path %></li>
@@ -6,6 +7,7 @@
   <li id="nav_order"><%= link_to '我的订单', my_orders_path %></li>
   <li id="nav_profile"><%= link_to '编辑账户', edit_profile_path(current_user.profile) %></li> 
 </ul>
+</div>
 <script>
 $("#<%= active %>").addClass('active');
 </script>

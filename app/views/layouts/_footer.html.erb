@@ -1,39 +1,48 @@
-<!-- FOOTER -->
-<footer id="footer">
-<!--   <div id="footer-additional" class="clearfix">
-    <div class="wrapper"></div>
-  </div> -->
-  <div id="footer-content" class="clearfix">
-    <div class="wrapper">
+<!-- Footer -->
+<footer>
+
+  <!-- begin Contact -->
+  <article class="contact">
+  <div id="contact_bg">
+    <div class="container">
+       
       <div class="row">
-        <div class="col-md-4">
-          <h4>关于我们</h4>
-          <p> 车联你我，车流不息
+      <div class="col-sm-12">
+        <div class="title">
+          <div class="centered"><div><h2>车联你我，车流不息</h2></div></div>
         </div>
-        <div class="col-md-3">
+      </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
           <h4>联系我们</h4>
             <a href="mailto:loveltyoic@gmail.com">Email</a><br>
             <a target='blank' href="http://weibo.com/u/3879825891?from=profile&wvr=5&loc=infdomain">新浪微博@车流网</a>
-        </div>
-        <div class='col-md-5'>
+        </div> 
+        <div class="col-sm-6">
           <h4>分享</h4>
           <%= render 'shared/share_button' %>
-        </div>
-      </div>
-    </div>
+        </div> 
+       </div>
+
+     </div>
   </div>
-  <div id="sub-footer">
-    <div class="wrapper">
-      <div class="row">
-        <div class="pull-left">
-          <div id="copyright">&copy; 2013 车流网</div>
-        </div>
-      </div>
-    </div>
+  </article>
+  <!-- end Contact -->
+
+  <div class="bottom-foot">
+    <p>© 2013 <%= link_to '车流网', root_path %></p>
   </div>
-  <% if Rails.env.development? %> 
-  <%= debug(request.session[:back_path_to]) %>
-  <%= debug(request.session[:session_id]) %>
-  <% end %>
 </footer>
+<a href="#" class="scrollup"><i class="icon-up-open"></i></a>
+
+<!-- ======================= JQuery libs =========================== -->
+    
+    <!-- Bootstrap-->
+   
+
+  <!-- ======================= End JQuery libs ======================= -->
+      
+
 <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>

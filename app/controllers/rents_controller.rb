@@ -1,11 +1,12 @@
 class RentsController < ApplicationController
-  before_action :signed_in_user, except: [:show]
-
+  before_action :signed_in_user, except: [:show, :search_reservation]
+  layout 'rent', only: [:select_car, :select_time, :set_rate, :confirm]
   # 显示详细出租信息
   def show
     @rent = Rent.includes(:user).find(params[:id])
     @car = @rent.car
     @comments = Comment.where('car_id' => @rent.car.id)
+    @more = @rent.user.rents.limit(5)
   end
 
   # 删除出租信息

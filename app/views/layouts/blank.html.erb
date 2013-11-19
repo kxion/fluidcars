@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html>
-  <%= render 'layouts/header' %>
-  <body id="main">
-    <div class="container container-box">
-      <%= render 'shared/notice' %>
-      <%= yield %>
-    </div>
+  <%= render 'layouts/head' %>
+  <body>
+    <%= render 'shared/notice' %>
+    <%= yield %>
     <%= render 'layouts/footer' %>
   </body>
 

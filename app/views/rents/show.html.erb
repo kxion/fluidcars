@@ -1,50 +1,90 @@
-<div class="row">
-  <div class="col-md-7">
-    <div class="border-box">
-      <ul class="nav nav-tabs" id="myTab">
-        <li class="active"><a href="#picture_tab">图片</a></li>
-        <li><a href="#description_tab">描述</a></li>
-        <li><a href="#map">地图</a></li>
-        <li><a href="#comment">评价</a></li>
-      </ul>
+<section id="spuppie">
+  
+  <!-- begin Our Puppies -->
+  <article>
+  <div class="container">
 
-      <div class="tab-content">
-        <div class="tab-pane active" id="picture_tab">
-          <%= render 'cars/pictures_slide' %>
-        </div>
-        <div class="tab-pane" id="description_tab">
-          <%= render partial: 'cars/description', object: @car, as: :car %>
-        </div>
-        <div class="tab-pane" id="map">
-          <%= render 'cars/map' %>
-        </div>
-        <div class="tab-pane" id="comment">
-          <h4>评论</h4>
-          <%= render partial: 'comments/comment_list', object: @comments, as: :comments %>
-        </div>
-      </div>      
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div id="request-box">
-      <%= render partial: 'rents/rent_rate', object: @rent.rate, as: :rate %>
-      <%= render 'rents/rent_calendar' %>
-      <div class="request-tool">
-        <% if signed_in?  %>
-          <%= link_to '预订', select_time_orders_path(rent_id: @rent.id), class: 'btn btn-warning btn-block' %>
-        <% else %>
-          <%= link_to '登录后可预订', login_path, class: 'btn btn-default btn-block' %>
-        <% end %>
+    <div class="row">
+      <div class="title">
+        <div class="centered"><div><h2><%= @car.brand %></h2></div></div>
+        <!-- <p>TODO</p> -->
       </div>
     </div>
-    <%= render partial: 'cars/owner', locals: { owner: @rent.user } %>
-  </div>
-</div>
 
+    <div class="row">
+      <div class="col-md-7">
+        <ul class="nav nav-tabs" id="myTab">
+          <li class="active"><a href="#picture_tab" data-toggle="tab">图片</a></li>
+          <li><a href="#description_tab" data-toggle="tab">描述</a></li>
+          <li><a href="#baidu_map" data-toggle="tab">地图</a></li>
+          <li><a href="#comment" data-toggle="tab">评价</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="picture_tab">
+            <%= render 'cars/pictures_slide' %>
+            <%= render 'cars/thumb_picture_slide' %>
+          </div>
+          <div class="tab-pane" id="description_tab">
+            <%= render partial: 'cars/description', object: @car, as: :car %>
+          </div>
+          <div class="tab-pane" id="baidu_map">
+            <%= render 'cars/map' %>
+          </div>
+          <div class="tab-pane" id="comment">
+            <h4>评论</h4>
+            <%= render partial: 'comments/comment_list', object: @comments, as: :comments %>
+          </div>
+        </div>  
+      </div>
+      <div class="col-md-5">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-12">
+            <div id="request-box">
+              <%= render partial: 'rents/rent_rate', object: @rent.rate, as: :rate %>
+              <%= render 'rents/rent_calendar' %>
+              <div class="request-tool">
+                <% if signed_in?  %>
+                  <%= link_to '预订', select_time_orders_path(rent_id: @rent.id), class: 'btn btn-warning btn-block' %>
+                <% else %>
+                  <%= link_to '登录后可预订', login_path, class: 'btn btn-default btn-block' %>
+                <% end %>
+              </div>
+            </div>          
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-12">
+            <p>车主</p>
+            <%= render partial:'cars/owner', locals: { owner: @car.user } %>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  </article>
+
+
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12"><h2 class="header">来自车主的更多出租</h2></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="grid">
+            <ul class="">
+              <%= render partial: 'rents_list_item', collection: @more, as: :rent %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+  <!-- end Our Puppies -->
+
+</section>
 
 <script>
-$('#myTab a').click(function (e) {
-  e.preventDefault()
-  $(this).tab('show')
-});
+  $('div.carousel-inner .item:first').addClass("active");
+  $('div.carousel-inner .item ol li:first').addClass("active")
 </script>

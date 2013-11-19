@@ -1,23 +1,9 @@
-<div class="row">
-  <div class="col-md-7 box">
-    <div class="rent_process">
-      <%= image_tag 'rent_step_1.png', class: 'step' %>
-      <ul class="rent_steps">
-        <li class="step_active">选择车辆</li>
-        <li>选择日期</li>
-        <li>出租费用</li>
-        <li>出租完成</li>
-      </ul>
-      <div>
-        <table class="table table-hover">
-          <%= render partial: 'cars/car_list_item', collection: @cars, as: :car %>
-        </table>
-        <%= paginate @cars %>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <%= link_to '创建新车辆信息', new_car_path, class:'btn btn-large btn-success' %>
-  </div>
+<%= content_for(:steps) do %>
+  <%= image_tag 'rent_step_1.png', class: 'step' %>
+<% end %>
+<script>
+$("#step_1").addClass("step_active");
+</script>
 
-</div>
+
+

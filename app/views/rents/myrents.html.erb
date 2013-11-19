@@ -1,15 +1,53 @@
 <%= render partial: 'shared/panel_nav', locals: { active: 'nav_rent'} %>
+<div id="content">
+    <section id="gallery" class="updatable">
+      
+    <!-- begin Our Puppies -->
+    <article class="puppies">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12"><h2>出租</h2></div>
+      </div>
+      
 
-<div class="row">
-  <div class="col-md-7">
-  <% unless @rents.empty? %>
-    <table class="table table-hover">
-      <%= render partial: 'rents_list_item', collection: @rents, as: :rent %>
-    </table>
-    <div class="pagination"><%= paginate @rents %></div>
-  <% else %>
-    还没有出租,<%= link_to '立刻发布出租信息', select_car_rents_path %>
-  <% end %>
-  </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <ul class="filters">
+            <li data-filter="all" class="active">所有</li>
+  <!--           <li data-filter="feature">Features</li>
+            <li data-filter="male">Males</li>
+            <li data-filter="famale">Famales</li>
+            <li data-filter="top">Top</li> -->
+          </ul>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-12">
+          <div class="grid">
+            <ul>
+              <%= render partial: 'rents/rents_list_item', collection: @rents, as: :rent %>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="center-pag">
+            <div>
+              <ul class="pagination">
+                <%= paginate @rents %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>     
+    </article>
+    <!-- end Our Puppies -->
+
+    </section>
+
 </div>
 

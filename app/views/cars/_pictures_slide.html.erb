@@ -1,49 +1,20 @@
-<% unless more_than_one_picture?(@car.pictures) %> 
-  <!-- 只有一张图片，不用幻灯片 -->
-  <div class="picture-box">
-    <%= image_tag @car.pictures.first.image.url("600x450") %>
-  </div>
-  <div class="mark-box">
-    <h1 class="mark-brand"><%= @car.brand %></h1>
-    <h2 class="mark-location"><%= @car.location.detail %></h2>
-  </div>
-<% else %>
-  <div id="car-pictures" class="carousel slide">
-    <!-- 多于一张图片，用幻灯片播放 -->
-    <div class="carousel-inner">
-      <% @car.pictures.each do |pic| %>
-        <div class="item picture-box">
-          <%= image_tag pic.image.url("600x450") %>
-          <div class="carousel-caption">
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-  <div class="mark-box">
-    <h1 class="mark-brand"><%= @car.brand %></h1>
-    <h2 class="mark-location"><%= @car.location.detail %></h2>
-  </div>
-  <!-- Controls -->
-    <a href="#product-picture" data-slide="prev">
-    <span class="icon-prev"></span>
-  </a>
-  <a href="#product-picture" data-slide="next">
-    <span class="icon-next"></span>
-  </a>
-<!-- 用图片缩略图作为选择器 -->
-  <div class="picture-indicator">
-    <% @car.pictures.each_index do |index| %>
-      <div class="col-md-2">
-        <div class="thumbnail">
-          <%= image_tag @car.pictures[index].image.url("160x120"), "data-target" => "#car-pictures", "data-slide-to" => "#{index}" %>
-        </div>
+<div id="carousel-puppie" class="carousel slide" data-ride="carousel" data-interval="false">
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <% @car.pictures.each do |pic| %>
+      <div class="item">
+        <%= image_tag pic.image.url("slides") %>
       </div>
     <% end %>
   </div>
-<% end %>
-
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-puppie" data-slide="prev">
+    <i class="icon-left-open"></i>
+  </a>
+  <a class="right carousel-control" href="#carousel-puppie" data-slide="next">
+    <i class="icon-right-open"></i>
+  </a>
+</div>
 <script>
-$('div.carousel-inner .item:first').addClass("active");
-$('#car-pictures').carousel();
+  $('div.carousel-inner .item:first').addClass("active");
 </script>

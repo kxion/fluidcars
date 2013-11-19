@@ -1,14 +1,8 @@
 
-  <div id="car-description">
-    <h4>关于这辆车</h4>
-    <dl class="dl-horizontal">
-      <dt>车辆型号:</dt>
-      <dd><%= car.brand %></dd>
-      <dt>所在城市:</dt>
-      <dd><%= car.location.city %></dd>
-      <dt>地   点:</dt>
-      <dd><%= car.location.detail %></dd>
-      <dt>描   述:</dt>
-      <dd><%= simple_format(car.description) %></dd>
-  	<dl>
-  </div>
+  <ul class="features">
+    <h4>描述</h4>
+    <li><strong>车辆型号:</strong><%= car.brand %></li>
+    <li><strong>所在城市:</strong><%= car.location.city %></li>
+    <li><strong>取车地点:</strong><%= car.location.detail %></li>
+    <li><strong>车   况:</strong><%= simple_format(car.description) %></li>
+  </ul>
