@@ -1,4 +1,6 @@
-
+<%= content_for(:steps) do %>
+  <%= image_tag 'rent_step_3.png', class: 'step' %>
+<% end %>
 
   <div class="container">
     <div class="row">
@@ -10,4 +12,7 @@
 
   <div class="col-md-4">
   </div>
+<script>
+$("#step_3").addClass("step_active");
+</script>
 

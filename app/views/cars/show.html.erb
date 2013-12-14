@@ -31,11 +31,10 @@
       <div class="col-md-3">
         <div class="row">
           <div class="col-xs-12 col-sm-6 col-md-12">
-            <%= link_to '修改信息', edit_car_path(@car), class: 'btn btn-block btn-info' %>
-
-      <%= button_to '出租', confirm_select_car_rents_path(car_id: @car.id), class: 'btn btn-block btn-success' %>
-      <%= link_to '管理图片', upload_pictures_car_path(@car), class: 'btn btn-block btn-warning' %>
-      <a data-toggle="modal" href="#deleteModal" class="btn btn-danger btn-block">删除</a>
+            <%= button_to '出租', confirm_select_car_rents_path(car_id: @car.id), class: 'btn btn-block btn-success btn-rent' %>
+            <%= link_to '修改信息', edit_car_path(@car), class: 'btn  btn-info' %>
+            <%= link_to '管理图片', upload_pictures_car_path(@car), class: 'btn  btn-warning' %>
+            <a data-toggle="modal" href="#deleteModal" class="btn btn-danger ">删除车辆</a>
             <%= render partial: 'cars/description', object: @car, as: :car %>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-12">

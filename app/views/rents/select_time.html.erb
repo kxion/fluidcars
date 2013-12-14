@@ -1,21 +1,17 @@
+<%= content_for(:steps) do %>
+  <%= image_tag 'rent_step_2.png', class: 'step' %>
+<% end %>
 <div class="container">
 <div class="row">
   <div class="col-md-7 box">
-    <div class="rent_process">
-      <%= image_tag 'rent_step_2.png', class: 'step' %>
-      <ul class="rent_steps">
-        <li>选择车辆</li>
-        <li class="step_active">选择日期</li>
-        <li>出租费用</li>
-        <li>出租完成</li>
-      </ul>
-    </div>
     <div class="box">
       <%= render 'select_time_form'%>
     </div>
   </div>
   <div class="col-md-4">
   </div>
-
 </div>
 </div>
+<script>
+$("#step_2").addClass("step_active");
+</script>

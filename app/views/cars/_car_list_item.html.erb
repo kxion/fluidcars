@@ -3,7 +3,7 @@
     <div class="more">
       <i class="icon-search pull-right"></i>
       <span class="wks"><%= car.location.city %></span>
-      <span class="txt"><%= car.location.detail %></span>
+      <span class="txt"><%= truncate(car.location.detail, length: 8) %></span>
     </div>
     <%= image_tag car.pictures[0].image.url("270x270") %>    
     <span class="name"><%= car.brand %></span>

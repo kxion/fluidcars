@@ -1,6 +1,54 @@
 <%= content_for(:steps) do %>
   <%= image_tag 'rent_step_1.png', class: 'step' %>
 <% end %>
+<div id="content">
+    <section id="gallery" class="updatable">
+      
+    <!-- begin Our Puppies -->
+    <article class="puppies">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12"><h2>我的车辆</h2></div>
+      </div>
+      
+      <%= link_to '+ 添加车辆', new_car_path, class:'btn btn-large btn-success' %>
+
+      <% unless @cars.empty? %>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="grid">
+            <ul>
+              <%= render partial: 'cars/car_list_item', collection: @cars, as: :car %>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="center-pag">
+            <div>
+              <ul class="pagination">
+                <%= paginate @cars %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% else %>
+      暂无车辆信息,<%= link_to '添加车辆', new_car_path %>
+      <% end %>
+
+    </div>     
+    </article>
+    <!-- end Our Puppies -->
+
+    </section>
+
+</div>
+
+
+
 <script>
 $("#step_1").addClass("step_active");
 </script>

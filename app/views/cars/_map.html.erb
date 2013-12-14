@@ -14,10 +14,11 @@
   <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
 <% end %>
 <script type="text/javascript">
-  $(document).ready(function() {
+
+  window.onload = function() {
     var map = new BMap.Map("map_container");  
     var car_point = new BMap.Point(<%= @car.location.gps[0] %>, <%= @car.location.gps[1] %>);
-    map.centerAndZoom(car_point,14);  
+    map.centerAndZoom(car_point,15);  
     console.log(car_point);
     //map.setCenter(car_point);
     // map.enableScrollWheelZoom(true);
@@ -26,6 +27,7 @@
     // var marker = new BMap.Marker(pt);  // 创建标注
     map.addOverlay(marker);              // 将标注添加到地图中
     marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+    map.centerAndZoom(car_point,15); 
 //（创建信息窗口）
     var searchInfoWindow = new BMapLib.SearchInfoWindow(map, "地址", {
       title: "<%= @car.location.city + @car.location.district + @car.location.detail %>", //标题
@@ -42,6 +44,7 @@
       // openInfoWindow();
       window.open('http://map.baidu.com/?newmap=1&ie=utf-8&s=s%26wd%3D'+'<%= @car.location.city %>'+'<%= @car.location.district %>'+'<%= @car.location.detail %>');
     });
-  });
+  };
 </script>
+
 

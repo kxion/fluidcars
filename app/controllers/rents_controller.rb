@@ -1,6 +1,6 @@
 class RentsController < ApplicationController
   before_action :signed_in_user, except: [:show, :search_reservation]
-  layout 'rent', only: [:select_car, :select_time, :set_rate, :confirm]
+  layout 'rent', only: [:select_car, :select_time, :set_rate, :complete]
   # 显示详细出租信息
   def show
     @rent = Rent.includes(:user).find(params[:id])
