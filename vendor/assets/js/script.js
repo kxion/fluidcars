@@ -48,8 +48,9 @@ $(document).ready(function() {
 			startwidth:1200,
 			onHoverStop: "on",
 			hideThumbs:1,
-			navigationType: "bullet",
-			navigationStyle: "round",
+			navigationType:"bullet",
+      navigationArrows:"solo",
+      navigationStyle:"round",
 			shadow:0,
 		});    
 	}

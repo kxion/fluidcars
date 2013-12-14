@@ -4,7 +4,7 @@
   <li id="nav_car"><%= link_to '我的车辆', my_cars_path %></li>
   <li id="nav_rent"><%= link_to '我的出租', my_rents_path %><span class='badge'></span></li>
   <li id="nav_show"><%= link_to '我的展示页面', user_path(current_user) %></li>
-  <li id="nav_order"><%= link_to '我的订单', my_orders_path %></li>
+  <li id="nav_order"><%#= link_to '我的订单', my_orders_path %></li>
   <li id="nav_profile"><%= link_to '编辑账户', edit_profile_path(current_user.profile) %></li> 
 </ul>
 </div>

@@ -4,7 +4,7 @@
       <i class="icon-search pull-right"></i>
       <span class="price">￥<%= rent.rate['day'] %>/天</span>
       <span class="wks"><%= rent.car.location.city %></span>
-      <span class="txt"><%= rent.car.location.detail %></span>
+      <span class="txt"><%= truncate(rent.car.location.detail, length: 6) %></span>
     </div>
     <%= image_tag rent.car.pictures[0].image.url("270x270") %>    
     <span class="name"><%= rent.car.brand %></span>

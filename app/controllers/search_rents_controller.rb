@@ -1,8 +1,7 @@
 class SearchRentsController < ApplicationController
   def search_rents_by_location
-    @rents = Rent.where('car.location.detail' => /#{params[:location]}/).where(:end.gt => Time.now.to_date)
-    @results = @rents.page params[:page]
-    render 'result'
+    @rents = Rent.where('car.location.detail' => /#{params[:location]}/).where(:end.gt => Time.now.to_date).page params[:page]
+    render 'rents/index'
   end
 
   def search_rents_by_date

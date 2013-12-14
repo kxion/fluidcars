@@ -11,6 +11,6 @@ class HomePagesController < ApplicationController
     #     session[:current_gps] = [ loc['content']['point']['x'], loc['content']['point']['y'] ]
     #   end
     # end
-    @recommand = Rent.all.limit(10)
+    @recommands = Rent.all.limit(10)
   end
 end
