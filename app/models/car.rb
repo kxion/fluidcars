@@ -11,9 +11,11 @@ class Car
   field :description, type: String # 车辆描述
   field :brand, type: String # 车辆品牌型号
   field :token, type: String
+  field :complete, type: Boolean
 
   validates :description, :brand, presence: {message: '不能为空'}
 
+  default_scope ->{ where(complete: true)}
   def generate_token
     self.token = loop do
       random_token = SecureRandom.urlsafe_base64

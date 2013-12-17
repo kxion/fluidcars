@@ -44,6 +44,7 @@ class CarsController < ApplicationController
   # 提交车辆信息
   def create
     @car = Car.new(car_params)
+    @car.complete = false
     @car.user_id = current_user.id
     if params[:have_location].nil?
       unless params[:add_to] == "0"
@@ -61,11 +62,12 @@ class CarsController < ApplicationController
   end
 
   def upload_pictures
-    @car = Car.find(params[:id])
+    @car = Car.unscoped.find(params[:id])
   end
 
   def complete
-    @car = Car.find(params[:id])
+    @car = Car.unscoped.find(params[:id])
+    @car.update_attributes(complete: true)
     flash[:success] = '图片已更新！'
   end
 

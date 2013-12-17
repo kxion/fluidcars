@@ -27,7 +27,6 @@
     // var marker = new BMap.Marker(pt);  // 创建标注
     map.addOverlay(marker);              // 将标注添加到地图中
     marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
-    map.centerAndZoom(car_point,15); 
 //（创建信息窗口）
     var searchInfoWindow = new BMapLib.SearchInfoWindow(map, "地址", {
       title: "<%= @car.location.city + @car.location.district + @car.location.detail %>", //标题
