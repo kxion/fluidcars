@@ -55,7 +55,11 @@ Zuche::Application.routes.draw do
 
   resources :pictures 
   
-  resources :profiles
+  resources :profiles do
+    collection do
+      post 'create_address' => :address
+    end
+  end
 
   controller :search_rents do
     get 'search_rents_by_location' => :search_rents_by_location
@@ -77,6 +81,7 @@ Zuche::Application.routes.draw do
   end
   
   root :to => 'home_pages#home'
+
 
   # controller :test_pages do
   #   get 'test_page' => :test_page

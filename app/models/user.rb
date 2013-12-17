@@ -24,7 +24,7 @@ class User
       user
     else
       user = User.create(name: auth[:info][:name], email: auth[:info][:email])
-      user.create_profile(name: auth[:info][:name])
+      user.create_profile(name: auth[:info][:name], locations: [])
       user.authorizations.push(Authorization.new(provider: auth[:provider], uid: auth[:uid]))
       user
     end

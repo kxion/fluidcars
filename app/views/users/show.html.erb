@@ -2,8 +2,6 @@
   <%= render partial: 'shared/panel_nav', locals: { active: 'nav_show'} %>
 <% end %>
 
-</div> 
-
 <div id="content">
     <section id="gallery" class="updatable">
       
@@ -11,52 +9,43 @@
     <article class="puppies">
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
-          <div class='box'>
-            <%= render 'profiles/info' %>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="grid">
+                <ul>
+                  <%= render partial: 'rents/rents_list_item', collection: @rents, as: :rent %>
+                </ul>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class='col-md-6'>
-          <div class='box'>
-            分享页面，让更多人看到你的出租信息。
-            <%= render 'shared/share_button' %>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12"><h2>他/她的出租</h2></div>
-      </div>
-      
 
-      <div class="row">
-        <div class="col-xs-12">
-          <ul class="filters">
- <!--            <li data-filter="all" class="active">所有</li>
-            <li data-filter="feature">Features</li>
-            <li data-filter="male">Males</li>
-            <li data-filter="famale">Famales</li>
-            <li data-filter="top">Top</li> -->
-          </ul>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col-md-12">
-          <div class="grid">
-            <ul>
-              <%= render partial: 'rents/rents_list_item', collection: @rents, as: :rent %>
-            </ul>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="center-pag">
+                <div>
+                  <ul class="pagination">
+                    <%= paginate @rents %>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="center-pag">
-            <div>
-              <ul class="pagination">
-                <%= paginate @rents %>
-              </ul>
+        <div class="col-md-4">
+          <div class="row">
+            <div class="col-md-12">
+              <div class='box'>
+                <%= render 'profiles/info' %>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class='col-md-12'>
+              <div class='box'>
+                分享页面，让更多人看到你的出租信息。
+                <%= render 'shared/share_button' %>
+              </div>
             </div>
           </div>
         </div>

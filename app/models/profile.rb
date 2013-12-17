@@ -4,6 +4,7 @@ class Profile
   mount_uploader :avatar, AvatarUploader
   
   embedded_in :user
+  embeds_many :locations, as: :addressable
 
   field :name, type: String
   field :avatar, type: String

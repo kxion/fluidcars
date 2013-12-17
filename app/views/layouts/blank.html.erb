@@ -2,8 +2,10 @@
 <html>
   <%= render 'layouts/head' %>
   <body>
-    <%= render 'shared/notice' %>
-    <%= yield %>
+    <div class='content'>
+      <%= render 'shared/notice' %>
+      <%= yield %>
+    </div>
     <%= render 'layouts/footer' %>
   </body>
 

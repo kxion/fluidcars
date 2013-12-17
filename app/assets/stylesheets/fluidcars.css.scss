@@ -18,8 +18,18 @@
 select {
   width:80px;
 }
+#optional_location {
+  border-top: 1px solid #e5e5e5;
+  padding-top: 5px;
+}
 .btn-rent {
   margin-bottom: 20px;
+}
+.bottom-foot h4 {
+  color: #c3c3c1;
+}
+.content {
+  min-height: 700px;
 }
 .homepage {
   background-image: image-url('background.jpg');

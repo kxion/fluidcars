@@ -5,7 +5,7 @@
     <%= simple_form_for @profile, :html => {:multipart => true} do |f| %>
       <div class="fieldset">
         <legend>个人资料</legend>
-        <%= f.input :name, label: '姓名' %>
+        <%= f.input :name, label: '称呼' %>
         <%= f.input :contact, label: '联系方式' %>
         <div class="form-group">
           <%= f.label '上传头像', :avatar %>

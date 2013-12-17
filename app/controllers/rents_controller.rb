@@ -37,7 +37,7 @@ class RentsController < ApplicationController
     selected_car = Car.find(params[:car_id])
 
     if selected_car.user_id == current_user.id
-      rent = Rent.create(car: selected_car, user_id: current_user.id)
+      rent = Rent.create(car: selected_car, user_id: current_user.id, complete: false)
       session[:current_rent_id] = rent.id
       redirect_to select_time_rents_url
     else
@@ -66,14 +66,15 @@ class RentsController < ApplicationController
   end
   # 确认费率
   def confirm_set_rate
-    @rent = Rent.find(session[:current_rent_id])
+    @rent = Rent.unscoped.find(session[:current_rent_id])
     @rent.rate = params[:rate]
     @rent.save
     redirect_to complete_rents_url
   end
   # 出租完成
   def complete
-    @rent = Rent.find(session[:current_rent_id])
+    @rent = Rent.unscoped.find(session[:current_rent_id])
+    @rent.update_attributes(complete: true)
     @car = @rent.car
     flash.now[:success] = "发布成功！"   
     session[:current_rent_id] = nil

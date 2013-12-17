@@ -1,11 +1,31 @@
-<%= simple_form_for @car, :html => {:multipart => true} do |f| %>
+<%= simple_form_for @car, :html => {:multipart => true, novalidate: true} do |f| %>
   <div class="fieldset">
     <legend>车辆信息(以下消息必填）</legend>
     <%= f.input :token, as: :hidden, value: @car.token %>
     <%= f.input :brand, label: '型号', hint: '车辆品牌及型号', :placeholder=>"车辆型号" %>
-    <%= f.input :description, as: :text, input_html: {rows: 5}, label: '描述', :placeholder=>"描述", hint: '请简单描述车况，更利于出租' %>
-
-    <%= f.simple_fields_for :location do |loc| %>
+    <%= f.input :description, as: :text, input_html: {rows: 5}, label: '描述', :placeholder=>"例如：2013年款，手动挡", hint: '请简单描述车况，更利于出租' %>
+    <% unless @locations.empty? %>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">使用已有地址</label>
+      <% @locations.each do |loc| %>
+        <div class="form-group">
+          <div class="col-lg-8 col-lg-offset-2">
+            <div class="radio">
+              <label>
+                <input type="radio" name="have_location" value="<%= loc.id %>">
+                <%= loc.format_location %>
+              </label>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <% end %>
+    <div id="optional_location">
+      <div class="form-group">
+        <label class="col-lg-2 control-label">新建地址</label>
+      </div>
+    <%= f.simple_fields_for @car.build_location do |loc| %>
       <% if @car.new_record? %>
         <div class="form-group">
           <%= loc.label '地区' %>
@@ -15,7 +35,18 @@
             <%= loc.select :district, collection: [''] %>
           </div>
         </div>
-        <%= loc.input :detail, label: '详细地址', :placeholder=>"详细地址", required: 'required' %>
+        <%= loc.input :detail, label: '详细地址', :placeholder=>"详细地址", required: '' %>
+        <input name="add_to" type="hidden" value="0">
+        <div class="form-group">
+          <div class="col-lg-8 col-lg-offset-2">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="1" id="add_to" name="add_to">
+                  同时将此地址保存到我的地址簿
+              </label>
+            </div>
+          </div>
+        </div>
       <% else %>
         <div class='form-group' id='loc-group'>
           <%= loc.label '地点' %>
@@ -25,6 +56,7 @@
         </div>
       <% end %>
     <% end %>
+    </div>
     <div class="form-group">
       <div class="col-md-offset-2 col-md-4">
         <%= f.submit "保存并继续", class: 'btn btn-primary btn-large' %>
@@ -36,7 +68,7 @@
 <script type="text/javascript">
   <% if @car.new_record? %>
   window.onload = function(){
-    siteSelect(["car_location_attributes_province","car_location_attributes_city","car_location_attributes_district"],["","",""]);
+    siteSelect(["car_location_province","car_location_city","car_location_district"],["","",""]);
   };
   <% else %>
     content = '<div class="form-group"><label class="string optional control-label col-lg-2" for="car_location_attributes_地区">地区</label><div class="col-lg-8 city-group"><select id="car_location_attributes_province" name="car[location_attributes][province]"><optgroup label="collection"></optgroup><optgroup label="value">yes</optgroup></select><select id="car_location_attributes_city" name="car[location_attributes][city]"><optgroup label="collection"></optgroup><optgroup label="value">ok</optgroup></select><select id="car_location_attributes_district" name="car[location_attributes][district]"><optgroup label="collection"></optgroup></select></div></div><div class="form-group string required car_location_detail"><label class="string required control-label col-lg-2" for="car_location_attributes_detail"><abbr title="required">*</abbr> 详细地址</label><div class="col-lg-8"><input aria-required="true" class="string required form-control" id="car_location_attributes_detail" name="car[location_attributes][detail]" placeholder="详细地址" required="required" type="text" /></div></div>';
@@ -46,5 +78,8 @@
       siteSelect(["car_location_attributes_province","car_location_attributes_city","car_location_attributes_district"],["","",""]);
     });
   <% end %>
+  $(":radio").click(function(){
+    $("#optional_location").hide();
+  });
 </script>
 

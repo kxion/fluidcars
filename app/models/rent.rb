@@ -11,8 +11,9 @@ class Rent
   field :start, type: Date # 出租开始时间
   field :end, type: Date # 出租结束时间
   field :period_type, type: String, default: 'short' #出租类型，long(长租)or short(短租)
+  field :complete, type: Boolean
 
-  default_scope ->{where(:end.gte => Time.now)}
+  default_scope ->{where(:end.gte => Time.now, :complete => true)}
 
   before_save :check_period_type
   def check_period_type

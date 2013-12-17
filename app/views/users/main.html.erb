@@ -4,7 +4,7 @@
   <div class="col-md-3 left-box">
     <div class='border-box'><%= image_tag @user.profile.avatar.url('200x200') %></div>
       <p>你好，<%= @user.profile.name %>
-        <span class='text-right'><%= link_to '修改资料', edit_profile_path(@user.profile)%></span>
+        <span class='text-right'><%= link_to '编辑资料', edit_profile_path(@user.profile)%></span>
       </p>
   </div>
   <div class="col-md-9">
@@ -17,9 +17,36 @@
     <div class="panel panel-default">
       <div class="panel-heading">我的出租</div>
       <div class="panel-body">
-        您目前发布了<%= link_to @user.rents.count, my_rents_path  %>条出租信息
+        您目前发布了<%= link_to @user.rents.count, my_rents_path %>条出租信息
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">常用地址</div>
+      <div class="panel-body">
+        <% if @locations.empty? %>
+          <p>请<a id='add_address'>添加</a>常用地址，出租更便捷!</p>
+        <% else %>
+          <ul class="list-group">
+          <% @locations.each do |loc| %>
+            <li class="list-group-item"><%= format_location(loc) %></li>
+          <% end %>
+          </ul>
+          <p><a id='add_address' class='btn btn-success'>+ 添加地址</a></p>
+        <% end %>
+        <%= render 'profiles/address_form' %>
       </div>
     </div>
   </div>
 </div>
 </div>
+
+<script>
+$(document).ready(function(){
+  $("#address_form").hide();
+  $("#add_address").click(function(){
+    $("#address_form").show();
+    siteSelect(["location_province","location_city","location_district"],["","",""]);
+  });
+});
+</script>
+

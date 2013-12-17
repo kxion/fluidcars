@@ -17,8 +17,19 @@ class ProfilesController < ApplicationController
     redirect_to profile_path(current_user)
   end
 
+  def address
+    @profile = current_user.profile
+    @profile.locations.create(location_params)
+    flash[:success] = "地址添加成功！"
+    redirect_to main_users_url 
+  end
+
   def profile_params
     params.require(:profile).permit(:avatar, :avatar_cache, :name, :contact)
+  end
+
+  def location_params
+    params.require(:location).permit(:province, :district, :detail, :city)
   end
 
 end

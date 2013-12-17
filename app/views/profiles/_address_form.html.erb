@@ -1,0 +1,18 @@
+<div id="address_form">
+<%= simple_form_for @profile.locations.new, url: create_address_profiles_path do |loc| %>
+  <div class="form-group">
+    <%= loc.label '地区' %>
+    <div class="col-lg-8 city-group">
+      <%= loc.select :province, collection: [''], value: 'yes' %>
+      <%= loc.select :city, collection: [''], value: 'ok' %>
+      <%= loc.select :district, collection: [''] %>
+    </div>
+  </div>
+  <%= loc.input :detail, label: '详细地址', :placeholder=>"详细地址", required: 'required' %>
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-4">
+      <%= loc.submit "保存", class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
+</div>

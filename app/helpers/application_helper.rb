@@ -79,5 +79,4 @@ module ApplicationHelper
     location.city + location.district + location.detail
   end
 
-
 end

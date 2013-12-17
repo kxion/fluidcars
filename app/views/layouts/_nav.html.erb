@@ -27,6 +27,9 @@
       <li><a href="#">Our Dogs</a></li>
     </ul>
     <%= render 'layouts/nav_search_form' %>
+    <ul class="nav">
+      <%= render 'shared/notice' %>
+    </ul>
     <% if signed_in? %>
     <ul class="nav navbar-nav navbar-right">
       <li><%= link_to current_user.profile.name||current_user.name, main_users_path, class: 'user' %></li>

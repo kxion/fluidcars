@@ -24,9 +24,9 @@ module BaiduMap
   #     level: "商务大厦"  地址类型
   # }
   #}
-  def gps_from_baidu_map
+  def get_gps_from_baidu_map
     # url = "http://api.map.baidu.com/geocoder/v2/?address="+self.location+"&city="+self.city+"&output=json&ak=D6ced4fa35c14b09189fba6b898c905f"
-    params = { address: self.location.detail, city: self.location.city, output: 'json', ak: 'D6ced4fa35c14b09189fba6b898c905f'}
+    params = { address: self.detail, city: self.city, output: 'json', ak: 'D6ced4fa35c14b09189fba6b898c905f'}
     
     response = JSON.parse(http_get("api.map.baidu.com", "/geocoder/v2/", params))
 
@@ -35,9 +35,9 @@ module BaiduMap
     # end
 
     begin
-      self.location.gps = [].push(response['result']['location']['lng'], response['result']['location']['lat'])
+      self.gps = [].push(response['result']['location']['lng'], response['result']['location']['lat'])
     rescue
-      self.location.gps = nil
+      self.gps = nil
     end
 
   end

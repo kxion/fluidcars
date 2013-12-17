@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   
   def main
     @user = current_user
+    @profile = @user.profile
+    @locations = @user.profile.locations
   end  
   
   def panel
@@ -10,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(name: params[:name]) || User.find(params[:id])
     @profile = @user.profile
     @rents = @user.rents.page params[:page]
   end

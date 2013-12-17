@@ -2,9 +2,11 @@
 <html>
   <%= render 'layouts/head' %>
   <body>
-    <%= render 'layouts/header' %>
-    <%= render 'shared/notice' %>
-    <%= yield %>
+    <div class="content">
+      <%= render 'layouts/header' %>
+      <%= render 'shared/notice' %>
+      <%= yield %>
+    </div>
     <%= render 'layouts/footer' %>
   </body>
   <%= yield :mapapi %>

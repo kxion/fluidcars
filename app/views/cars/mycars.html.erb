@@ -6,19 +6,19 @@
     <article class="puppies">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12"><h2>我的车辆</h2></div>
+        <div class="col-xs-12"><h2>我的车辆</h2><%= link_to '+ 添加', new_car_path, class:'btn btn-large btn-success pull-right' %></div>
       </div>
       
 
-      <div class="row">
+<!--       <div class="row">
         <div class="col-xs-12">
           <ul class="filters">
             <li data-filter="all" class="active">所有</li>
             <li data-filter="feature">正在出租</li>
           </ul>
         </div>
-      </div>
-      <%= link_to '+ 添加车辆', new_car_path, class:'btn btn-large btn-success' %>
+      </div> -->
+      
 
       <% unless @cars.empty? %>
       <div class="row">

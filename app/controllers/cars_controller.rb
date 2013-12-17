@@ -29,7 +29,7 @@ class CarsController < ApplicationController
     @car = Car.new
     @car.generate_token
     @pictures = []
-    @car.build_location
+    @locations = current_user.profile.locations
   end
 
   # 编辑车辆
@@ -45,6 +45,13 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
     @car.user_id = current_user.id
+    if params[:have_location].nil?
+      unless params[:add_to] == "0"
+        @current_user.profile.locations.create(location_params)
+      end
+    else
+      @car.location = @current_user.profile.locations.find(params[:have_location])
+    end
     if @car.save!
       flash[:success] = '车辆信息创建成功,请上传图片'
       redirect_to upload_pictures_car_url(@car)
@@ -92,7 +99,11 @@ class CarsController < ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:token, :description, :brand, :location_attributes => [:province, :district, :detail, :city])
+    params.require(:car).permit(:token, :description, :brand, :location => [:province, :district, :detail, :city])
+  end
+
+  def location_params
+    params[:car][:location].permit!
   end
   
 end
