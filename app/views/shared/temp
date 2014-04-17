@@ -58,3 +58,17 @@
     <%= render partial: 'cars/owner', locals: { owner: @rent.user } %>
   </div>
 </div>
+
+
+function openInfoWindow() {
+    //（创建信息窗口）
+    var searchInfoWindow = new BMapLib.SearchInfoWindow(map, "地址", {
+      title: "<%= @car.location.city + @car.location.district + @car.location.detail %>", //标题
+      panel : "panel", //检索结果面板
+      enableAutoPan : true, //自动平移
+      searchTypes :[
+          BMAPLIB_TAB_TO_HERE,  //到这里去
+        ]
+      });
+      searchInfoWindow.open(car_point);
+  }

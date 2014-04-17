@@ -3,7 +3,7 @@
     <div class="map-header">
       <span class="glyphicon glyphicon-map-marker"></span><%= @car.location.city+@car.location.district+@car.location.detail %>
     </div>
-    <div id="map_container" style="">
+    <div id="map_container">
       地图加载中，请稍后<%= image_tag 'loading1.gif' %>
     </div>
   </div>
@@ -13,37 +13,42 @@
   <script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
   <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
 <% end %>
-<script type="text/javascript">
-
-  window.onload = function() {
-    var map = new BMap.Map("map_container");  
-    var car_point = new BMap.Point(<%= @car.location.gps[0] %>, <%= @car.location.gps[1] %>);
-    map.centerAndZoom(car_point,15);  
+<script>
+  function initialize(){
+    map.centerAndZoom(car_point,16);  
+    // map.disableAutoResize();
+    // map.disableDragging();
     console.log(car_point);
+    console.log(map.getCenter());
     //map.setCenter(car_point);
     // map.enableScrollWheelZoom(true);
     //var myIcon = new BMap.Icon("<%= asset_path('corner.png') %>", new BMap.Size(30,30));
     var marker = new BMap.Marker(car_point)//,{icon:myIcon});  // 创建标注
-    // var marker = new BMap.Marker(pt);  // 创建标注
     map.addOverlay(marker);              // 将标注添加到地图中
     marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
-//（创建信息窗口）
-    var searchInfoWindow = new BMapLib.SearchInfoWindow(map, "地址", {
-      title: "<%= @car.location.city + @car.location.district + @car.location.detail %>", //标题
-      panel : "panel", //检索结果面板
-      enableAutoPan : true, //自动平移
-      searchTypes :[
-          BMAPLIB_TAB_TO_HERE,  //到这里去
-        ]
-      });
-    function openInfoWindow() {
-        searchInfoWindow.open(car_point);
-    }
     map.addEventListener("click", function(){
       // openInfoWindow();
       window.open('http://map.baidu.com/?newmap=1&ie=utf-8&s=s%26wd%3D'+'<%= @car.location.city %>'+'<%= @car.location.district %>'+'<%= @car.location.detail %>');
     });
-  };
+  }
+  $(document).ready(function() { 
+    var map = new BMap.Map("map_container"); 
+    var car_point = new BMap.Point(<%= @car.location.gps[0] %>, <%= @car.location.gps[1] %>);
+    map.centerAndZoom(car_point,16);  
+    console.log(car_point);
+    console.log(map.getCenter());
+    var marker = new BMap.Marker(car_point)//,{icon:myIcon});  // 创建标注
+    map.addOverlay(marker);              // 将标注添加到地图中
+    marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+    map.addEventListener("click", function(){
+      window.open('http://map.baidu.com/?newmap=1&ie=utf-8&s=s%26wd%3D'+'<%= @car.location.city %>'+'<%= @car.location.district %>'+'<%= @car.location.detail %>');
+    });    
+    // $("#map_tap").click(function(e){
+    //   e.preventDefault();
+    //   $(this).tab('show');
+    //   map.panTo(car_point);
+    // });
+  });
 </script>
 
 
