@@ -5,14 +5,17 @@ require "rvm/capistrano"
 set :rvm_ruby_string, :local
 
 set :application, "fluidcars"
-set :domain, 'fluidcars.com'
-set :user, "rails" # 一個伺服器上的帳戶用來放你的應用程式，不需要有sudo權限，但是需要有權限可以讀取Git repository拿到原始碼
+# set :domain, 'fluidcars.com'
+set :domain, 'aliyun'
+set :user, "root" # 一個伺服器上的帳戶用來放你的應用程式，不需要有sudo權限，但是需要有權限可以讀取Git repository拿到原始碼
 set :branch, "master"
-set :repository, "git@fluidcars.com:/git/fluidcars.git"
+# set :repository, "git@fluidcars.com:/git/fluidcars.git"
+set :repository, "git@github.com:loveltyoic/fluidcars.git"
+
 set :scm, "git"
 set :port, "22"
 
-set :deploy_to, "/home/#{domain}"
+set :deploy_to, "/web/#{application}"
 set :shared_path, "#{deploy_to}/shared"
 set :deploy_via, :remote_cache
 set :use_sudo, false
