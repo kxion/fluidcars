@@ -44,10 +44,10 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.14.0'
   gem 'factory_girl_rails', '~> 4.2.1'
   gem "mongoid_colored_logger", "0.2.2"
-  gem 'debugger'
-  gem 'pry-rails'
-  gem 'pry-debugger'
-end 
+  # gem 'debugger'
+  # gem 'pry-rails'
+  # gem 'pry-debugger'
+end
 
 group :test do
   gem 'database_cleaner', '~> 1.0.1'

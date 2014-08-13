@@ -1,12 +1,12 @@
 require "bundler/capistrano"
 
 # adjust if youareusing RVM, remove if youarenot
-require "rvm/capistrano"
-set :rvm_ruby_string, :local
+# require "rvm/capistrano"
+# set :rvm_ruby_string, :local
 
-set :application, "fluidcars"
+set :application, "fluidcars.com"
 # set :domain, 'fluidcars.com'
-set :domain, 'aliyun'
+set :domain, 'legomi.net'
 set :user, "root" # 一個伺服器上的帳戶用來放你的應用程式，不需要有sudo權限，但是需要有權限可以讀取Git repository拿到原始碼
 set :branch, "master"
 # set :repository, "git@fluidcars.com:/git/fluidcars.git"
@@ -15,7 +15,7 @@ set :repository, "git@github.com:loveltyoic/fluidcars.git"
 set :scm, "git"
 set :port, "22"
 
-set :deploy_to, "/web/#{application}"
+set :deploy_to, "/home/#{application}"
 set :shared_path, "#{deploy_to}/shared"
 set :deploy_via, :remote_cache
 set :use_sudo, false
@@ -66,7 +66,7 @@ task :link_shared_files, :roles => :web do
   # run "ln -sf #{deploy_to}/shared/config/unicorn.rb #{deploy_to}/current/config/"
 end
 
-task :compile_and_rsync_assets, roles => :web do 
+task :compile_and_rsync_assets, roles => :web do
   run_locally "RAILS_ENV=production bundle exec rake assets:precompile; rsync -vr --exclude='.DS_Store' public/assets #{user}@#{domain}:#{shared_path}/"
 end
 
@@ -77,6 +77,9 @@ end
 desc "Copy nginx.conf to server"
 task :nginx_config, roles => :web do
   run_locally "rsync config/nginx.conf #{user}@#{domain}:#{nginx_path}/"
+end
+task :server_config, roles => :web do
+  run_locally "rsync config/fluidcars.conf #{user}@#{domain}:#{nginx_path}/"
 end
 after "deploy:finalize_update", :compile_assets
 # after "deploy:update_code", "deploy:copy_config_files" # 如果將database.yml放在shared下，請打開
