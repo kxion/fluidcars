@@ -12,6 +12,8 @@ class HomePagesController < ApplicationController
     #   end
     # end
     @recommands = Rent.all.limit(10)
+    @realip = request.headers['X-Real-IP']
     fresh_when @recommands, :etag => @recommands, :last_modified => DateTime.now.beginning_of_week
+    Rails.logger.info @realip
   end
 end
