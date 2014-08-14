@@ -12,6 +12,6 @@ class HomePagesController < ApplicationController
     #   end
     # end
     @recommands = Rent.all.limit(10)
-    fresh_when :etag => @recommands
+    fresh_when @recommands, :etag => @recommands, :last_modified => DateTime.now.beginning_of_week
   end
 end

@@ -1,7 +1,7 @@
 require "bundler/capistrano"
 
 # adjust if youareusing RVM, remove if youarenot
-# require "rvm/capistrano"
+require "rvm/capistrano"
 # set :rvm_ruby_string, :local
 
 set :application, "fluidcars.com"
@@ -10,7 +10,7 @@ set :domain, 'legomi.net'
 set :user, "root" # 一個伺服器上的帳戶用來放你的應用程式，不需要有sudo權限，但是需要有權限可以讀取Git repository拿到原始碼
 set :branch, "master"
 # set :repository, "git@fluidcars.com:/git/fluidcars.git"
-set :repository, "git@github.com:loveltyoic/fluidcars.git"
+set :repository, "https://github.com/loveltyoic/fluidcars.git"
 
 set :scm, "git"
 set :port, "22"
